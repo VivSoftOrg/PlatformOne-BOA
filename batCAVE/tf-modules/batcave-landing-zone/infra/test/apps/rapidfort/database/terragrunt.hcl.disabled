@@ -1,0 +1,46 @@
+# Currently, the RF deployment in test uses a mysql StatefulSet, however the code below
+# exists to test functionality with an external database, which is preferred in prod
+# This module is disabled until we work with RF/DU to use an external DB
+
+locals {
+  common       = read_terragrunt_config(find_in_parent_folders("common.hcl")).locals
+}
+
+include {
+  path = find_in_parent_folders()
+}
+
+terraform {
+  # not tagging as using an external DB with RF is still in development
+  source = "git::git@github.com:CMSgov/batcave-tf-mysql.git//."
+}
+
+include "vpc-dependency" {
+  path = "../../../../base/vpc/dependency.hcl"
+}
+
+include "eks-cluster-dependency" {
+  path = "../../../../base/eks-cluster/dependency.hcl"
+}
+
+inputs = {
+  name                                = "${local.common.cluster_name}-rapidfort"
+  engine                              = "aurora-mysql"
+  engine_version                      = "8.0.mysql_aurora.3.02.0"
+  vpc_id                              = dependency.vpc.outputs.vpc_id
+  create_security_group               = "true"
+  subnets                             = dependency.vpc.outputs.subnets.private.ids
+  create_db_subnet_group              = true
+  allowed_security_groups             = ["${dependency.eks-cluster.outputs.worker_security_group_id}"]
+  iam_database_authentication_enabled = "true"
+  apply_immediately                   = "true"
+  skip_final_snapshot                 = "true"
+  route53_zone_id                     = "Z0780710QA4FMGA7MX3Y"
+  route53_record_name                 = "db-rapidfort.batcave-test.internal.cms.gov"
+  database_name                       = "rapidfort"
+  master_username                     = "rapidfort"
+  cloudwatch_log_exports              = ["general"]
+  worker_security_group_id            = dependency.eks-cluster.outputs.worker_security_group_id
+  cluster_security_group_id           = dependency.eks-cluster.outputs.cluster_security_group_id
+  cluster_primary_security_group_id   = dependency.eks-cluster.outputs.cluster_primary_security_group_id
+}

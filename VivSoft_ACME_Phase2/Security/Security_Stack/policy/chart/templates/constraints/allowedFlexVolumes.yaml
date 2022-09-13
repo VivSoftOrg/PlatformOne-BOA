@@ -1,0 +1,26 @@
+{{- if .Values.violations.allowedFlexVolumes.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.allowedFlexVolumes.kind }}
+metadata:
+  name: {{ .Values.violations.allowedFlexVolumes.name }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "Flex Volume Drivers"
+    constraints.gatekeeper/description: "Containers may only use Flex Volumes with the specified drivers"
+    constraints.gatekeeper/source: "https://github.com/open-policy-agent/gatekeeper-library/tree/master/library/pod-security-policy/flexvolume-drivers"
+    constraints.gatekeeper/docs: "https://kubernetes.io/docs/concepts/storage/volumes/#flexvolume"
+    constraints.gatekeeper/related: "https://github.com/kubernetes/community/blob/master/contributors/devel/sig-storage/flexvolume.md"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.allowedFlexVolumes.enforcementAction }}
+  match:
+    {{- if .Values.violations.allowedFlexVolumes.match  }}
+    {{- toYaml .Values.violations.allowedFlexVolumes.match | nindent 4}}
+    {{- end }}
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+  parameters:
+    {{- toYaml .Values.violations.allowedFlexVolumes.parameters | nindent 4}}
+{{- end }}

@@ -1,0 +1,25 @@
+{{- if .Values.violations.readOnlyRoot.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.readOnlyRoot.kind  }}
+metadata:
+  name: {{ .Values.violations.readOnlyRoot.name  }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "Read-only Root Filesystem"
+    constraints.gatekeeper/description: "Containers must have read-only root filesystems."
+    constraints.gatekeeper/source: "https://github.com/open-policy-agent/gatekeeper-library/tree/master/library/pod-security-policy/read-only-root-filesystem"
+    constraints.gatekeeper/docs: "https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context-1"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.readOnlyRoot.enforcementAction  }}
+  match:
+    {{- if .Values.violations.readOnlyRoot.match  }}
+    {{- toYaml .Values.violations.readOnlyRoot.match | nindent 4 }}
+    {{- end }}
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+  parameters:
+    {{- toYaml .Values.violations.readOnlyRoot.parameters | nindent 4}}
+{{- end }}

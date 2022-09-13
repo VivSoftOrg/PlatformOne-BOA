@@ -1,0 +1,5 @@
+# OIDC Authservice
+- kubeflow-manifests/common/oidc-authservice/base
+# Dex
+- kubeflow-manifests/common/dex/overlays/istio
+

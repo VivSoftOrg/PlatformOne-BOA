@@ -1,0 +1,11 @@
+apiVersion: kpt.dev/v1alpha1
+kind: Kptfile
+metadata:
+  name: chart
+upstream:
+  type: git
+  git:
+    commit: aaf00a278a6b23b9325035a791a67fa09c6e27c5
+    repo: https://github.com/open-policy-agent/gatekeeper
+    directory: /charts/gatekeeper
+    ref: v3.7.1

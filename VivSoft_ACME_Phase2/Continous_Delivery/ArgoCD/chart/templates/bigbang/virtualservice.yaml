@@ -1,0 +1,38 @@
+{{- if and (.Values.istio.enabled) (.Values.istio.argocd.enabled) -}}
+{{- $serviceName := include "argo-cd.server.fullname" . -}}
+{{- $servicePort := ternary .Values.server.service.servicePortHttps .Values.server.service.servicePortHttp .Values.server.ingress.https -}}
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: {{ template "argo-cd.server.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ include "argo-cd.name" . }}-{{ .Values.server.name }}
+    helm.sh/chart: {{ include "argo-cd.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/part-of: argocd
+    app.kubernetes.io/component: {{ .Values.server.name }}
+  {{- if .Values.istio.argocd.labels }}
+{{ toYaml .Values.istio.argocd.labels | indent 4 }}
+  {{- end }}
+  {{- if .Values.istio.argocd.annotations }}
+  annotations:
+{{ toYaml .Values.istio.argocd.annotations | indent 4 }}
+  {{- end }}
+spec:
+  gateways:
+  {{- range .Values.istio.argocd.gateways }}
+    - {{ . }}
+  {{- end }}
+  hosts:
+  {{- range .Values.istio.argocd.hosts }}
+    - {{ tpl . $}}
+  {{- end }}
+  http:
+    - route:
+        - destination:
+            port:
+              number: {{ $servicePort }}
+            host: {{ $serviceName }}
+{{- end }}

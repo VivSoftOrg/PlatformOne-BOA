@@ -1,0 +1,25 @@
+{{- if .Values.violations.uniqueIngressHost.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.uniqueIngressHost.kind  }}
+metadata:
+  name: {{ .Values.violations.uniqueIngressHost.name  }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "Unique Ingress Hosts"
+    constraints.gatekeeper/description: "Ingress hosts must be unique."
+    constraints.gatekeeper/source: "https://github.com/open-policy-agent/gatekeeper-library/tree/master/library/general/uniqueingresshost"
+    constraints.gatekeeper/docs: "https://kubernetes.io/docs/concepts/services-networking/ingress/"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.uniqueIngressHost.enforcementAction  }}
+  match:
+    {{- if .Values.violations.uniqueIngressHost.match  }}
+    {{- toYaml .Values.violations.uniqueIngressHost.match | nindent 4 }}
+    {{- end }}
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+  parameters:
+    {{- toYaml .Values.violations.uniqueIngressHost.parameters | nindent 4}}
+{{- end }}

@@ -1,0 +1,12 @@
+{
+    "version": "1.0",
+    "invokingEvent": "{\"awsAccountId\":\"107339370656\",\"notificationCreationTime\":\"2017-08-21T22:33:33.717Z\",\"messageType\":\"ScheduledNotification\",\"recordVersion\":\"1.0\"}",
+    "ruleParameters": "{ \"notifyBeforeValidForDays\": \"5\",\"deleteAfterValidForDays\": \"7\",\"iamKeyValidForDays\": \"90\",\"performAction\": \"True\",\"notifier\": \"email\",\"actionName\": \"IamKeysAgeAction\", \"evaluateName\": \"IamKeysAgeEvaluate\", \"resourceFetcherName\" : \"IamKeysAgeResourceFetcher\",\"toEmail\": \"vaibhav.menkudale@reancloud.com\"}",
+    "resultToken": "",   
+    "eventLeftScope": "False",
+    "executionRoleArn": "arn:aws:iam::107339370656:role/svc-rean-mnc-default-config-role",
+    "configRuleArn": "arn:aws:config:us-east-1:107339370656:config-rule/config-rule-zgvfqq",
+    "configRuleName": "iam_keys_age",
+    "configRuleId": "config-rule-zgvfqq",
+    "accountId": "107339370611"
+}

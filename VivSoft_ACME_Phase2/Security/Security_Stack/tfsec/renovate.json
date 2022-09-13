@@ -1,0 +1,25 @@
+{
+  "assignees": ["@sean.melissari"],
+  "baseBranches": ["development"],
+  "automerge": true,
+  "gitLabAutomerge": true,
+  "regexManagers": [
+    {
+      "fileMatch": ["^hardening_manifest.yaml$"],
+      "matchStrings": [
+        "org\\.opencontainers\\.image\\.version:\\s+(\\s|\"|')?(?<currentValue>.+?)(\\s|\"|'|$)",
+        "tags:\\s+-(\\s|\"|')+(?<currentValue>.+?)(\\s|\"|'|$)+"
+      ],
+      "depNameTemplate": "tfsec/tfsec-scratch",
+      "datasourceTemplate": "docker"
+    },
+    {
+      "fileMatch": ["^Dockerfile$"],
+      "matchStrings": [
+        "BASE_TAG=(?<currentValue>.+?)"
+      ],
+      "depNameTemplate": "registry1.dso.mil/ironbank/redhat/ubi/ubi8-minimal",
+      "datasourceTemplate": "docker"
+    }
+  ]
+}

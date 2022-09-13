@@ -1,0 +1,18 @@
+# Kubeflow namespace
+- kubeflow-manifests/common/kubeflow-namespace/base
+# Kubeflow Roles
+- kubeflow-manifests/common/kubeflow-roles/base
+# Kubeflow Istio Resources
+- kubeflow-manifests/common/istio-1-9/kubeflow-istio-resources/base
+# Kubeflow Pipelines
+# - kubeflow-manifests/apps/pipeline/upstream/env/platform-agnostic-multi-user
+# Since our container runtime is not docker, using pns executor
+- kubeflow-manifests/apps/pipeline/upstream/env/platform-agnostic-multi-user-pns
+# KFServing
+- kubeflow-manifests/apps/kfserving/upstream/overlays/kubeflow
+# Central Dashboard
+- kubeflow-manifests/apps/centraldashboard/upstream/overlays/istio
+# Admission Webhook
+- kubeflow-manifests/apps/admission-webhook/upstream/overlays/cert-manager
+# User namespace
+- kubeflow-manifests/common/user-namespace/base

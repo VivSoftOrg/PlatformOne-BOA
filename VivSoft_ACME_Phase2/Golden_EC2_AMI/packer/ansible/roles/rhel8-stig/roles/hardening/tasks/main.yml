@@ -1,0 +1,6 @@
+---
+
+- import_tasks: rhel8-stig.yml
+  when: 
+    - ansible_os_family == "RedHat"
+    - hardening | lower == "stig"

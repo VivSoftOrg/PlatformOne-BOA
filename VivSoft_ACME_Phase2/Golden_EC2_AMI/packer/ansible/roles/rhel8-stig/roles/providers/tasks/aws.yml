@@ -1,0 +1,62 @@
+---
+- name: ensure the awscli dependencies are installed
+  yum:
+    state: latest
+    name:
+      - curl
+      - unzip
+
+- name: ensure awscli is installed
+  block:
+    - get_url:
+        url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+        dest: /tmp/awscliv2.zip
+    - unarchive:
+        src: /tmp/awscliv2.zip
+        dest: /tmp
+        remote_src: yes
+    - command: /tmp/aws/install -i /usr/local -b /usr/bin
+
+- name: install aws agents RPM
+  yum:
+    name: "{{ item }}"
+    state: present
+    disable_gpg_check: yes      # aws doesn't provide gpg key for validating ssm agent...
+  with_items:
+    - https://s3.{{ aws_region }}.amazonaws.com/amazon-ssm-{{ aws_region }}/latest/linux_amd64/amazon-ssm-agent.rpm
+  when:
+    - ansible_os_family == "RedHat"
+    - ansible_distribution != "Amazon"
+
+- name: install aws agents RPM
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - amazon-ssm-agent
+  when: ansible_distribution == "Amazon"
+
+- name: Ensure ssm agent is running RPM
+  service:
+    name: amazon-ssm-agent
+    state: started
+    enabled: yes
+  when: ansible_os_family == "RedHat"
+
+- name: install aws agents Ubuntu
+  shell: snap install amazon-ssm-agent --classic
+  when: ansible_distribution == "Ubuntu"
+
+- name: Ensure ssm agent is running Ubuntu
+  service:
+    name: snap.amazon-ssm-agent.amazon-ssm-agent.service
+    state: started
+    enabled: yes
+  when: ansible_distribution == "Ubuntu"
+
+- name: Disable Hyper-V KVP protocol daemon on Ubuntu
+  systemd:
+    name: hv-kvp-daemon
+    state: stopped
+    enabled: false
+  when: ansible_os_family == "Debian"

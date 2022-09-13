@@ -1,0 +1,25 @@
+{{- if .Values.violations.noPrivilegedContainers.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.noPrivilegedContainers.kind  }}
+metadata:
+  name: {{ .Values.violations.noPrivilegedContainers.name  }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "Privilged Containers"
+    constraints.gatekeeper/description: "Containers must not run as privileged."
+    constraints.gatekeeper/source: "https://github.com/open-policy-agent/gatekeeper-library/tree/master/library/pod-security-policy/privileged-containers"
+    constraints.gatekeeper/docs: "https://kubernetes.io/docs/concepts/workloads/pods/#privileged-mode-for-containers"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.noPrivilegedContainers.enforcementAction  }}
+  match:
+    {{- if .Values.violations.noPrivilegedContainers.match  }}
+    {{- toYaml .Values.violations.noPrivilegedContainers.match | nindent 4}}
+    {{- end }}
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+  parameters:
+    {{- toYaml .Values.violations.noPrivilegedContainers.parameters | nindent 4}}
+{{- end }}

@@ -1,0 +1,12 @@
+sharedPvcs:
+  image-db-shared:
+    storageSize: 250Gi
+  imgs-work-dir-shared:
+    storageSize: 250Gi
+  local-bucket:
+    storageSize: 250Gi
+secret:
+  rf_app_host: rapidfort.batcave-test.internal.cms.gov
+  s3_bucket: rapidfort-test-storage
+  aws_role_arn: "arn:aws:iam::831579051573:role/delegatedadmin/developer/batcave-test-general-node-group-20220121210830247300000002"
+  aws_default_region: "us-east-1"

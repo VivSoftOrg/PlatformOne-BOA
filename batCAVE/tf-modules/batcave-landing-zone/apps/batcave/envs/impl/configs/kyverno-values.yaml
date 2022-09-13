@@ -1,0 +1,7 @@
+kyverno:
+  enabled: true
+  values:
+    tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Exists"
+      effect: "NoSchedule"

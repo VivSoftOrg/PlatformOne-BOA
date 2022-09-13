@@ -1,0 +1,35 @@
+{
+    "data": {
+        "Credentials": {
+            "AccessKeyId": "",
+            "SessionToken": "",
+            "Expiration": {
+                "microsecond": 0,
+                "month": 1,
+                "year": 2018,
+                "hour": 9,
+                "day": 18,
+                "__class__": "datetime",
+                "second": 43,
+                "minute": 43
+            },
+            "SecretAccessKey": ""
+        },
+        "ResponseMetadata": {
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "content-length": "1153",
+                "x-amzn-requestid": "b09e7f85-fc2b-11e7-b907-41dc1ff4db64",
+                "content-type": "text/xml",
+                "date": "Thu, 18 Jan 2018 08:43:43 GMT"
+            },
+            "RequestId": "b09e7f85-fc2b-11e7-b907-41dc1ff4db64",
+            "RetryAttempts": 0
+        },
+        "AssumedRoleUser": {
+            "AssumedRoleId": "AROAIO7RKOWXBUSNE5OKG:AWSConfigAssumeRoleSession",
+            "Arn": "arn:aws:sts::107339370656:assumed-role/copy_alb_nlb_tags_to_target_groups/AWSConfigAssumeRoleSession"
+        }
+    },
+    "status_code": 200
+}

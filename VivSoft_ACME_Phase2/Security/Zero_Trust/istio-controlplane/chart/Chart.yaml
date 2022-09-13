@@ -1,0 +1,8 @@
+apiVersion: v2
+name: istio
+version: 1.13.1-bb.1
+appVersion: 1.13.1
+description: Configurable Deployment of Istio Custom Resources Wrapped Inside a Helm Chart.
+annotations:
+  bigbang.dev/applicationVersions: |
+    - Istio: 1.13.1

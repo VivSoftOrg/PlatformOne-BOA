@@ -1,0 +1,33 @@
+{{- include "gluon.tests.script-configmap.overrides" (list . "gatekeeper-test.script-configmap") }}
+{{- define "gatekeeper-test.script-configmap" }}
+metadata:
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+{{- end }}
+---
+{{- include "gluon.tests.script-runner.overrides" (list . "gatekeeper-test.script-runner") -}}
+{{- define "gatekeeper-test.script-runner" -}}
+metadata:
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+spec:
+  serviceAccountName: test-service-account
+{{- end }}
+{{- if .Values.bbtests }}
+{{- if .Values.bbtests.enabled }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ .Chart.Name }}-test-config"
+  annotations:
+    "helm.sh/hook": test-success
+    "helm.sh/hook-weight": "-5"
+    sidecar.istio.io/inject: "false"
+  labels:
+    helm-test: enabled
+  namespace: '{{ .Release.Namespace }}'
+data:
+  {{ (.Files.Glob "tests/manifests/*").AsConfig | nindent 2 }}
+{{- end }}
+{{- end }}

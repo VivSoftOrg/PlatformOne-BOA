@@ -1,0 +1,64 @@
+sso:
+  oidc:
+    realm: batcave-realm-unused
+monitoring:
+  sso:
+    enabled: true
+    grafana:
+      scopes: openid profile email
+      signout_redirect_url: https://grafana.${batcave_base_domain}
+kiali:
+  sso:
+    # Write the values to the chart ourselves in the auth block below
+    enabled: false
+  values:
+    cr:
+      spec:
+        auth:
+          strategy: openid
+          openid:
+            disable_rbac: true
+            scopes:
+              - openid
+              - profile
+              - email
+            username_claim: email
+jaeger:
+  sso:
+    enabled: true
+
+addons:
+  authservice:
+    enabled: true
+    chains:
+      prometheus:
+        match:
+          header: ":authority"
+          prefix: "prometheus"
+      alertmanager:
+        match:
+          header: ":authority"
+          prefix: "alertmanager"
+      jaeger:
+        match:
+          header: ":authority"
+          prefix: "tracing"
+
+  argocd:
+    sso:
+      # prevent BB from managing sso, so we can do it ourself with the argo chart
+      enabled: false
+  gitlab:
+    sso:
+      # prevent BB from managing Provider, so we can do it ourself with global config
+      enabled: false
+    values:
+      global:
+        appConfig:
+          omniauth:
+            enabled: true
+            allowSingleSignOn: [ 'openid_connect' ]
+            blockAutoCreatedUsers: false
+            providers:
+              - secret: gitlab-sso-provider-batcave
+                key: gitlab-sso.json

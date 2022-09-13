@@ -1,0 +1,11 @@
+monitoring:
+  values:
+    prometheus:
+      prometheusSpec:
+        retentionSize: "100GB"
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              resources:
+                requests:
+                  storage: 1Ti

@@ -1,0 +1,100 @@
+#!/usr/bin/env groovy
+
+def setJobProperties() {
+  properties([
+    [
+      $class: 'BuildDiscarderProperty',
+      strategy: [
+        $class: 'BuildRotator'
+      ]
+    ]
+  ])
+}
+
+pipeline {
+    agent {
+        node {
+            label 'master'
+        }
+    }
+    stages {
+        stage ('Pytests and Code coverage') {
+            steps {
+                script {
+                    ansiColor('xterm') {
+                        println "\u001B[34m\u001B[1m*************************\u001B[0m"
+                        println "\u001B[34m\u001B[1mPytest and Code coverage\u001B[0m"
+                        println "\u001B[34m\u001B[1m*************************\u001B[0m"
+                        try {
+                            sh '''
+                                #!/bin/bash
+                                BLUE='\033[0;34m'
+                                RED='\033[0;31m'
+                                MAGENTA='\033[0;35m'
+                                NC='\033[0m' # No Color
+                                python3 -m venv venv
+                                . venv/bin/activate
+                                pyTestFailureFlag=true
+
+                                # installing required packages for pytest.
+                                pip install coverage
+                                pip install pytest
+                                pip install placebo
+                                pip install mock
+                                pip install moto
+
+                                pip install -r requirements.txt
+                                RULE_FOLDERS=`ls -l -ICI-CD -Icommon -Itests | grep ^d | awk '{ print $9 }'`
+                                ignorefolder=`cat .ignore_folder_except_rules`
+                                set +e
+                                for RULE_FOLDER in $RULE_FOLDERS
+                                do
+                                    check_ignore=`echo "$ignorefolder" | grep -w "$RULE_FOLDER" `
+                                    if [ "$check_ignore" != "$RULE_FOLDER" ]; then 
+                                        echo -e "${MAGENTA}$RULE_FOLDER${NC}"
+                                        coverage run --source=$RULE_FOLDER/ -m pytest -s tests/$RULE_FOLDER/ || true
+                                        COVERAGE=`coverage report -m | tail -1 | awk '{ print $4 }' | sed 's/%//'`
+                                        echo "$COVERAGE"
+                                        if [ "$COVERAGE" -lt 80 ]; then
+                                            pyTestFailureFlag=false
+                                            echo -e "${RED}Coverage is not greater than or equal to 80%. Fix Pytest errors${NC}"
+                                            echo -e "${RED}********************************************************${NC}"
+                                            echo -e "${RED}FAILED: PyTest and CodeCoverage failed. Please fix the issues${NC}"
+                                            echo -e "${RED}********************************************************${NC}"
+                                        else
+                                            echo -e "${BLUE}Code adheres to PyTest and CodeCoverage${NC}"
+                                        fi
+                                    else
+                                        echo "Folder: $RULE_FOLDER skipped"
+                                    fi
+                                done
+                                if [ "$pyTestFailureFlag" = true ];
+                                then
+                                    echo -e "${BLUE}Coverage is greater than 80% for all the rules.${NC}"
+                                    deactivate
+                                    rm -r venv
+                                else
+                                    echo -e "${RED}Coverage is not greater than 80% for all the rules. Please check coverage report.${NC}"
+                                    deactivate
+                                    rm -r venv
+                                    exit 1
+                                fi
+                            '''
+                            println "\u001B[32mCode coverage ran sucessfully\u001B[0m"
+                        } catch (Exception e) {
+                            println "\u001B[31m********************************************************\u001B[0m"
+                            println "\u001B[31mFAILED: Code coverage and Pytest failed. Fix the issues \u001B[0m"
+                            println "\u001B[31m********************************************************\u001B[0m"
+                            sh 'exit 1'
+                        }
+                    }   
+                }
+            }
+        }
+    }
+    post {
+        always {
+            deleteDir()
+        }
+    }
+}

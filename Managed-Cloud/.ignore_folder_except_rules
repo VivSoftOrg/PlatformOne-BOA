@@ -1,0 +1,7 @@
+CI-CD
+common
+log_n_notify_kinesis_consumer
+rules_common
+tests
+utility
+venv

@@ -1,0 +1,44 @@
+---
+apiVersion: v1
+
+# The repository name in registry1, excluding /ironbank/
+name: "opensource/aquasec/trivy"
+
+tags:
+  - "0.24.2"
+  - "latest"
+
+args:
+  BASE_IMAGE: "redhat/ubi/ubi8-minimal"
+  BASE_TAG: "8.5"
+
+labels:
+  org.opencontainers.image.title: "trivy"
+  ## Human-readable description of the software packaged in the image
+  org.opencontainers.image.description: "Trivy is a security scanner for container images from aquasec"
+  ## License(s) under which contained software is distributed
+  org.opencontainers.image.licenses: "Apache-2.0"
+  ## URL to find more information on the image
+  org.opencontainers.image.url: "https://github.com/aquasecurity/trivy"
+  ## Name of the distributing entity, organization or individual
+  org.opencontainers.image.vendor: "opensource"
+  org.opencontainers.image.version: "0.24.2"
+  ## Keywords to help with search (ex. "cicd,gitops,golang")
+  mil.dso.ironbank.image.keywords: "docker,security,cicd,scanning"
+  ## This value can be "opensource" or "commercial"
+  mil.dso.ironbank.image.type: "opensource"
+  ## Product the image belongs to for grouping multiple images
+  mil.dso.ironbank.product.name: "trivy"
+
+resources:
+  - tag: aquasec/trivy:0.24.2
+    url: docker://docker.io/aquasec/trivy@sha256:8c671b60db61d287156568e54c5750afa480b5d247e88edd4c368e5b4d631d9d
+
+maintainers:
+  - email: "joshua.t.carnes@lmco.com"
+    name: "Joshua Carnes"
+    username: "jcarnes"
+  - name: "Sean Melissari"
+    username: "sean.melissari"
+    email: "melissari_sean@bah.com"
+    cht_member: true

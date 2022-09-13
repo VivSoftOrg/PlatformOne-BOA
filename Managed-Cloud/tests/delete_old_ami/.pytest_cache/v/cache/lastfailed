@@ -1,0 +1,3 @@
+{
+  "test_delete_old_ami_resource_fetcher.py::TestDeleteOldAMIResourceFetcher::()::testResourceFetcher": true
+}

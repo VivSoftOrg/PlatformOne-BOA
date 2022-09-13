@@ -1,0 +1,54 @@
+{
+    "baseBranches": ["main"],
+    "configWarningReuseIssue": false,
+    "dependencyDashboard": true,
+    "dependencyDashboardHeader": "- [ ] Follow steps in [package update docs](./docs/PACKAGE_UPDATES.md) to upgrade the package.",
+    "dependencyDashboardTitle": "Renovate: Upgrade Monitoring Package Dependencies",
+    "draftPR": true,
+    "enabledManagers": ["helm-values","regex"],
+    "ignorePaths": ["chart/charts/**"],
+    "labels": ["monitoring","renovate"],
+    "packageRules": [
+        {
+            "matchDatasources": ["docker"],
+            "groupName": "Ironbank"
+        }
+    ],
+    "regexManagers": [
+        {
+            "fileMatch": ["^chart/values\\.yaml$"],
+            "matchStrings": [
+                "(repo|image)\\S*:\\s*(?<depName>\\S+).*\n\\s+tag:\\s*(?<currentValue>.+)"
+            ],
+            "datasourceTemplate": "docker"
+        },
+        {
+            "fileMatch": ["^chart/Chart\\.yaml$"],
+            "matchStrings": [
+                "- Prometheus:\\s+(?<currentValue>.+)"
+            ],
+            "registryUrlTemplate": "https://registry1.dso.mil",
+            "depNameTemplate": "ironbank/opensource/prometheus/prometheus",
+            "datasourceTemplate": "docker"
+        },
+        {
+            "fileMatch": ["^chart/Chart\\.yaml$"],
+            "matchStrings": [
+                "- Grafana:\\s+(?<currentValue>.+)"
+            ],
+            "registryUrlTemplate": "https://registry1.dso.mil",
+            "depNameTemplate": "ironbank/opensource/grafana/grafana",
+            "datasourceTemplate": "docker"
+        },
+        {
+            "fileMatch": ["^chart/Chart\\.yaml$"],
+            "matchStrings": [
+                "- Alertmanager:\\s+(?<currentValue>.+)"
+            ],
+            "registryUrlTemplate": "https://registry1.dso.mil",
+            "depNameTemplate": "ironbank/opensource/prometheus/alertmanager",
+            "datasourceTemplate": "docker"
+        }
+    ],
+    "separateMajorMinor": false
+}

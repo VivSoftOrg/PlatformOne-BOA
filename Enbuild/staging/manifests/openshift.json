@@ -1,0 +1,52 @@
+{
+    "type": "terraform",
+    "slug": "openshift",
+    "name": "OpenShift",
+    "repository": "https://gitlab.com/enbuild-staging/iac-templates/openshift",
+    "project_id": "26462761",
+    "readme_file_path": "README.md",
+    "ref": "main",
+    "sops": false,
+    "ci_config_path": "openshift/template.yaml@enbuild-staging/pipeline-templates",
+    "image_path": "openshift.png",
+    "components": [
+        {
+            "type": "component",
+            "name": "Cloud Enclave",
+            "slug": "vnet",
+            "tool_type": "VNET",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/openshift",
+            "project_id": "26462761",
+            "ref": "main",
+            "readme_file_path": "infra/modules/vnet/README.md",
+            "variable_file_path": "infra/vnet/tfvars.json",
+            "image_path": "infra/vnet/image.png",
+            "mandatory": true
+        }
+    ],
+    "infrastructure": {
+        "type": "infrastructure",
+        "slug": "cloud",
+        "name": "Cloud",
+        "selections": [
+            {
+                "name": "Access Key",
+                "type": "input_text",
+                "variable": "AZURE_ACCESS_KEY_ID",
+                "plaintext": false
+            },
+            {
+                "name": "Secret Key",
+                "type": "input_text",
+                "key": "AZURE_SECRET_ACCESS_KEY",
+                "plaintext": false
+            },
+            {
+                "name": "AZURE Region",
+                "type": "input_text",
+                "key": "AZURE_DEFAULT_REGION",
+                "plaintext": true
+            }
+        ]
+    }
+}

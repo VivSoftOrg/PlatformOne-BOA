@@ -1,0 +1,44 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "57b89d64-bc0e-11e7-8fe8-f7c4331f7293",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "57b89d64-bc0e-11e7-8fe8-f7c4331f7293",
+                "content-type": "application/json",
+                "content-length": "999",
+                "date": "Sat, 28 Oct 2017 18:32:23 GMT"
+            },
+            "RetryAttempts": 0
+        },
+        "DomainStatus": {
+            "DomainId": "107339370656/MockDomain2",
+            "DomainName": "MockDomain2",
+            "ARN": "arn:aws:es:us-east-1:107339370656:domain/MockDomain2",
+            "Created": true,
+            "Deleted": false,
+            "Endpoint": "search-MockDomain2-akgahxn2lldj4xhxlbeghz3yia.us-east-1.es.amazonaws.com",
+            "Processing": false,
+            "ElasticsearchVersion": "5.5",
+            "ElasticsearchClusterConfig": {
+                "InstanceType": "m4.large.elasticsearch",
+                "InstanceCount": 1,
+                "DedicatedMasterEnabled": false,
+                "ZoneAwarenessEnabled": false
+            },
+            "EBSOptions": {
+                "EBSEnabled": true,
+                "VolumeType": "gp2",
+                "VolumeSize": 10
+            },
+            "AccessPolicies": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Deny\",\"Principal\":{\"AWS\":\"*\"},\"Action\":\"es:*\",\"Resource\":\"arn:aws:es:us-east-1:107339370656:domain/MockDomain2/*\"}]}",
+            "SnapshotOptions": {
+                "AutomatedSnapshotStartHour": 0
+            },
+            "AdvancedOptions": {
+                "rest.action.multi.allow_explicit_index": "true"
+            }
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{{- if .Values.violations.allowedHostFilesystem.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.allowedHostFilesystem.kind }}
+metadata:
+  name: {{ .Values.violations.allowedHostFilesystem.name }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "Host Filesystem Paths"
+    constraints.gatekeeper/description: "Containers may only map volumes to the host node at the specified paths."
+    constraints.gatekeeper/source: "https://github.com/open-policy-agent/gatekeeper-library/tree/master/library/pod-security-policy/host-filesystem"
+    constraints.gatekeeper/docs: "https://kubernetes.io/docs/concepts/storage/volumes/#hostpath"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.allowedHostFilesystem.enforcementAction }}
+  match:
+    {{- if .Values.violations.allowedHostFilesystem.match  }}
+    {{- toYaml .Values.violations.allowedHostFilesystem.match | nindent 4}}
+    {{- end }}
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+  parameters:
+    {{- toYaml .Values.violations.allowedHostFilesystem.parameters | nindent 4}}
+{{- end }}

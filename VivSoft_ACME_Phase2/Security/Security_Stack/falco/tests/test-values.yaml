@@ -1,0 +1,16 @@
+fakeEventGenerator:
+  enabled: true
+  replicas: 1
+
+istio:
+  enabled: true
+
+falcosidekick:
+  config:
+    mattermost:
+      webhookurl: ""
+
+    elasticsearch:
+      # hostport: "https://logging-ek-es-http.logging.svc.cluster.local:9200"
+      # username: "elastic"
+      password: ""

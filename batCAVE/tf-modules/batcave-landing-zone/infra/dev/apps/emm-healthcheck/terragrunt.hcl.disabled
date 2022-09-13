@@ -1,0 +1,37 @@
+# To test the emm-healthchheck in the development environment, copy this file to terragrunt.hcl:
+#
+#     cp terragrunt.hcl.disabled terragrunt.hcl
+#
+# You can then run terragrunt apply in this directory or terragrunt run-all apply from the
+# /infra/dev directory.
+#
+# NOTE: To clean up the healthcheck when you are done testing you must run terragrunt destroy while
+# the terragrunt.hcl file still exists. If you delete the terragrunt.hcl file, these resources will
+# be skipped by subsequent calls to terragrunt destroy.
+
+locals {
+  common = read_terragrunt_config(find_in_parent_folders("common.hcl")).locals
+}
+
+include "parent" {
+  path = find_in_parent_folders()
+}
+
+include "vpc-dependency" {
+  path = "../../../base/vpc/dependency.hcl"
+}
+
+include "eks-dependency" {
+  path = "../../../base/eks-cluster/dependency.hcl"
+}
+
+include "healthcheck" {
+  path ="../../../base/apps/emm-healthcheck/terragrunt.hcl"
+}
+
+inputs = {
+  service_name         = "${local.common.cluster_name}-emm-healthcheck"
+  custom_subdomain     = "status-${local.common.cluster_name}"
+  lambda_environment   = { BASE_DOMAIN = local.common.base_domain, SERVICE_NAME_SUFFIX = "-${local.common.cluster_name}" }
+}
+

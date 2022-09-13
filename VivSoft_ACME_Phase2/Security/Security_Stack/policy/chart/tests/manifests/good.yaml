@@ -1,0 +1,113 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: good-test-pod
+  namespace: default
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: good-test-pod
+  namespace: default
+  annotations:
+    container.apparmor.security.beta.kubernetes.io/opa: runtime/default
+    seccomp.security.alpha.kubernetes.io/pod: runtime/default
+  labels:
+    app.kubernetes.io/name: good-test-name
+    helm.sh/chart: good-test-chart
+    app.kubernetes.io/managed-by: good-test-managed-by
+    app.kubernetes.io/instance: good-test-instance
+    app.kubernetes.io/version: good-test-version
+    app.kubernetes.io/component: good-test-component
+    app.kubernetes.io/part-of: good-test-part-of
+spec:
+  serviceAccountName: good-test-pod
+  hostPID: false
+  hostIPC: false
+  hostNetwork: false
+  securityContext:
+    fsGroup: 10000
+    runAsUser: 100000
+    runAsGroup: 10000
+    supplementalGroups: [10000]
+  containers:
+    - name: opa
+      image: "registry1.dso.mil/ironbank/opensource/openpolicyagent/gatekeeper:1.2@sha256:04ff8fce2afd1a3bc26260348e5b290e8d945b1fad4b4c16d22834c2f3a1814a"
+      args:
+        - "run"
+        - "--server"
+        - "--addr=localhost:8080"
+      ports:
+        - containerPort: 8080
+          hostPort: 8080
+      securityContext:
+        privileged: false
+        allowPrivilegeEscalation: false
+        readOnlyRootFilesystem: true
+        procMount: Default
+        capabilities:
+          drop: ["all"]
+      readinessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /readyz
+          port: 9090
+          scheme: HTTP
+        periodSeconds: 10
+      livenessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /healthz
+          port: 9090
+          scheme: HTTP
+        periodSeconds: 10
+      resources:
+        limits:
+          cpu: "400m"
+          memory: "200Mi"
+        requests:
+          cpu: "200m"
+          memory: "100Mi"
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: good-pod-test-ns
+  labels:
+    istio-injection: "enabled"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: good-test-service-1
+  namespace: default
+spec:
+  selector:
+    key: value
+  ports:
+    - port: 80
+      targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: good-test-ingress-1
+  namespace: default
+  annotations:
+     "kubernetes.io/ingress.allow-http": "false"
+spec:
+  tls:
+  - hosts:
+      - example-host.example.com
+    secretName: testsecret-tls
+  rules:
+  - host: example-host.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: opa
+            port:
+              number: 80

@@ -1,0 +1,13 @@
+- kubeflow-manifests/common/istio-1-9/istio-crds/base
+- kubeflow-manifests/common/istio-1-9/istio-namespace/base
+- kubeflow-manifests/common/istio-1-9/istio-install/base
+
+patchesStrategicMerge:
+- |-
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: istio-ingressgateway
+    namespace: istio-system
+  spec:
+    type: LoadBalancer

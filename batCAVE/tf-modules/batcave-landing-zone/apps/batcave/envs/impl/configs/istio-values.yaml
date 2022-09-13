@@ -1,0 +1,29 @@
+istio:
+  git:
+    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
+    path: "./chart"
+  ingressGateways:
+    istio-ingressgateway:
+      kubernetesResourceSpec:
+        tolerations:
+        - key: "CriticalAddonsOnly"
+          operator: "Exists"
+          effect: "NoSchedule"
+  values:
+    cni:
+      tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Exists"
+        effect: "NoSchedule"
+    istiod:
+      resources:
+        requests:
+          cpu: "1.5"
+          memory: 1Gi
+        limits:
+          cpu: "1.5"
+          memory: 3Gi
+      tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Exists"
+        effect: "NoSchedule"

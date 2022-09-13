@@ -1,0 +1,39 @@
+{
+    "status_code": 200,
+    "data": {
+        "TargetGroups": [
+            {
+                "TargetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:107339370656:targetgroup/vaibhavMNCTargetGroup/8b41b3e1be1d905f",
+                "TargetGroupName": "vaibhavMNCTargetGroup",
+                "Protocol": "HTTP",
+                "Port": 80,
+                "VpcId": "vpc-38738c43",
+                "HealthCheckProtocol": "HTTP",
+                "HealthCheckPort": "traffic-port",
+                "HealthCheckIntervalSeconds": 30,
+                "HealthCheckTimeoutSeconds": 5,
+                "HealthyThresholdCount": 5,
+                "UnhealthyThresholdCount": 2,
+                "HealthCheckPath": "/",
+                "Matcher": {
+                    "HttpCode": "200"
+                },
+                "LoadBalancerArns": [
+                    "arn:aws:elasticloadbalancing:us-east-1:107339370656:loadbalancer/app/vaibhavALBMNCTESTCOPYRULE/c01bcf796c5611d6"
+                ],
+                "TargetType": "instance"
+            }
+        ],
+        "ResponseMetadata": {
+            "RequestId": "a949938a-d912-11e8-87ec-6d16634278a2",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "a949938a-d912-11e8-87ec-6d16634278a2",
+                "content-type": "text/xml",
+                "content-length": "1388",
+                "date": "Fri, 26 Oct 2018 11:31:20 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

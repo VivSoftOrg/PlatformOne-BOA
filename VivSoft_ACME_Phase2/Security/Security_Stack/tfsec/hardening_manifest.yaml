@@ -1,0 +1,44 @@
+---
+apiVersion: v1
+
+# The repository name in registry1, excluding /ironbank/
+name: "opensource/tfsec/tfsec"
+
+tags:
+  - "v0.61.3"
+  - "latest"
+
+args:
+  BASE_IMAGE: "redhat/ubi/ubi8-minimal"
+  BASE_TAG: "8.5"
+
+labels:
+  org.opencontainers.image.title: "tfsec"
+  ## Human-readable description of the software packaged in the image
+  org.opencontainers.image.description: "tfsec uses static analysis of your terraform templates to spot potential security issues."
+  ## License(s) under which contained software is distributed
+  org.opencontainers.image.licenses: "MIT"
+  ## URL to find more information on the image
+  org.opencontainers.image.url: "https://github.com/tfsec/tfsec"
+  ## Name of the distributing entity, organization or individual
+  org.opencontainers.image.vendor: "opensource"
+  org.opencontainers.image.version: "0.61.3"
+  ## Keywords to help with search (ex. "cicd,gitops,golang")
+  mil.dso.ironbank.image.keywords: "terraform,linter,cicd,security"
+  ## This value can be "opensource" or "commercial"
+  mil.dso.ironbank.image.type: "opensource"
+  ## Product the image belongs to for grouping multiple images
+  mil.dso.ironbank.product.name: "tfsec"
+
+resources:
+  - tag: tfsec/tfsec-scratch:v0.61.3
+    url: docker://docker.io/tfsec/tfsec-scratch@sha256:03d03100b2b986648d79ac9ed819b8c8c63e79fd6075266c4af69caff0a95e23
+
+maintainers:
+  - email: "joshua.t.carnes@lmco.com"
+    name: "Joshua Carnes"
+    username: "jcarnes"
+  - name: "Sean Melissari"
+    username: "sean.melissari"
+    email: "melissari_sean@bah.com"
+    cht_member: true

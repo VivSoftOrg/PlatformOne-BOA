@@ -1,0 +1,59 @@
+#!/usr/bin/env groovy
+
+def setJobProperties() {
+  properties([
+    [
+      $class: 'BuildDiscarderProperty',
+      strategy: [
+        $class: 'BuildRotator',
+        daysToKeep: 5,
+        numToKeep: 10,
+        artifactsDaysToKeep: 5,
+        artifactsNumToKeep: 10
+      ]
+    ]
+  ])
+}
+
+pipeline {
+    agent {
+        node {
+            label 'master'
+        }
+    }
+    stages {
+        stage ('Python linting') {
+            steps {
+                script {
+                    ansiColor('xterm') {
+                        println "\u001B[34m\u001B[1m**************\u001B[0m"
+                        println "\u001B[34m\u001B[1mPython Linting\u001B[0m"
+                        println "\u001B[34m\u001B[1m**************\u001B[0m"
+                        try {
+                            sh '''
+                                #!/bin/bash
+                                python3 -m venv venv
+                                . venv/bin/activate
+                                set -e
+                                pylint --disable=line-too-long --disable=too-many-arguments --disable=unused-argument --disable=too-many-locals --output-format=colorized *.py */*.py
+                                deactivate
+                                rm -r venv
+                            '''
+                            println "\u001B[32mCode adheres to PyLint\u001B[0m"
+                        } catch (Exception e) {
+                            println "\u001B[31m********************************************************\u001B[0m"
+                            println "\u001B[31mFAILED: Python linting warning. Please fix the issues\u001B[0m"
+                            println "\u001B[31m********************************************************\u001B[0m"
+                            sh 'exit 1'
+                        }
+                    }   
+                }
+            }
+        }
+    }
+    post {
+        always {
+            deleteDir()
+        }
+    }
+}

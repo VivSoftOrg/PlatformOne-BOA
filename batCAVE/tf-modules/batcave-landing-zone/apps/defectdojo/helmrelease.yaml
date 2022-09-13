@@ -1,0 +1,84 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: defectdojo
+  namespace: batcave
+spec:
+  releaseName: defectdojo
+  targetNamespace: defectdojo
+  chart:
+    spec:
+      chart: ./helm/defectdojo
+      sourceRef:
+        kind: GitRepository
+        name: defectdojo
+        namespace: batcave
+  interval: 2m0s
+  dependsOn:
+    - name: batcave
+  values:
+    image:
+      registry: artifactory.cloud.cms.gov
+      pullPolicy: Always
+      pullSecrets:
+        - name: "private-registry"
+    tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Exists"
+        effect: "NoSchedule"
+    host: defectdojo.${batcave_base_domain}
+    # Configuration value to select database type
+    database: postgresql
+    mysql:
+      enabled: false
+    postgresql:
+      enabled: true
+    # Persistent volume and network settings
+    django:
+      mediaPersistentVolume:
+        enabled: true
+        name: media
+        type: pvc
+        persistentVolumeClaim: media
+      ingress:
+        enabled: true
+        activateTLS: true
+        secretName: defectdojo-tls
+    extraConfigs:
+      ## Performance Config.  See: https://github.com/DefectDojo/django-DefectDojo/blob/master/docs/content/en/usage/performance.md
+      ## DefectDojo offers an experimental feature to aynschronously import security reports. This feature works in most use cases, but struggles when doing things such as pushing to Jira during the import process. Because Endpoints are still being processed and created even after the import procedure is completed, pushing Findings to Jira can result in incomplete Jira tickets. It is advised to wait until after import has been completed 100%.
+      DD_ASYNC_FINDING_IMPORT: 'true'
+      ## Deleting an object asynchronously changes the way an object is deleted under the hood. By removing the need to expand into memory, a lot of time (and memory) can be saved by offloading the lookups and removals onto celery processes. This process works by starting at the bottom of a given object, and walking the tree upwards rather than downwards. This way, objects can be seperated into buckets, and then deleted.
+      DD_ASYNC_OBJECT_DELETE: 'true'
+      ## Previewing all the objects to be deleted takes almost as much time as deleting the objects itself. This is a safety feature intended to warn users of what they are about to delete, as well as educating users of how the delete functionality works by cascade deleting all related objects. With this feature enabled, the user will only see the following text in the delete preview (without any database lookups)
+      DD_DELETE_PREVIEW: 'true'
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: defectdojo
+  namespace: defectdojo
+spec:
+  gateways:
+  - istio-system/main
+  hosts:
+  - defectdojo.${batcave_base_domain}
+  http:
+  - route:
+    - destination:
+        port:
+          number: 80
+        host: defectdojo-django
+    timeout: 60s
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: media
+  namespace: defectdojo
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 8Gi

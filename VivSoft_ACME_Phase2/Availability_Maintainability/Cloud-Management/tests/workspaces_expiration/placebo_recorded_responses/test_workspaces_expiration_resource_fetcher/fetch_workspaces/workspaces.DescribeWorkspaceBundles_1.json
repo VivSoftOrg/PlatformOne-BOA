@@ -1,0 +1,30 @@
+{
+    "status_code": 200,
+    "data": {
+        "Bundles": [
+            {
+                "BundleId": "wsb-8vbljg4r6",
+                "Name": "Standard with Windows 10",
+                "Owner": "Amazon",
+                "Description": "Windows 10 Experience provided by Windows Server 2016, 2 vCPU, 4GiB Memory, 50GB Storage",
+                "UserStorage": {
+                    "Capacity": "50"
+                },
+                "ComputeType": {
+                    "Name": "STANDARD"
+                }
+            }
+        ],
+        "ResponseMetadata": {
+            "RequestId": "a8df77ab-bcb1-11e7-ae77-61587bb92c18",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "a8df77ab-bcb1-11e7-ae77-61587bb92c18",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "264",
+                "date": "Sun, 29 Oct 2017 14:01:27 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

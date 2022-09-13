@@ -1,0 +1,58 @@
+image:
+  imagePullSecrets:
+  - private-registry
+
+initContainers: 
+  - name: velero-plugin-for-aws
+    image: registry1.dso.mil/ironbank/opensource/velero/velero-plugin-for-aws:v1.4.0
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+      - mountPath: /target
+        name: plugins
+    resources:
+      requests:
+        memory: 512Mi
+        cpu: 100m
+      limits:
+        memory: 512Mi
+        cpu: 100m
+
+configuration:
+  # minio uses s3 provider
+  provider: aws
+  backupStorageLocation:
+    bucket: velero
+    config:
+      region: velero
+      insecureSkipTLSVerify: "true"
+      s3ForcePathStyle: "true"
+      s3Url: http://minio.minio.svc
+  volumeSnapshotLocation:
+    provider: aws
+    config:
+      region: velero
+
+credentials:
+  useSecret: true
+  secretContents:
+    cloud: |
+      [default]
+      aws_access_key_id = minio
+      aws_secret_access_key = minio123
+
+# Set a service account so that the CRD clean up job has proper permissions to delete CRDs
+serviceAccount:
+  server:
+    name: velero
+
+# Whether or not to clean up CustomResourceDefintions when deleting a release.
+# Cleaning up CRDs will delete the BackupStorageLocation and VolumeSnapshotLocation instances, which would have to be reconfigured.
+# Backup data in object storage will _not_ be deleted, however Backup instances in the Kubernetes API will.
+# Always clean up CRDs in CI.
+cleanUpCRDs: true
+
+networkPolicies:
+  enabled: true
+
+bbtests:
+  enabled: true

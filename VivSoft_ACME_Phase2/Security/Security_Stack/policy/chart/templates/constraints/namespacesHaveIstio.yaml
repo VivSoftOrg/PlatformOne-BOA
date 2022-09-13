@@ -1,0 +1,26 @@
+{{- if .Values.violations.namespacesHaveIstio.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.namespacesHaveIstio.kind }}
+metadata:
+  name: {{ .Values.violations.namespacesHaveIstio.name }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "Automatic Istio Sidecar Injection"
+    constraints.gatekeeper/description: "Namespaces must have automatic Istio Sidecar injection enabled."
+    constraints.gatekeeper/source: "https://github.com/open-policy-agent/gatekeeper-library/tree/master/library/general/requiredlabels"
+    constraints.gatekeeper/docs: "https://istio.io/latest/docs/setup/additional-setup/sidecar-injection/#injection"
+    constraints.gatekeeper/related: "https://istio.io/latest/docs/reference/config/networking/sidecar/"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.namespacesHaveIstio.enforcementAction }}
+  match:
+    {{- if .Values.violations.namespacesHaveIstio.match  }}
+    {{- toYaml .Values.violations.namespacesHaveIstio.match | nindent 4}}
+    {{- end }}
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Namespace"]
+  parameters:
+    {{- toYaml .Values.violations.namespacesHaveIstio.parameters | nindent 4}}
+{{- end }}

@@ -1,0 +1,19 @@
+---
+- name: CIS MODE
+  block:
+    # create etcd group
+    - name: Create etcd group
+      ansible.builtin.group:
+        name: etcd
+        state: present
+
+    # create etcd user
+    - name: Create etcd user
+      ansible.builtin.user:
+        name: etcd
+        comment: etcd user
+        shell: /bin/nologin
+        group: etcd
+
+  become: yes
+  when: cis_15_enabled | bool == true

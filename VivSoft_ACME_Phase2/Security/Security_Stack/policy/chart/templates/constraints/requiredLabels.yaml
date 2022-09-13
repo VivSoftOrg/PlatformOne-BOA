@@ -1,0 +1,25 @@
+{{- if .Values.violations.requiredLabels.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.requiredLabels.kind  }}
+metadata:
+  name: {{ .Values.violations.requiredLabels.name  }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "Required Labels"
+    constraints.gatekeeper/description: "Containers must have the specified labels."
+    constraints.gatekeeper/source: "https://github.com/open-policy-agent/gatekeeper-library/tree/master/library/general/requiredlabels"
+    constraints.gatekeeper/docs: "https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.requiredLabels.enforcementAction  }}
+  match:
+    {{- if .Values.violations.requiredLabels.match  }}
+    {{- toYaml .Values.violations.requiredLabels.match | nindent 4 }}
+    {{- end }}
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+  parameters:
+    {{- toYaml .Values.violations.requiredLabels.parameters | nindent 4}}
+{{- end }}

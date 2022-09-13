@@ -1,0 +1,8 @@
+# Putting the ns here because Kustomize (not Flux!) has a hard time applying manifests in different namespaces
+# This manifest is applied by a Flux Kustomization to get around the above constraint
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: rapidfort
+  labels:
+    istio-injection: enabled

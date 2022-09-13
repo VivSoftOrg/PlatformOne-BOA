@@ -1,0 +1,10 @@
+{
+  "test_enforce_allow_deny_groups_to_iam_users_action.py": true,
+  "test_enforce_allow_deny_groups_to_iam_users_action.py::TestEnforceAllowAndDenyGroupsAction": true,
+  "test_enforce_allow_deny_groups_to_iam_users_action.py::TestEnforceAllowAndDenyGroupsAction::()::testAddUserToAllowGroupException": true,
+  "test_enforce_allow_deny_groups_to_iam_users_action.py::TestEnforceAllowAndDenyGroupsAction::()::testAddUserToAllowGroupFailure": true,
+  "test_enforce_allow_deny_groups_to_iam_users_action.py::TestEnforceAllowAndDenyGroupsAction::()::testAddUserToAllowGroupSuccess": true,
+  "test_enforce_allow_deny_groups_to_iam_users_action.py::TestEnforceAllowAndDenyGroupsAction::()::testAddUserToDenyGroupException": true,
+  "test_enforce_allow_deny_groups_to_iam_users_action.py::TestEnforceAllowAndDenyGroupsAction::()::testAddUserToDenyGroupFailure": true,
+  "test_enforce_allow_deny_groups_to_iam_users_action.py::TestEnforceAllowAndDenyGroupsAction::()::testAddUserToDenyGroupSuccess": true
+}

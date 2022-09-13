@@ -1,0 +1,26 @@
+{{- if .Values.violations.hostNetworking.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.hostNetworking.kind  }}
+metadata:
+  name: {{ .Values.violations.hostNetworking.name  }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "Host Network Ports"
+    constraints.gatekeeper/description: "Container images may only use host ports that are specified."
+    constraints.gatekeeper/source: "https://github.com/open-policy-agent/gatekeeper-library/tree/master/library/pod-security-policy/host-network-ports"
+    constraints.gatekeeper/docs: "https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#hosts-namespaces"
+    constraints.gatekeeper/related: "https://kubernetes.io/docs/concepts/policy/pod-security-policy/#host-namespaces"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.hostNetworking.enforcementAction  }}
+  match:
+    {{- if .Values.violations.hostNetworking.match  }}
+    {{- toYaml .Values.violations.hostNetworking.match | nindent 4 }}
+    {{- end }}
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+  parameters:
+    {{- toYaml .Values.violations.hostNetworking.parameters | nindent 4}}
+{{- end }}

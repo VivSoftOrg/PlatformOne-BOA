@@ -1,0 +1,5 @@
+{
+  "test_delete_unused_ebs_action.py": true,
+  "test_delete_unused_ebs_evaluate.py::TestDeleteUnusedEBSEvaluate": true,
+  "test_delete_unused_ebs_resource_fetcher.py": true
+}

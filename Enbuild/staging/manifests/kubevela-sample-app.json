@@ -1,0 +1,65 @@
+{
+  "type": "terraform",
+  "slug": "kubevela-sample-app",
+  "name": "kubevela Sample App",
+  "repository": "https://gitlab.com/enbuild-staging/iac-templates/kubevela-sample-app.git",
+  "project_id": "35133899",
+  "readme_file_path": "README.md",
+  "ref": "main",
+  "sops": false,
+  "image_path": "images/kubevela.png",
+  "components": [
+    {
+      "type": "component",
+      "name": "application",
+      "slug": "application",
+      "tool_type": "Settings",
+      "repository": "https://gitlab.com/enbuild-staging/iac-templates/kubevela-sample-app.git",
+      "project_id": "35133899",
+      "ref": "main",
+      "readme_file_path": "README.md",
+      "variable_file_path": "app.yaml",
+      "image_path": "images/kubevela.png",
+      "mandatory": true
+    }
+  ],
+  "infrastructure": {
+    "type": "infrastructure",
+    "slug": "kubernetes",
+    "name": "Kubernetes",
+    "mandatory": true,
+    "showKubeConfig": true,
+    "selections": [
+      {
+        "slug": "azure",
+        "name": "Azure",
+        "fields": [
+          {
+            "name": "Kubeconfig",
+            "type": "textbox",
+            "key": "KUBECONFIG",
+            "plaintext": false
+          },
+          {
+            "name": "AZURE TENANT ID",
+            "type": "input_text",
+            "key": "AZURE_TENANT_ID",
+            "plaintext": false
+          },
+          {
+            "name": "AZURE CLIENT ID",
+            "type": "input_text",
+            "key": "AZURE_CLIENT_ID",
+            "plaintext": false
+          },
+          {
+            "name": "AZURE CLIENT SECRET",
+            "type": "input_text",
+            "key": "AZURE_CLIENT_SECRET",
+            "plaintext": false
+          }
+        ]
+      }
+    ]
+  }
+}

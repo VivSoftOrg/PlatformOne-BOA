@@ -1,0 +1,52 @@
+{
+    "catalogs": [
+        {
+            "id": 1,
+            "file_name": "azure_landing_zone"
+        },
+         {
+            "id": 2,
+            "file_name": "aws_landing_zone_il4"
+        },
+        {
+            "id": 3,
+            "file_name": "kubernetes"
+        },
+        {
+            "id": 4,
+            "file_name": "bigbang"
+        },
+        {
+            "id": 6,
+            "file_name": "data_ingestion"
+        },
+        {
+            "id": 7,
+            "file_name": "blockchain"
+        },
+        {
+            "id": 8,
+            "file_name": "iot"
+        },
+        {
+            "id": 9,
+            "file_name": "ml_development"
+        },
+        {
+            "id": 10,
+            "file_name": "app_ci"
+        },
+        {
+            "id": 11,
+            "file_name": "app_stack"            
+        },
+        {
+            "id": 12,
+            "file_name": "data_ci"            
+        },
+        {
+            "id": 13,
+            "file_name": "kubevela-sample-app"            
+        }
+    ]
+}

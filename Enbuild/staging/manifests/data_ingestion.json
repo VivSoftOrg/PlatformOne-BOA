@@ -1,0 +1,165 @@
+{
+    "type": "helm",
+    "slug": "data_ingestion",
+    "name": "Data Ingestion",
+    "repository": "https://gitlab.com/enbuild-staging/iac-templates/data_ingestion",
+    "project_id": "25681282",
+    "readme_file_path": "README.md",
+    "values_folder_path": "data_ingestion/values",
+    "secrets_folder_path": "data_ingestion/secrets",
+    "ref": "main",
+    "sops": false,
+    "image_path": "data_ingestion.png",
+    "components": [
+        {
+            "type": "component",
+            "name": "Nifi",
+            "tool_type": "Ingestion",
+            "slug": "nifi",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/data_ingestion",
+            "project_id": "25681282",
+            "ref": "main",
+            "readme_file_path": "charts/nifi/README.md",
+            "variable_file_path": "charts/nifi/values.yaml",
+            "image_path": "nifi.png",
+            "mandatory": true
+        },
+        {
+            "type": "component",
+            "name": "Kafka",
+            "tool_type": "Pub/Sub",
+            "slug": "kafka",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/data_ingestion",
+            "project_id": "25681282",
+            "ref": "main",
+            "readme_file_path": "charts/kafka/README.md",
+            "variable_file_path": "charts/kafka/values.yaml",
+            "image_path": "kafka.png",
+            "mandatory": true
+        },
+        {
+            "type": "component",
+            "name": "Cassandra",
+            "tool_type": "Data Store",
+            "slug": "cassandra",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/data_ingestion",
+            "project_id": "25681282",
+            "ref": "main",
+            "readme_file_path": "charts/cassandra/README.md",
+            "variable_file_path": "charts/cassandra/values.yaml",
+            "image_path": "cassandra.png",
+            "mandatory": true
+        },
+        {
+            "type": "component",
+            "name": "Spark",
+            "tool_type": "Processing",
+            "slug": "spark",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/data_ingestion",
+            "project_id": "25681282",
+            "ref": "main",
+            "readme_file_path": "charts/spark/README.md",
+            "variable_file_path": "charts/spark/values.yaml",
+            "image_path": "spark.png",
+            "mandatory": true
+        }
+    ],
+    "infrastructure": {
+        "type": "infrastructure",
+        "slug": "kubernetes",
+        "name": "Kubernetes",
+        "mandatory": true,
+        "selections": [
+            {
+                "slug": "aws",
+                "name": "AWS",
+                "fields": [
+                    {
+                        "name": "Kubeconfig",
+                        "type": "textbox",
+                        "key": "KUBECONFIG",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Cloud Selection",
+                        "type": "text",
+                        "key": "",
+                        "plaintext": true
+                    },
+                    {
+                        "name": "Select Cloud Type",
+                        "type": "radio",
+                        "key": "CLOUD_TYPE",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Access Key",
+                        "type": "input_text",
+                        "variable": "AWS_ACCESS_KEY_ID",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Secret Key",
+                        "type": "password",
+                        "key": "AWS_SECRET_ACCESS_KEY",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "AWS Region",
+                        "type": "input_text",
+                        "key": "AWS_DEFAULT_REGION",
+                        "plaintext": true
+                    }
+                ]
+            },
+            {
+                "slug": "azure",
+                "name": "Azure",
+                "fields": [
+                    {
+                        "name": "Kubeconfig",
+                        "type": "textbox",
+                        "key": "KUBECONFIG",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Select Cloud Type",
+                        "type": "radio",
+                        "key": "CLOUD_TYPE",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Tenant Id",
+                        "type": "input_text",
+                        "key": "TENANT_ID",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Subscription Id",
+                        "type": "input_text",
+                        "key": "SUBSCRIPTION_ID",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Client Id",
+                        "type": "input_text",
+                        "key": "CLIENT_ID",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Client Secret",
+                        "type": "input_text",
+                        "key": "CLIENT_SECRET",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "AZURE Location",
+                        "type": "input_text",
+                        "key": "AZURE_LOCATION",
+                        "plaintext": true
+                    }
+                ]
+            }
+        ]
+    }
+}

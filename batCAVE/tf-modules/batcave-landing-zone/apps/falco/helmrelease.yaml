@@ -1,0 +1,50 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: falco
+  namespace: batcave
+spec:
+  releaseName: falco
+  targetNamespace: falco
+  chart:
+    spec:
+      chart: falco
+      version: 1.19.4
+      sourceRef:
+        kind: HelmRepository
+        name: falco
+        namespace: batcave
+  interval: 2m0s
+  dependsOn:
+    - name: batcave
+    - name: kyverno
+  values:
+    image:
+      registry: artifactory.cloud.cms.gov
+      repository: batcave-docker/falco-batcave
+      tag: 0.32.1
+      pullPolicy: Always
+      pullSecrets:
+        - name: "private-registry"
+    falco:
+      jsonOutput: true
+    tolerations:
+      - key: "runners"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
+      - key: "CriticalAddonsOnly"
+        operator: "Exists"
+        effect: "NoSchedule"
+      - key: "signal"
+        operator: "Exists"
+        effect: "NoSchedule"
+      - key: "knightlight"
+        operator: "Exists"
+        effect: "NoSchedule"
+      - key: "easi"
+        operator: "Exists"
+        effect: "NoSchedule"
+      - key: "oeda"
+        operator: "Exists"
+        effect: "NoSchedule"

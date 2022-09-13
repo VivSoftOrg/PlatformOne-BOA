@@ -1,0 +1,26 @@
+{{- if .Values.violations.selinuxPolicy.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.selinuxPolicy.kind  }}
+metadata:
+  name: {{ .Values.violations.selinuxPolicy.name  }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "SELinux"
+    constraints.gatekeeper/description: "Containers may only use the SELnux options specified."
+    constraints.gatekeeper/source: "https://github.com/open-policy-agent/gatekeeper-library/tree/master/library/pod-security-policy/selinux"
+    constraints.gatekeeper/docs: "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#assign-selinux-labels-to-a-container"
+    constraints.gatekeeper/related: "https://en.wikipedia.org/wiki/Security-Enhanced_Linux"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.selinuxPolicy.enforcementAction  }}
+  match:
+    {{- if .Values.violations.selinuxPolicy.match  }}
+    {{- toYaml .Values.violations.selinuxPolicy.match | nindent 4 }}
+    {{- end }}
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+  parameters:
+    {{- toYaml .Values.violations.selinuxPolicy.parameters | nindent 4}}
+{{- end }}

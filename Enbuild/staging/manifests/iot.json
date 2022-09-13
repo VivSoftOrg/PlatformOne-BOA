@@ -1,0 +1,105 @@
+{
+    "type": "helm",
+    "slug": "iot",
+    "name": "IoT",
+    "repository": "https://gitlab.com/enbuild-staging/iac-templates/iot",
+    "project_id": "25681466",
+    "readme_file_path": "README.md",
+    "ref": "main",
+    "sops": false,
+    "ci_config_path": "template.yaml@enbuild-staging/pipeline-templates",
+    "image_path": "images/iot.png",
+    "components": [
+        {
+            "type": "component",
+            "name": "EdgeXFoundry",
+            "tool_type": "edgex",
+            "slug": "edgex",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/iot",
+            "project_id": "25681466",
+            "ref": "main",
+            "readme_file_path": "README.md",
+            "variable_file_path": "edgex_helm_values.yaml",
+            "image_path": "images/logo_edgex_foundry.png",
+            "mandatory": false
+        },
+        {
+          "type": "component",
+          "name": "Device Service",
+          "tool_type": "device-service",
+          "slug": "device-service",
+          "repository": "https://gitlab.com/enbuild-staging/iac-templates/iot",
+          "project_id": "25681466",
+          "ref": "main",
+          "readme_file_path": "README.md",
+          "variable_file_path": "deviceservices.yaml",
+          "image_path": "images/edgeX_octopus.png",
+          "mandatory": false
+      },
+      {
+        "type": "component",
+        "name": "Device Profile",
+        "tool_type": "device-profile",
+        "slug": "device-profile",
+        "repository": "https://gitlab.com/enbuild-staging/iac-templates/iot",
+        "project_id": "25681466",
+        "ref": "main",
+        "readme_file_path": "README.md",
+        "variable_file_path": "deviceprofile.yaml",
+        "image_path": "images/edgeX_octopus.png",
+        "mandatory": false
+    },
+    {
+      "type": "component",
+      "name": "Device",
+      "tool_type": "device",
+      "slug": "device",
+      "repository": "https://gitlab.com/enbuild-staging/iac-templates/iot",
+      "project_id": "25681466",
+      "ref": "main",
+      "readme_file_path": "README.md",
+      "variable_file_path": "device.yaml",
+      "image_path": "images/edgeX_octopus.png",
+      "mandatory": false
+  }
+    ],
+    "infrastructure": {
+      "type": "infrastructure",
+      "slug": "kubernetes",
+      "name": "Kubernetes",
+      "mandatory": true,
+      "showKubeConfig": true,
+      "selections": [
+        {
+          "slug": "azure",
+          "name": "Azure",
+          "fields": [
+            {
+              "name": "Kubeconfig",
+              "type": "textbox",
+              "key": "KUBECONFIG",
+              "plaintext": false
+            },
+            {
+              "name": "AZURE TENANT ID",
+              "type": "input_text",
+              "key": "AZURE_TENANT_ID",
+              "plaintext": false
+            },
+            {
+              "name": "AZURE CLIENT ID",
+              "type": "input_text",
+              "key": "AZURE_CLIENT_ID",
+              "plaintext": false
+            },
+            {
+              "name": "AZURE CLIENT SECRET",
+              "type": "input_text",
+              "key": "AZURE_CLIENT_SECRET",
+              "plaintext": false
+            }
+          ]
+        }
+      ]
+    }
+}

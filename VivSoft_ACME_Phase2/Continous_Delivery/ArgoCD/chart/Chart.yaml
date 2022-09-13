@@ -1,0 +1,30 @@
+apiVersion: v2
+appVersion: v2.2.5
+description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery tool for Kubernetes.
+name: argo-cd
+version: 3.33.5-bb.7
+home: https://github.com/argoproj/argo-helm
+icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+keywords:
+  - argoproj
+  - argocd
+  - gitops
+maintainers:
+  - name: alexec
+  - name: alexmt
+  - name: jessesuen
+  - name: seanson
+dependencies:
+- name: redis
+  version: 14.1.0-bb.7
+  repository: file://external
+  condition: redis-bb.enabled
+  alias: redis-bb
+- name: gluon
+  version: "0.2.4"
+  repository: "oci://registry.dso.mil/platform-one/big-bang/apps/library-charts/gluon"
+annotations:
+  bigbang.dev/applicationVersions: |
+    - Argocd: v2.2.5
+  artifacthub.io/changes: |
+    - "[Fixed]: Use ingressClassName from ingressGrpc for grpc ingress class name"

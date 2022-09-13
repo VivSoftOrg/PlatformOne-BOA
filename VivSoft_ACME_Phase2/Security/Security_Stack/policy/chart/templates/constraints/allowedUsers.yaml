@@ -1,0 +1,26 @@
+{{- if .Values.violations.allowedUsers.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.allowedUsers.kind }}
+metadata:
+  name: {{ .Values.violations.allowedUsers.name }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "Users and Groups"
+    constraints.gatekeeper/description: "Containers must be run as one of the specified users and groups."
+    constraints.gatekeeper/source: "https://github.com/open-policy-agent/gatekeeper-library/tree/master/library/pod-security-policy/users"
+    constraints.gatekeeper/docs: "https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context-1"
+    constraints.gatekeeper/related: "https://wiki.archlinux.org/title/users_and_groups"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.allowedUsers.enforcementAction }}
+  match:
+    {{- if .Values.violations.allowedUsers.match  }}
+    {{- toYaml .Values.violations.allowedUsers.match | nindent 4}}
+    {{- end }}
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+  parameters:
+    {{- toYaml .Values.violations.allowedUsers.parameters | nindent 4}}
+{{- end }}

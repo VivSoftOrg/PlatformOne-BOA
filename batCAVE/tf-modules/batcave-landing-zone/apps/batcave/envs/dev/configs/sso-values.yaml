@@ -1,0 +1,146 @@
+okta_anchors:
+ - &okta_host test.idp.idm.cms.gov
+ - &okta_issuer https://test.idp.idm.cms.gov/oauth2/ausc50imvyYR0okuP297
+ - &okta_auth https://test.idp.idm.cms.gov/oauth2/ausc50imvyYR0okuP297/v1/authorize
+ - &okta_token https://test.idp.idm.cms.gov/oauth2/ausc50imvyYR0okuP297/v1/token
+ - &okta_userinfo https://test.idp.idm.cms.gov/oauth2/ausc50imvyYR0okuP297/v1/userinfo
+ - &okta_jwks https://test.idp.idm.cms.gov/oauth2/ausc50imvyYR0okuP297/v1/keys
+ - &okta_logout https://test.idp.idm.cms.gov/oauth2/ausc50imvyYR0okuP297/v1/logout
+sso:
+  oidc:
+    host: *okta_host
+  auth_url: *okta_auth
+  token_url: *okta_token
+
+  ## Public JWKS certs obtained from:
+  ##   curl -s https://test.idp.idm.cms.gov/oauth2/ausc50imvyYR0okuP297/v1/keys | jq -Rs .
+  jwks: '{\"keys\":[{\"kty\":\"RSA\",\"alg\":\"RS256\",\"kid\":\"5XBbVXGT-ZzFryO7735uqWxrJ1rmgmlQ9hLRE8_dE1s\",\"use\":\"sig\",\"e\":\"AQAB\",\"n\":\"h-lp31DQe4umuU_ga8wxqzNaDplJnYNZoYWYb0baqbCMpcCjqPEyJRg_ps77mEkKvTpFQzet8gUUUnFF4pxN0OSAWe4cPV2S2BGUzWt9hHUhDJiCgggssLgwUmPvuTYEo0rrVKOH4zBpSrNXOgpNd5RRpKuUi3BXV_EiyQPTky7P4XcYF10eSKhVNXyDXa9Fl5Mg0RfkL1MQfVhjZpvYHeKQLuSKlW4h7ZTWAId2EdGSaQDiVw6NFoGs-omlks09OfyTwwNvwqTY6xr07JAdRE1u0T3M47pxss575oFbLqI7EXZprj3JqEw68L4ZUiswk0dUaXfyrlHgUUE2HM1wIQ\"},{\"kty\":\"RSA\",\"alg\":\"RS256\",\"kid\":\"5vDvLdaWpl7tS9DL38TOBObLdQ0Pr-9K1nY_pwvOCSg\",\"use\":\"sig\",\"e\":\"AQAB\",\"n\":\"2OzOcXRrakcUT9zk0Sori6wD2DFP4fL5KiZI_Ke2D6nIYfv0pK82komonxgYWFQ-Fv59QfZ_Tc2uF3dBR-s_aEYGBF64YadByxzj8KZYkVgalFkFlxfiTs_FA2Yj6xMJauj9fGUl5S_XcUfjy5aosJ7H9Q1ifZl7OD-qWZTI06kw0QDpnpQrdHuCo6RIScpOrAccuulKNC7ubesHgxC8tNC8GOjeg8Wd7rHYqUu8zAgQCGM_J_9HxTrYvUP4GJGxlTSK3AeIjiRua7a0CM1JNdOl0IGH2MfVYdS316Q9JE2xvMdXF5hyQEPjwK7zlWl2mxpbhKI6D8yr_Hak2S-y-w\"}]}'
+  ## Public Certs obtained from:
+  ##   openssl s_client -showcerts -connect test.idp.idm.cms.gov:443 </dev/null 2>/dev/null | sed -n -e '/-.BEGIN/,/-.END/ p'
+  certificate_authority: |
+    -----BEGIN CERTIFICATE-----
+    MIIG2zCCBcOgAwIBAgIQRbm3wou1LLZMj3zxqUU9KTANBgkqhkiG9w0BAQsFADCB
+    ujELMAkGA1UEBhMCVVMxFjAUBgNVBAoTDUVudHJ1c3QsIEluYy4xKDAmBgNVBAsT
+    H1NlZSB3d3cuZW50cnVzdC5uZXQvbGVnYWwtdGVybXMxOTA3BgNVBAsTMChjKSAy
+    MDEyIEVudHJ1c3QsIEluYy4gLSBmb3IgYXV0aG9yaXplZCB1c2Ugb25seTEuMCwG
+    A1UEAxMlRW50cnVzdCBDZXJ0aWZpY2F0aW9uIEF1dGhvcml0eSAtIEwxSzAeFw0y
+    MjA0MDYxNjQyMThaFw0yMzA0MjYxNjQyMThaMIGCMQswCQYDVQQGEwJVUzERMA8G
+    A1UECBMITWFyeWxhbmQxEjAQBgNVBAcTCVJvY2t2aWxsZTEtMCsGA1UEChMkVVMg
+    RGVwdCBvZiBIZWFsdGggYW5kIEh1bWFuIFNlcnZpY2VzMR0wGwYDVQQDExR0ZXN0
+    LmlkcC5pZG0uY21zLmdvdjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB
+    AK0XjHfyKwsz2CMGAfhu1UU7OwYmfOk1hsdXOa5JvVw4ZZSS5qd7xsCy4zBfwzRk
+    DFM4iGHcpGWzjGrCcy14fUa9uPFytbo6ORZ+kTORDXkaMwYJZOx3Z9Zyjsz019So
+    dFNhWhsMZ68/9S/7Ps+sQoP+rMUmpTeuF5rXQ7tBIHLFHFz0SOOdQZNVAokes2Ph
+    ys7XP7fQ+bjJlqySGgFH3zTtrtvLL9u+Os8/XtuXjvLLiEV9L5jCf4TupuzUpngh
+    j6Ui4pytgVEXB9vTTZXHmrsamHtinE4NrVL9hRdPQXo0iwv6xp9fIJX1vEmTTNAo
+    gJ+45Umh66IKn5fSHODi95cCAwEAAaOCAxEwggMNMAwGA1UdEwEB/wQCMAAwHQYD
+    VR0OBBYEFMnFikFopgogdLUoejt731zlG3nrMB8GA1UdIwQYMBaAFIKicHTdvFM/
+    z3vU981/p2DGCky/MGgGCCsGAQUFBwEBBFwwWjAjBggrBgEFBQcwAYYXaHR0cDov
+    L29jc3AuZW50cnVzdC5uZXQwMwYIKwYBBQUHMAKGJ2h0dHA6Ly9haWEuZW50cnVz
+    dC5uZXQvbDFrLWNoYWluMjU2LmNlcjAzBgNVHR8ELDAqMCigJqAkhiJodHRwOi8v
+    Y3JsLmVudHJ1c3QubmV0L2xldmVsMWsuY3JsMB8GA1UdEQQYMBaCFHRlc3QuaWRw
+    LmlkbS5jbXMuZ292MA4GA1UdDwEB/wQEAwIFoDAdBgNVHSUEFjAUBggrBgEFBQcD
+    AQYIKwYBBQUHAwIwTAYDVR0gBEUwQzA3BgpghkgBhvpsCgEFMCkwJwYIKwYBBQUH
+    AgEWG2h0dHBzOi8vd3d3LmVudHJ1c3QubmV0L3JwYTAIBgZngQwBAgIwggF+Bgor
+    BgEEAdZ5AgQCBIIBbgSCAWoBaAB2ALc++yTfnE26dfI5xbpY9Gxd/ELPep81xJ4d
+    CYEl7bSZAAABf//BaH0AAAQDAEcwRQIgZjz3tt8neYT/CUwrMv9N86pwnfm8EgKO
+    38VdQXLxNq4CIQCFI6PsSM6cLkP/Xt/bpZDKME89cmZoAk0vpk8Gqn4GLwB3AFWB
+    1MIWkDYBSuoLm1c8U/DA5Dh4cCUIFy+jqh0HE9MMAAABf//BaKsAAAQDAEgwRgIh
+    AJvXR4jZ1ld6uP/xX8USzOXma4k8vC/DsDex2e3nJKUUAiEAhrilm/Mgl6N5FB/o
+    H+DI1t4sCeJtQ+TdP+oQ3sj3O4IAdQCt9776fP8QyIudPZwePhhqtGcpXc+xDCTK
+    hYY069yCigAAAX//wWh4AAAEAwBGMEQCICQg8fWNwJFuHOyf2a8baDADTXkpj+q/
+    xuWqoOSvryQpAiAciS0nvsU2kwNMWOWzPeoqGlf7qh/jckKOy17nCeU/BzANBgkq
+    hkiG9w0BAQsFAAOCAQEAy4SMEVo+2ppOjyA5hPGEpWZZH01F3RraOxeeYp/8m76Q
+    23gS3xtb/AlTy95M+5aJVi3F7ZSzVulHkJ5sOpn4krwBm2mQ9yvSLyeIc94Px/SI
+    ShBdo1bduddj8bCJ6tArPsGM2gOiZmKZ+2cCKBP96Zs0xY4WXKFpNyD1VD2wTEKr
+    QTrznUP9uenx8NK7E5+r4W71FSeub6bynofF40o5NyXjpPJTdhHjQqHc4z9DfuJF
+    AVoS58uZTiRSGW0rZymm3f/LUWV985PLd2GxrIZqo3oL0LW5lcIc8AfhHaPSBsYN
+    m4jTgirLHBYEFi7h8JHZDlpRpLpaWKhTtC1jlgPqtw==
+    -----END CERTIFICATE-----
+    -----BEGIN CERTIFICATE-----
+    MIIFDjCCA/agAwIBAgIMDulMwwAAAABR03eFMA0GCSqGSIb3DQEBCwUAMIG+MQsw
+    CQYDVQQGEwJVUzEWMBQGA1UEChMNRW50cnVzdCwgSW5jLjEoMCYGA1UECxMfU2Vl
+    IHd3dy5lbnRydXN0Lm5ldC9sZWdhbC10ZXJtczE5MDcGA1UECxMwKGMpIDIwMDkg
+    RW50cnVzdCwgSW5jLiAtIGZvciBhdXRob3JpemVkIHVzZSBvbmx5MTIwMAYDVQQD
+    EylFbnRydXN0IFJvb3QgQ2VydGlmaWNhdGlvbiBBdXRob3JpdHkgLSBHMjAeFw0x
+    NTEwMDUxOTEzNTZaFw0zMDEyMDUxOTQzNTZaMIG6MQswCQYDVQQGEwJVUzEWMBQG
+    A1UEChMNRW50cnVzdCwgSW5jLjEoMCYGA1UECxMfU2VlIHd3dy5lbnRydXN0Lm5l
+    dC9sZWdhbC10ZXJtczE5MDcGA1UECxMwKGMpIDIwMTIgRW50cnVzdCwgSW5jLiAt
+    IGZvciBhdXRob3JpemVkIHVzZSBvbmx5MS4wLAYDVQQDEyVFbnRydXN0IENlcnRp
+    ZmljYXRpb24gQXV0aG9yaXR5IC0gTDFLMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A
+    MIIBCgKCAQEA2j+W0E25L0Tn2zlem1DuXKVh2kFnUwmqAJqOV38pa9vH4SEkqjrQ
+    jUcj0u1yFvCRIdJdt7hLqIOPt5EyaM/OJZMssn2XyP7BtBe6CZ4DkJN7fEmDImiK
+    m95HwzGYei59QAvS7z7Tsoyqj0ip/wDoKVgG97aTWpRzJiatWA7lQrjV6nN5ZGhT
+    JbiEz5R6rgZFDKNrTdDGvuoYpDbwkrK6HIiPOlJ/915tgxyd8B/lw9bdpXiSPbBt
+    LOrJz5RBGXFEaLpHPATpXbo+8DX3Fbae8i4VHj9HyMg4p3NFXU2wO7GOFyk36t0F
+    ASK7lDYqjVs1/lMZLwhGwSqzGmIdTivZGwIDAQABo4IBDDCCAQgwDgYDVR0PAQH/
+    BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQAwMwYIKwYBBQUHAQEEJzAlMCMGCCsG
+    AQUFBzABhhdodHRwOi8vb2NzcC5lbnRydXN0Lm5ldDAwBgNVHR8EKTAnMCWgI6Ah
+    hh9odHRwOi8vY3JsLmVudHJ1c3QubmV0L2cyY2EuY3JsMDsGA1UdIAQ0MDIwMAYE
+    VR0gADAoMCYGCCsGAQUFBwIBFhpodHRwOi8vd3d3LmVudHJ1c3QubmV0L3JwYTAd
+    BgNVHQ4EFgQUgqJwdN28Uz/Pe9T3zX+nYMYKTL8wHwYDVR0jBBgwFoAUanImetAe
+    733nO2lR1GyNn5ASZqswDQYJKoZIhvcNAQELBQADggEBADnVjpiDYcgsY9NwHRkw
+    y/YJrMxp1cncN0HyMg/vdMNY9ngnCTQIlZIv19+4o/0OgemknNM/TWgrFTEKFcxS
+    BJPok1DD2bHi4Wi3Ogl08TRYCj93mEC45mj/XeTIRsXsgdfJghhcg85x2Ly/rJkC
+    k9uUmITSnKa1/ly78EqvIazCP0kkZ9Yujs+szGQVGHLlbHfTUqi53Y2sAEo1GdRv
+    c6N172tkw+CNgxKhiucOhk3YtCAbvmqljEtoZuMrx1gL+1YQ1JH7HdMxWBCMRON1
+    exCdtTix9qrKgWRs6PLigVWXUX/hwidQosk8WwBD9lu51aX8/wdQQGcHsFXwt35u
+    Lcw=
+    -----END CERTIFICATE-----
+    -----BEGIN CERTIFICATE-----
+    MIIEPjCCAyagAwIBAgIESlOMKDANBgkqhkiG9w0BAQsFADCBvjELMAkGA1UEBhMC
+    VVMxFjAUBgNVBAoTDUVudHJ1c3QsIEluYy4xKDAmBgNVBAsTH1NlZSB3d3cuZW50
+    cnVzdC5uZXQvbGVnYWwtdGVybXMxOTA3BgNVBAsTMChjKSAyMDA5IEVudHJ1c3Qs
+    IEluYy4gLSBmb3IgYXV0aG9yaXplZCB1c2Ugb25seTEyMDAGA1UEAxMpRW50cnVz
+    dCBSb290IENlcnRpZmljYXRpb24gQXV0aG9yaXR5IC0gRzIwHhcNMDkwNzA3MTcy
+    NTU0WhcNMzAxMjA3MTc1NTU0WjCBvjELMAkGA1UEBhMCVVMxFjAUBgNVBAoTDUVu
+    dHJ1c3QsIEluYy4xKDAmBgNVBAsTH1NlZSB3d3cuZW50cnVzdC5uZXQvbGVnYWwt
+    dGVybXMxOTA3BgNVBAsTMChjKSAyMDA5IEVudHJ1c3QsIEluYy4gLSBmb3IgYXV0
+    aG9yaXplZCB1c2Ugb25seTEyMDAGA1UEAxMpRW50cnVzdCBSb290IENlcnRpZmlj
+    YXRpb24gQXV0aG9yaXR5IC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
+    AoIBAQC6hLZy254Ma+KZ6TABp3bqMriVQRrJ2mFOWHLP/vaCeb9zYQYKpSfYs1/T
+    RU4cctZOMvJyig/3gxnQaoCAAEUesMfnmr8SVycco2gvCoe9amsOXmXzHHfV1IWN
+    cCG0szLni6LVhjkCsbjSR87kyUnEO6fe+1R9V77w6G7CebI6C1XiUJgWMhNcL3hW
+    wcKUs/Ja5CeanyTXxuzQmyWC48zCxEXFjJd6BmsqEZ+pCm5IO2/b1BEZQvePB7/1
+    U1+cPvQXLOZprE4yTGJ36rfo5bs0vBmLrpxR57d+tVOxMyLlbc9wPBr64ptntoP0
+    jaWvYkxN4FisZDQSA/i2jZRjJKRxAgMBAAGjQjBAMA4GA1UdDwEB/wQEAwIBBjAP
+    BgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBRqciZ60B7vfec7aVHUbI2fkBJmqzAN
+    BgkqhkiG9w0BAQsFAAOCAQEAeZ8dlsa2eT8ijYfThwMEYGprmi5ZiXMRrEPR9RP/
+    jTkrwPK9T3CMqS/qF8QLVJ7UG5aYMzyorWKiAHarWWluBh1+xLlEjZivEtRh2woZ
+    Rkfz6/djwUAFQKXSt/S1mja/qYh2iARVBCuch38aNzx+LaUa2NSJXsq9rD1s2G2v
+    1fN2D807iDginWyTmsQ9v4IbZT+mD12q/OWyFcq1rca8PdCE6OoGcrBNOTJ4vz4R
+    nAuknZoh8/CbCzB428Hch0P+vGOaysXCHMnHjf87ElgI5rY97HosTvuDls4MPGmH
+    VHOkc8KT/1EQrBVUAdj8BbGJoX90g5pJ19xOe4pIb4tF9g==
+    -----END CERTIFICATE-----
+monitoring:
+  sso:
+    grafana:
+      api_url: *okta_userinfo
+kiali:
+  values:
+    cr:
+      spec:
+        auth:
+          openid:
+            issuer_uri: *okta_issuer
+addons:
+  argocd:
+    values:
+      sso:
+        enabled: true
+  authservice:
+    values:
+      issuer_uri: *okta_issuer
+      jwks_uri: *okta_jwks
+      global:
+        authorization_uri: *okta_auth
+        token_uri: *okta_token
+        logout_redirect_uri: *okta_logout
+        issuer_uri: *okta_issuer
+    chains:
+      alertmanager:
+        callback_uri: https://alertmanager.batcave-dev.internal.cms.gov/login/generic_oauth
+        logout_redirect_uri: *okta_logout
+      jaeger:
+        callback_uri: https://tracing.batcave-dev.internal.cms.gov/login
+        logout_redirect_uri: *okta_logout

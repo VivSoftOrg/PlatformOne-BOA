@@ -1,0 +1,5 @@
+# Tensorboards Web App
+-  kubeflow-manifests/apps/tensorboard/tensorboard-controller/upstream/overlays/kubeflow
+# Tensorboard Controller
+-  kubeflow-manifests/apps/tensorboard/tensorboards-web-app/upstream/overlays/istio
+

@@ -1,0 +1,25 @@
+{{- if .Values.violations.allowedDockerRegistries.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.allowedDockerRegistries.kind }}
+metadata:
+  name: {{ .Values.violations.allowedDockerRegistries.name }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "Image Repositories"
+    constraints.gatekeeper/description: "Container images must be pulled from the specified repositories."
+    constraints.gatekeeper/source: "https://github.com/open-policy-agent/gatekeeper-library/tree/master/library/general/allowedrepos"
+    constraints.gatekeeper/docs: "https://kubernetes.io/docs/concepts/containers/images/"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.allowedDockerRegistries.enforcementAction | default "dryrun" }}
+  match:
+    {{- if .Values.violations.allowedDockerRegistries.match  }}
+    {{- toYaml .Values.violations.allowedDockerRegistries.match | nindent 4}}
+    {{- end }}
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+  parameters:
+    {{- toYaml .Values.violations.allowedDockerRegistries.parameters | nindent 4}}
+{{- end }}

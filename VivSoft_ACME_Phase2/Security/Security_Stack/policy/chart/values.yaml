@@ -1,0 +1,509 @@
+replicas: 3
+auditInterval: 300
+auditMatchKindOnly: true
+constraintViolationsLimit: 1000
+auditFromCache: false
+disableMutation: true
+disableValidatingWebhook: false
+validatingWebhookTimeoutSeconds: 15
+validatingWebhookFailurePolicy: Ignore
+validatingWebhookCheckIgnoreFailurePolicy: Fail
+enableDeleteOperations: false
+enableExternalData: false
+mutatingWebhookFailurePolicy: Ignore
+mutatingWebhookTimeoutSeconds: 3
+auditChunkSize: 500
+logLevel: INFO
+logDenies: true
+emitAdmissionEvents: false
+emitAuditEvents: false
+resourceQuota: true
+postInstall:
+  labelNamespace:
+    enabled: true
+    image:
+      repository: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl
+      tag: v1.22.2
+      pullPolicy: IfNotPresent
+      pullSecrets: []
+image:
+  repository: registry1.dso.mil/ironbank/opensource/openpolicyagent/gatekeeper
+  release: v3.7.1
+  pullPolicy: IfNotPresent
+  pullSecrets:
+    - name: private-registry
+  crdRepository: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl
+  crdRelease: v1.22.2
+podAnnotations:
+  { container.seccomp.security.alpha.kubernetes.io/manager: runtime/default }
+podLabels: {}
+podCountLimit: 100
+secretAnnotations: {}
+controllerManager:
+  exemptNamespaces: []
+  exemptNamespacePrefixes: []
+  hostNetwork: false
+  dnsPolicy: ClusterFirst
+  port: 8443
+  metricsPort: 8888
+  healthPort: 9090
+  priorityClassName: system-cluster-critical
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - podAffinityTerm:
+            labelSelector:
+              matchExpressions:
+                - key: gatekeeper.sh/operation
+                  operator: In
+                  values:
+                    - webhook
+            topologyKey: kubernetes.io/hostname
+          weight: 100
+  tolerations: []
+  nodeSelector: { kubernetes.io/os: linux }
+  resources:
+    limits:
+      cpu: 175m
+      memory: 512Mi
+    requests:
+      cpu: 175m
+      memory: 512Mi
+audit:
+  hostNetwork: false
+  dnsPolicy: ClusterFirst
+  metricsPort: 8888
+  healthPort: 9090
+  priorityClassName: system-cluster-critical
+  affinity: {}
+  tolerations: []
+  nodeSelector: { kubernetes.io/os: linux }
+  writeToRAMDisk: false
+  resources:
+    limits:
+      cpu: 1.2
+      memory: 768Mi
+    requests:
+      cpu: 1.2
+      memory: 768Mi
+crds:
+  resources: {}
+pdb:
+  controllerManager:
+    minAvailable: 1
+service: {}
+disabledBuiltins:
+psp:
+  enabled: true
+upgradeCRDs:
+  enabled: true
+cleanupCRDs:
+  enabled: true
+rbac:
+  create: true
+
+# Big Bang Constraints
+violations:
+  # Violations values are as follows:
+  # <constraint name>:
+  #   enabled: boolean - enables constraint
+  #   enforcementAction: 'dryrun' or 'deny' - behavior of constraint when violation is found
+  #   match: map - allows inclusions / exclusions to constraints
+  #     namespaceSelector:
+  #       matchExpressions:
+  #       - {key: name, operator: In, values: [tenant]}
+  #     OR
+  #     excludedNamespaces:
+  #     - <name of namespace to exclude>
+  #   parameters: map - additional parameters specific to constraint
+  #     excludedResources: list of "<namespace>/<resourcename>" resources to ignore.
+  #     >  For container violations, resource name is the container name.
+  #     >  The "<namespace>/<resourcename>" is a regular expression
+  #     >  Use .* at beginning or end to help match dynamically named resources
+  #     >  Example: To exclude `prometheus-node-exporter-8j8kq` pods in the `monitoring` namespace, use `monitoring/prometheus-node-exporter-.*`
+  allowedAppArmorProfiles:
+    # By default the Iron Bank containers are either distroless or RHEL UBI so they do not have AppArmor.
+    # This constraint should only be applied to namespaces with Debian derived (e.g. Ubuntu) Linux distros since it cannot ignore containers without AppArmor.
+    enabled: false
+    enforcementAction: dryrun
+    kind: K8sPSPAppArmor
+    name: allowed-app-armor-profiles
+    match: {}
+    parameters:
+      allowedProfiles:
+        - runtime/default
+      excludedResources: []
+      # - namespace/container
+  allowedCapabilities:
+    enabled: true
+    enforcementAction: dryrun
+    kind: K8sPSPCapabilities
+    name: allowed-capabilities
+    match: {}
+    parameters:
+      allowedCapabilities: []
+      requiredDropCapabilities:
+        - all
+      excludedResources: []
+      # - namespace/container
+  allowedDockerRegistries:
+    enabled: true
+    enforcementAction: deny
+    kind: K8sAllowedRepos
+    name: allowed-docker-registries
+    match: {}
+    parameters:
+      repos:
+        - registry1.dso.mil
+      excludedResources: []
+      # - namespace/container
+  allowedFlexVolumes:
+    enabled: true
+    enforcementAction: deny
+    kind: K8sPSPFlexVolumes
+    name: allowed-flex-volumes
+    match: {}
+    parameters:
+      allowedFlexVolumes: []
+      # - driver: "example/lvm"
+      excludedResources: []
+      # - namespace/pod
+  allowedHostFilesystem:
+    enabled: true
+    enforcementAction: deny
+    kind: K8sPSPHostFilesystem
+    name: allowed-host-filesystem
+    match: {}
+    parameters:
+      allowedHostPaths: []
+      # - readOnly: true
+      #   pathPrefix: "/foo"
+      excludedResources: []
+      # - namespace/pod
+  allowedIPs:
+    enabled: true
+    enforcementAction: deny
+    kind: K8sExternalIPs
+    name: allowed-ips
+    match: {}
+    parameters:
+      allowedIPs: []
+      # - 1.2.3.4/32
+      excludedResources: []
+      # - namespace/service
+  allowedProcMount:
+    enabled: true
+    enforcementAction: deny
+    kind: K8sPSPProcMount
+    name: allowed-proc-mount
+    match: {}
+    parameters:
+      procMount: Default      # Options: Default or Unmasked
+      excludedResources: []
+      # - namespace/container
+  allowedSecCompProfiles:
+    enabled: true
+    enforcementAction: dryrun
+    kind: K8sPSPSeccomp
+    name: allowed-sec-comp-profiles
+    match: {}
+    parameters:
+      allowedProfiles:
+      - "runtime/default"
+      excludedResources: []
+      # - namespace/container
+  allowedUsers:
+    enabled: true
+    enforcementAction: dryrun
+    kind: K8sPSPAllowedUsers
+    name: allowed-users
+    match: {}
+    parameters:
+      runAsUser:
+        rule: MustRunAsNonRoot # MustRunAs # RunAsAny
+      fsGroup:
+        rule: MustRunAs # MayRunAs # RunAsAny
+        ranges:
+          - min: 1000
+            max: 65535
+      runAsGroup:
+        rule: MustRunAs # MayRunAs # RunAsAny
+        ranges:
+          - min: 1000
+            max: 65535
+      supplementalGroups:
+        rule: MustRunAs # MayRunAs # RunAsAny
+        ranges:
+          - min: 1000
+            max: 65535
+      excludedResources: []
+      # - namespace/container
+  bannedImageTags:
+    enabled: true
+    enforcementAction: deny
+    kind: K8sBannedImageTags
+    name: banned-image-tags
+    match: {}
+    parameters:
+      tags:
+        - latest
+      excludedResources: []
+      # - namespace/container
+  blockNodePort:
+    enabled: true
+    enforcementAction: dryrun
+    kind: K8sBlockNodePort
+    name: block-node-ports
+    match: {}
+    parameters:
+      excludedResources: []
+      # - namespace/service
+  containerRatio:
+    enabled: true
+    enforcementAction: dryrun
+    kind: K8sContainerRatios
+    name: container-ratios
+    match: {}
+    parameters:
+      ratio: '2'
+      excludedResources: []
+      # - namespace/container
+  hostNetworking:
+    enabled: true
+    enforcementAction: deny
+    kind: K8sPSPHostNetworkingPorts
+    name: host-networking
+    match: {}
+    parameters:
+      hostNetwork: false      # Is host network allowed?
+      min: 0                  # Minimum allowed host port
+      max: 0                  # Maximum allowed host port
+      excludedResources: []
+      # - namespace/pod         # Applies if hostNetwork violation
+      # - namespace/container   # Applies if hostPort violation
+  httpsOnly:
+    enabled: true
+    enforcementAction: deny
+    kind: K8sHttpsOnly2
+    name: https-only
+    match: {}
+    parameters:
+      excludedResources: []
+      # - namespace/ingress
+  imageDigest:
+    enabled: true
+    enforcementAction: dryrun
+    kind: K8sImageDigests2
+    name: image-digest
+    match: {}
+    parameters:
+      excludedResources: []
+      # - namespace/container
+  namespacesHaveIstio:
+    enabled: true
+    enforcementAction: dryrun
+    kind: K8sRequiredLabelValues
+    name: namespaces-have-istio
+    match:
+      namespaceSelector:
+        matchExpressions:
+          - key: admission.gatekeeper.sh/ignore
+            operator: DoesNotExist
+    parameters:
+      labels:
+        - allowedRegex: ^enabled
+          key: istio-injection
+      excludedResources: []
+      # - namespace
+  noBigContainers:
+    enabled: true
+    enforcementAction: dryrun
+    kind: K8sContainerLimits
+    name: no-big-container
+    match: {}
+    parameters:
+      cpu: 2000m
+      memory: 4G
+      excludedResources: []
+      # - namespace/container
+  noHostNamespace:
+    enabled: true
+    enforcementAction: deny
+    kind: K8sPSPHostNamespace2
+    name: no-host-namespace
+    match: {}
+    parameters:
+      excludedResources: []
+      # - namespace/pod
+  noPrivilegedContainers:
+    enabled: true
+    enforcementAction: deny
+    kind: K8sPSPPrivilegedContainer2
+    name: no-privileged-containers
+    match: {}
+    parameters:
+      excludedResources: []
+      # - namespace/container
+  noDefaultServiceAccount:
+    enabled: true
+    enforcementAction: dryrun
+    kind: K8sDenySADefault
+    name: no-default-service-account
+    match: {}
+    parameters:
+      excludedResources: []
+      # - namespace/pod
+  noPrivilegedEscalation:
+    enabled: true
+    enforcementAction: dryrun
+    kind: K8sPSPAllowPrivilegeEscalationContainer2
+    name: no-privileged-escalation
+    match: {}
+    parameters:
+      excludedResources: []
+      # - namespace/container
+  noSysctls:
+    enabled: true
+    enforcementAction: deny
+    kind: K8sPSPForbiddenSysctls
+    name: no-sysctls
+    match: {}
+    parameters:
+      forbiddenSysctls:
+        - '*'
+      excludedResources: []
+      # - namespace/pod
+  podsHaveIstio:
+    enabled: true
+    enforcementAction: dryrun
+    kind: K8sNoAnnotationValues
+    name: pods-have-istio
+    match: {}
+    parameters:
+      annotations:
+        - disallowedRegex: ^false
+          key: sidecar.istio.io/inject
+      excludedResources: []
+      # - namespace/pod
+  readOnlyRoot:
+    enabled: true
+    enforcementAction: dryrun
+    kind: K8sPSPReadOnlyRootFilesystem2
+    name: read-only-root
+    match: {}
+    parameters:
+      excludedResources: []
+      # - namespace/container
+  requiredLabels:
+    enabled: true
+    enforcementAction: dryrun
+    kind: K8sRequiredLabelValues
+    name: required-labels
+    match: {}
+    parameters:
+      labels:
+        - allowedRegex: ''
+          key: app.kubernetes.io/name
+        - allowedRegex: ''
+          key: app.kubernetes.io/instance
+        - allowedRegex: ''
+          key: app.kubernetes.io/version
+        - allowedRegex: ''
+          key: app.kubernetes.io/component
+        - allowedRegex: ''
+          key: app.kubernetes.io/part-of
+        - allowedRegex: ''
+          key: app.kubernetes.io/managed-by
+      excludedResources: []
+      # - namespace/pod
+  requiredProbes:
+    enabled: true
+    enforcementAction: dryrun
+    kind: K8sRequiredProbes
+    name: required-probes
+    match: {}
+    parameters:
+      probeTypes:
+        - tcpSocket
+        - httpGet
+        - exec
+      probes:
+        - readinessProbe
+        - livenessProbe
+      excludedResources: []
+      # - namespace/container
+  restrictedTaint:
+    enabled: true
+    enforcementAction: deny
+    kind: RestrictedTaintToleration
+    name: restricted-taint
+    match: {}
+    parameters:
+      allowGlobalToleration: false
+      restrictedTaint:
+        effect: NoSchedule
+        key: privileged
+        value: 'true'
+      excludedResources: []
+      # - namespace/pod
+  selinuxPolicy:
+    enabled: true
+    enforcementAction: deny
+    kind: K8sPSPSELinuxV2
+    name: selinux-policy
+    match: {}
+    parameters:
+      allowedSELinuxOptions: []
+      excludedResources: []
+      # - namespace/container   # Applies if SELinux is violated at the container level
+      # - namespace/pod         # Applies if SELinux is violated at the pod level
+  uniqueIngressHost:
+    enabled: true
+    enforcementAction: deny
+    kind: K8sUniqueIngressHost
+    name: unique-ingress-hosts
+    match: {}
+    parameters:
+      excludedResources: []
+      # - namespace/ingress
+  volumeTypes:
+    enabled: true
+    enforcementAction: deny
+    kind: K8sPSPVolumeTypes
+    name: volume-types
+    match: {}
+    parameters:
+      volumes:
+        # - "*" # * may be used to allow all volume types
+        - configMap
+        - emptyDir
+        - projected
+        - secret
+        - downwardAPI
+        - persistentVolumeClaim
+      excludedResources: []
+      # - namespace/pod
+
+# Bigbang Additions
+monitoring:
+  enabled: false
+networkPolicies:
+  enabled: false
+  # See `kubectl cluster-info` and then resolve to IP
+  controlPlaneCidr: 0.0.0.0/0
+
+bbtests:
+  enabled: false
+  scripts:
+    image: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.22.2
+    additionalVolumeMounts:
+      - name: "{{ .Chart.Name }}-test-config"
+        mountPath: /yaml
+      - name: "{{ .Chart.Name }}-kube-cache"
+        mountPath: /.kube/cache
+    additionalVolumes:
+      - name: "{{ .Chart.Name }}-test-config"
+        configMap:
+          name: "{{ .Chart.Name }}-test-config"
+      - name: "{{ .Chart.Name }}-kube-cache"
+        emptyDir: {}

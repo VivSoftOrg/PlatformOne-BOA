@@ -1,0 +1,22 @@
+#fullnameOverride: "argocd"
+configs:
+  secret:
+    argocdServerAdminPassword: '$2a$10$rUDZDckdDZ2TEwk9PDs3QuqjkL58qR1IHE1Kj4MwDx.7/m5dytZJm'
+bbtests:
+  enabled: true
+
+networkPolicies:
+  enabled: true
+
+redis-bb:
+  enabled: true
+  # pass throughs to BigBang's redis
+  # https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/redis/-/blob/main/chart/values.yaml
+  auth:
+    enabled: false
+  istio:
+    redis:
+      enabled: false
+  networkPolicies:
+    enabled: true
+    controlPlaneCidr: 0.0.0.0/0

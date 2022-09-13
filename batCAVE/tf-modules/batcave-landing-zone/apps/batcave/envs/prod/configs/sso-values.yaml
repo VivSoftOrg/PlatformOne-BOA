@@ -1,0 +1,143 @@
+okta_anchors:
+ - &okta_host idm.cms.gov
+ - &okta_issuer https://idm.cms.gov/oauth2/ausc7ix67qp5Yx0oV297
+ - &okta_auth https://idm.cms.gov/oauth2/ausc7ix67qp5Yx0oV297/v1/authorize
+ - &okta_token https://idm.cms.gov/oauth2/ausc7ix67qp5Yx0oV297/v1/token
+ - &okta_userinfo https://idm.cms.gov/oauth2/ausc7ix67qp5Yx0oV297/v1/userinfo
+ - &okta_jwks https://idm.cms.gov/oauth2/ausc7ix67qp5Yx0oV297/v1/keys
+ - &okta_logout https://idm.cms.gov/oauth2/ausc7ix67qp5Yx0oV297/v1/logout
+sso:
+  oidc:
+    host: *okta_host
+  auth_url: *okta_auth
+  token_url: *okta_token
+
+  ## Public JWKS certs obtained from:
+  ##   curl -s https://idm.cms.gov/oauth2/ausc7ix67qp5Yx0oV297/v1/keys | jq -Rs .
+  jwks: '{\"keys\":[{\"kty\":\"RSA\",\"alg\":\"RS256\",\"kid\":\"iML9Dbp-v5kCy8VTrdwWsNC73waj3g9DMtrB6pkEt1M\",\"use\":\"sig\",\"e\":\"AQAB\",\"n\":\"xMSjI3SuQE_D8H7qY46rQKaUyC4fIsHJMG7NjR0d_jrMuy_8bpxcs-FkkhkwoSYdRkuWmSmt0DikAHa1NCwk7BkbPndrr7GnqtTW6YmoowHo9HwYREG_DB_22u-w3sLCLUlEN9tMyvhiiwozHVJ_7D8PNkDTop4eFfHu9ZBu2aDCkZCfrdqGybj1ZTvgRTkVRBeSx870aX8CWoqfte_HXUtSjyL30--ZkCvmYP9rbpj9RVVf3s_ORCoebh9wR1Kl5SzwH2cTgLQPY-HyGqKqURpmnTTooBl0CsA2x1KlpRlhylGi2hXF3vGpx1hRoqpXqxfyPOBYjLy_KKh2atK1Tw\"}]}'
+  ## Public Certs obtained from:
+  ##   openssl s_client -showcerts -connect idm.cms.gov:443 </dev/null 2>/dev/null | sed -n -e '/-.BEGIN/,/-.END/ p'
+  certificate_authority: |
+    -----BEGIN CERTIFICATE-----
+    MIIGyjCCBbKgAwIBAgIQTvZQEyb1KQtTjycC9vSjqjANBgkqhkiG9w0BAQsFADCB
+    ujELMAkGA1UEBhMCVVMxFjAUBgNVBAoTDUVudHJ1c3QsIEluYy4xKDAmBgNVBAsT
+    H1NlZSB3d3cuZW50cnVzdC5uZXQvbGVnYWwtdGVybXMxOTA3BgNVBAsTMChjKSAy
+    MDEyIEVudHJ1c3QsIEluYy4gLSBmb3IgYXV0aG9yaXplZCB1c2Ugb25seTEuMCwG
+    A1UEAxMlRW50cnVzdCBDZXJ0aWZpY2F0aW9uIEF1dGhvcml0eSAtIEwxSzAeFw0y
+    MTA4MTExNjExMjhaFw0yMjA4MTMxNjExMjdaMHkxCzAJBgNVBAYTAlVTMREwDwYD
+    VQQIEwhNYXJ5bGFuZDESMBAGA1UEBxMJUm9ja3ZpbGxlMS0wKwYDVQQKEyRVUyBE
+    ZXB0IG9mIEhlYWx0aCBhbmQgSHVtYW4gU2VydmljZXMxFDASBgNVBAMTC2lkbS5j
+    bXMuZ292MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArPUW6QggnB+5
+    2soBdx7i50inhNohgmIuRqORUsGvHKdvgyDdHn25RI+bleJXBr9pEw4D8h5OltVQ
+    Mwc9cgG/4jOMU4/Svk1X8HNQ2VI1oAOV0qfFNgED1MzBk/eP6tAGeZU8g3ZEt9lJ
+    qyEytsSIgbgByLdmmIMCMLoFgw3ao3wA+uTY/l7io/DxBK5d8JgxiTiMFO8Qgve8
+    BL4DLsmOTCj0GJwG1XCvnnv0rnNjHg4IYmPPbbxcGOG7Q5euRV5QHBl2gpCNystP
+    TaIG6CYm6Gtbw4mwHy3ktOqBFDyyBHl2wvokhKFkcQBjTdeJT8DExP6eDrN5bJYQ
+    tcdTEg1RWwIDAQABo4IDCjCCAwYwDAYDVR0TAQH/BAIwADAdBgNVHQ4EFgQUti/+
+    ODIUzcJq8YPXDWWBckdZDgQwHwYDVR0jBBgwFoAUgqJwdN28Uz/Pe9T3zX+nYMYK
+    TL8waAYIKwYBBQUHAQEEXDBaMCMGCCsGAQUFBzABhhdodHRwOi8vb2NzcC5lbnRy
+    dXN0Lm5ldDAzBggrBgEFBQcwAoYnaHR0cDovL2FpYS5lbnRydXN0Lm5ldC9sMWst
+    Y2hhaW4yNTYuY2VyMDMGA1UdHwQsMCowKKAmoCSGImh0dHA6Ly9jcmwuZW50cnVz
+    dC5uZXQvbGV2ZWwxay5jcmwwFgYDVR0RBA8wDYILaWRtLmNtcy5nb3YwDgYDVR0P
+    AQH/BAQDAgWgMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjBMBgNVHSAE
+    RTBDMDcGCmCGSAGG+mwKAQUwKTAnBggrBgEFBQcCARYbaHR0cHM6Ly93d3cuZW50
+    cnVzdC5uZXQvcnBhMAgGBmeBDAECAjCCAYAGCisGAQQB1nkCBAIEggFwBIIBbAFq
+    AHYAVhQGmi/XwuzT9eG9RLI+x0Z2ubyZEVzA75SYVdaJ0N0AAAF7NfuingAABAMA
+    RzBFAiAFCKpJlQpEvIw0hCCQG1iXXGpsLAdcN2mwVzcADvzeSQIhAL16h3QyOTct
+    w27Ou+H6A5p76bnWHQbdAkUd2NtPVV/jAHcAVYHUwhaQNgFK6gubVzxT8MDkOHhw
+    JQgXL6OqHQcT0wwAAAF7NfuiuwAABAMASDBGAiEAylqrK+1JpS1bc8dxhD+xYkUA
+    besCdGRrLF4+YWF1PBECIQC5nFgE/e+OqAo5KQOjtUDL/6e4Qz6QMYLNYlJxKoog
+    HwB3AEalVet1+pEgMLWiiWn0830RLEF0vv1JuIWr8vxw/m1HAAABezX7oqsAAAQD
+    AEgwRgIhAIagFVE2Zvp2p87echHC1OPbaiiE65yPANAsLFNy+yFjAiEAzZsyXzKd
+    yXiU9b9jHLA2qlZ0Ldd4e3+FPXCtYanoecwwDQYJKoZIhvcNAQELBQADggEBAM7m
+    8rjOeYKBz0IExj83kXHBwUi97gsJpz7DlG5cQWAVKWgmQNDMif5S5ZE1hXtvWmQM
+    rnUELNVyyKrBILmF8n70O15e3Yw6NWwgtX/tCP8Lfu4LHKbrNu/gBlMrR0XGutt8
+    nd+4I+zDuvcImQiqW/9RVMDc8nkrojEDt1xppsQIcl3mi94Mkcd+czFKHJ/lnRSU
+    XuSdsPz5EKOd/EP5/bVzQNJXCF2XxbxoLodkPRqU9YhYsNgd/KtnNGMFhcRnsAz6
+    udZFPROW3kePJTEofGpTNPDuduGjUvXm4ut55gwJeOBQMGW4PENN9dd+mkpmVCM6
+    t5HSlPwE5fiXf9RDUiU=
+    -----END CERTIFICATE-----
+    -----BEGIN CERTIFICATE-----
+    MIIFDjCCA/agAwIBAgIMDulMwwAAAABR03eFMA0GCSqGSIb3DQEBCwUAMIG+MQsw
+    CQYDVQQGEwJVUzEWMBQGA1UEChMNRW50cnVzdCwgSW5jLjEoMCYGA1UECxMfU2Vl
+    IHd3dy5lbnRydXN0Lm5ldC9sZWdhbC10ZXJtczE5MDcGA1UECxMwKGMpIDIwMDkg
+    RW50cnVzdCwgSW5jLiAtIGZvciBhdXRob3JpemVkIHVzZSBvbmx5MTIwMAYDVQQD
+    EylFbnRydXN0IFJvb3QgQ2VydGlmaWNhdGlvbiBBdXRob3JpdHkgLSBHMjAeFw0x
+    NTEwMDUxOTEzNTZaFw0zMDEyMDUxOTQzNTZaMIG6MQswCQYDVQQGEwJVUzEWMBQG
+    A1UEChMNRW50cnVzdCwgSW5jLjEoMCYGA1UECxMfU2VlIHd3dy5lbnRydXN0Lm5l
+    dC9sZWdhbC10ZXJtczE5MDcGA1UECxMwKGMpIDIwMTIgRW50cnVzdCwgSW5jLiAt
+    IGZvciBhdXRob3JpemVkIHVzZSBvbmx5MS4wLAYDVQQDEyVFbnRydXN0IENlcnRp
+    ZmljYXRpb24gQXV0aG9yaXR5IC0gTDFLMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A
+    MIIBCgKCAQEA2j+W0E25L0Tn2zlem1DuXKVh2kFnUwmqAJqOV38pa9vH4SEkqjrQ
+    jUcj0u1yFvCRIdJdt7hLqIOPt5EyaM/OJZMssn2XyP7BtBe6CZ4DkJN7fEmDImiK
+    m95HwzGYei59QAvS7z7Tsoyqj0ip/wDoKVgG97aTWpRzJiatWA7lQrjV6nN5ZGhT
+    JbiEz5R6rgZFDKNrTdDGvuoYpDbwkrK6HIiPOlJ/915tgxyd8B/lw9bdpXiSPbBt
+    LOrJz5RBGXFEaLpHPATpXbo+8DX3Fbae8i4VHj9HyMg4p3NFXU2wO7GOFyk36t0F
+    ASK7lDYqjVs1/lMZLwhGwSqzGmIdTivZGwIDAQABo4IBDDCCAQgwDgYDVR0PAQH/
+    BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQAwMwYIKwYBBQUHAQEEJzAlMCMGCCsG
+    AQUFBzABhhdodHRwOi8vb2NzcC5lbnRydXN0Lm5ldDAwBgNVHR8EKTAnMCWgI6Ah
+    hh9odHRwOi8vY3JsLmVudHJ1c3QubmV0L2cyY2EuY3JsMDsGA1UdIAQ0MDIwMAYE
+    VR0gADAoMCYGCCsGAQUFBwIBFhpodHRwOi8vd3d3LmVudHJ1c3QubmV0L3JwYTAd
+    BgNVHQ4EFgQUgqJwdN28Uz/Pe9T3zX+nYMYKTL8wHwYDVR0jBBgwFoAUanImetAe
+    733nO2lR1GyNn5ASZqswDQYJKoZIhvcNAQELBQADggEBADnVjpiDYcgsY9NwHRkw
+    y/YJrMxp1cncN0HyMg/vdMNY9ngnCTQIlZIv19+4o/0OgemknNM/TWgrFTEKFcxS
+    BJPok1DD2bHi4Wi3Ogl08TRYCj93mEC45mj/XeTIRsXsgdfJghhcg85x2Ly/rJkC
+    k9uUmITSnKa1/ly78EqvIazCP0kkZ9Yujs+szGQVGHLlbHfTUqi53Y2sAEo1GdRv
+    c6N172tkw+CNgxKhiucOhk3YtCAbvmqljEtoZuMrx1gL+1YQ1JH7HdMxWBCMRON1
+    exCdtTix9qrKgWRs6PLigVWXUX/hwidQosk8WwBD9lu51aX8/wdQQGcHsFXwt35u
+    Lcw=
+    -----END CERTIFICATE-----
+    -----BEGIN CERTIFICATE-----
+    MIIEPjCCAyagAwIBAgIESlOMKDANBgkqhkiG9w0BAQsFADCBvjELMAkGA1UEBhMC
+    VVMxFjAUBgNVBAoTDUVudHJ1c3QsIEluYy4xKDAmBgNVBAsTH1NlZSB3d3cuZW50
+    cnVzdC5uZXQvbGVnYWwtdGVybXMxOTA3BgNVBAsTMChjKSAyMDA5IEVudHJ1c3Qs
+    IEluYy4gLSBmb3IgYXV0aG9yaXplZCB1c2Ugb25seTEyMDAGA1UEAxMpRW50cnVz
+    dCBSb290IENlcnRpZmljYXRpb24gQXV0aG9yaXR5IC0gRzIwHhcNMDkwNzA3MTcy
+    NTU0WhcNMzAxMjA3MTc1NTU0WjCBvjELMAkGA1UEBhMCVVMxFjAUBgNVBAoTDUVu
+    dHJ1c3QsIEluYy4xKDAmBgNVBAsTH1NlZSB3d3cuZW50cnVzdC5uZXQvbGVnYWwt
+    dGVybXMxOTA3BgNVBAsTMChjKSAyMDA5IEVudHJ1c3QsIEluYy4gLSBmb3IgYXV0
+    aG9yaXplZCB1c2Ugb25seTEyMDAGA1UEAxMpRW50cnVzdCBSb290IENlcnRpZmlj
+    YXRpb24gQXV0aG9yaXR5IC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
+    AoIBAQC6hLZy254Ma+KZ6TABp3bqMriVQRrJ2mFOWHLP/vaCeb9zYQYKpSfYs1/T
+    RU4cctZOMvJyig/3gxnQaoCAAEUesMfnmr8SVycco2gvCoe9amsOXmXzHHfV1IWN
+    cCG0szLni6LVhjkCsbjSR87kyUnEO6fe+1R9V77w6G7CebI6C1XiUJgWMhNcL3hW
+    wcKUs/Ja5CeanyTXxuzQmyWC48zCxEXFjJd6BmsqEZ+pCm5IO2/b1BEZQvePB7/1
+    U1+cPvQXLOZprE4yTGJ36rfo5bs0vBmLrpxR57d+tVOxMyLlbc9wPBr64ptntoP0
+    jaWvYkxN4FisZDQSA/i2jZRjJKRxAgMBAAGjQjBAMA4GA1UdDwEB/wQEAwIBBjAP
+    BgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBRqciZ60B7vfec7aVHUbI2fkBJmqzAN
+    BgkqhkiG9w0BAQsFAAOCAQEAeZ8dlsa2eT8ijYfThwMEYGprmi5ZiXMRrEPR9RP/
+    jTkrwPK9T3CMqS/qF8QLVJ7UG5aYMzyorWKiAHarWWluBh1+xLlEjZivEtRh2woZ
+    Rkfz6/djwUAFQKXSt/S1mja/qYh2iARVBCuch38aNzx+LaUa2NSJXsq9rD1s2G2v
+    1fN2D807iDginWyTmsQ9v4IbZT+mD12q/OWyFcq1rca8PdCE6OoGcrBNOTJ4vz4R
+    nAuknZoh8/CbCzB428Hch0P+vGOaysXCHMnHjf87ElgI5rY97HosTvuDls4MPGmH
+    VHOkc8KT/1EQrBVUAdj8BbGJoX90g5pJ19xOe4pIb4tF9g==
+    -----END CERTIFICATE-----
+
+monitoring:
+  sso:
+    grafana:
+      api_url: *okta_userinfo
+kiali:
+  values:
+    cr:
+      spec:
+        auth:
+          openid:
+            issuer_uri: *okta_issuer
+addons:
+  authservice:
+    values:
+      issuer_uri: *okta_issuer
+      jwks_uri: *okta_jwks
+      global:
+        authorization_uri: *okta_auth
+        token_uri: *okta_token
+        logout_redirect_uri: *okta_logout
+        issuer_uri: *okta_issuer
+    chains:
+      alertmanager:
+        callback_uri: https://alertmanager.batcave.internal.cms.gov/login/generic_oauth
+        logout_redirect_uri: *okta_logout
+      jaeger:
+        callback_uri: https://tracing.batcave.internal.cms.gov/login
+        logout_redirect_uri: *okta_logout

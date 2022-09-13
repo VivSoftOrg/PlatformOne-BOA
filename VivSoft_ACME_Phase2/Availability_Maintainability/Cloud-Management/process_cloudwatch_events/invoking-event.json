@@ -1,0 +1,56 @@
+{
+	"version": "0",
+	"id": "d9054a81-ba1e-a853-fa32-51f4ad701d43",
+	"detail-type": "AWS API Call via CloudTrail",
+	"source": "aws.ec2",
+	"account": "693265998683",
+	"time": "2018-10-26T10:30:52Z",
+	"region": "us-east-1",
+	"resources": [],
+	"detail": {
+		"eventVersion": "1.05",
+		"userIdentity": {
+			"type": "AssumedRole",
+			"principalId": "AROAJFHOZTEJVHNWHMKLO:awslambda_627_20181026103052414",
+			"arn": "arn:aws:sts::107339370656:assumed-role/rean_mnc_notifier_lambda_role/awslambda_627_20181026103052414",
+			"accountId": "107339370656",
+			"accessKeyId": "ASIARR7PM2CQPBJIS747",
+			"sessionContext": {
+				"attributes": {
+					"mfaAuthenticated": "false",
+					"creationDate": "2018-10-26T10:30:52Z"
+				},
+				"sessionIssuer": {
+					"type": "Role",
+					"principalId": "AROAJFHOZTEJVHNWHMKLO",
+					"arn": "arn:aws:iam::107339370656:role/rean_mnc_notifier_lambda_role",
+					"accountId": "107339370656",
+					"userName": "rean_mnc_notifier_lambda_role"
+				}
+			}
+		},
+		"eventTime": "2018-10-26T10:30:52Z",
+		"eventSource": "ec2.amazonaws.com",
+		"eventName": "CreateNetworkInterface",
+		"awsRegion": "us-east-1",
+		"sourceIPAddress": "54.152.227.209",
+		"userAgent": "aws-internal/3 aws-sdk-java/1.11.429 Linux/4.14.72-68.55.amzn1.x86_64 OpenJDK_64-Bit_Server_VM/25.181-b13 java/1.8.0_181",
+		"errorCode": "Client.DryRunOperation",
+		"errorMessage": "Request would have succeeded, but DryRun flag is set.",
+		"requestParameters": {
+			"subnetId": "subnet-29d69a16",
+			"groupSet": {
+				"items": [
+					{
+						"groupId": "sg-03ab796da1406111e"
+					}
+				]
+			},
+			"privateIpAddressesSet": {}
+		},
+		"responseElements": "None",
+		"requestID": "961c0e39-4337-4a4f-a487-2b51bf22024f",
+		"eventID": "c9e2b4de-6c94-4f92-af37-87666372ee6e",
+		"eventType": "AwsApiCall"
+	}
+}

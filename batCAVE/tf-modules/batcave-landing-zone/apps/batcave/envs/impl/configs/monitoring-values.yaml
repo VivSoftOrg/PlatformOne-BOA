@@ -1,0 +1,67 @@
+monitoring:
+  values:
+    alertmanager:
+      alertmanagerSpec:
+        tolerations:
+        - key: "CriticalAddonsOnly"
+          operator: "Exists"
+          effect: "NoSchedule"
+    grafana:
+      image:
+        repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/grafana/grafana-enterprise
+        tag: 8.4.3 # need to hard code because we are using Grafana Enterprise
+      plugins:
+        - grafana-enterprise-logs-app
+      grafana.ini:
+        server:
+          root_url: https://grafana.batcave-impl.internal.cms.gov/
+      tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Exists"
+        effect: "NoSchedule"
+    kube-state-metrics:
+      tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Exists"
+        effect: "NoSchedule"
+    prometheus:
+      prometheusSpec:
+        retentionSize: "25GB"
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              resources:
+                requests:
+                  storage: 250G
+        tolerations:
+        - key: "CriticalAddonsOnly"
+          operator: "Exists"
+          effect: "NoSchedule"
+    prometheus-node-exporter:
+      tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Exists"
+        effect: "NoSchedule"
+      - key: "signal"
+        operator: "Exists"
+        effect: "NoSchedule"
+      - key: "knightlight"
+        operator: "Exists"
+        effect: "NoSchedule"
+      - key: "easi"
+        operator: "Exists"
+        effect: "NoSchedule"
+      - key: "oedaeppe"
+        operator: "Exists"
+        effect: "NoSchedule"
+    prometheusOperator:
+      tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Exists"
+        effect: "NoSchedule"
+      admissionWebhooks:
+        patch:
+          tolerations:
+          - key: "CriticalAddonsOnly"
+            operator: "Exists"
+            effect: "NoSchedule"

@@ -1,0 +1,11 @@
+apiVersion: kpt.dev/v1alpha1
+kind: Kptfile
+metadata:
+  name: cert-manager
+upstream:
+  type: git
+  git:
+    commit: cbd52ed6e9c296012bab87d3877d31e1f1295fa5
+    repo: https://github.com/jetstack/cert-manager
+    directory: /deploy/charts/cert-manager
+    ref: v1.0.3

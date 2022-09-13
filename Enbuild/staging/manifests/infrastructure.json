@@ -1,0 +1,71 @@
+[
+    {
+        "id": 1,
+        "type": "infrastructure",
+        "slug": "cloud",
+        "name": "Cloud",
+        "catalog_id": 1,
+        "selections": [
+            {
+                "name": "Access Key",
+                "type": "input_text",
+                "variable": "AWS_ACCESS_KEY_ID",
+                "plaintext": false
+            },
+            {
+                "name": "Secret Key",
+                "type": "input_text",
+                "key": "AWS_SECRET_ACCESS_KEY",
+                "plaintext": false
+            },
+            {
+                "name": "AWS Region",
+                "type": "input_text",
+                "key": "AWS_DEFAULT_REGION",
+                "plaintext": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "type": "infrastructure",
+        "slug": "kubernetes",
+        "name": "Kubernetes",
+        "catalog_id": 3,
+        "selections": [
+            {
+                "name": "Kubeconfig",
+                "type": "textbox",
+                "key": "KUBECONFIG",
+                "plaintext": false
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "type": "infrastructure",
+        "slug": "cloud",
+        "name": "Cloud",
+        "catalog_id": 2,
+        "selections": [
+            {
+                "name": "Access Key",
+                "type": "input_text",
+                "variable": "AWS_ACCESS_KEY_ID",
+                "plaintext": false
+            },
+            {
+                "name": "Secret Key",
+                "type": "input_text",
+                "key": "AWS_SECRET_ACCESS_KEY",
+                "plaintext": false
+            },
+            {
+                "name": "AWS Region",
+                "type": "input_text",
+                "key": "AWS_DEFAULT_REGION",
+                "plaintext": true
+            }
+        ]
+    }
+]

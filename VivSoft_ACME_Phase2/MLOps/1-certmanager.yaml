@@ -1,0 +1,2 @@
+- kubeflow-manifests/common/cert-manager/cert-manager/base
+- kubeflow-manifests/common/cert-manager/kubeflow-issuer/base

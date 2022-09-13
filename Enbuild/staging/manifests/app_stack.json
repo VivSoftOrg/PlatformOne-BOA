@@ -1,0 +1,65 @@
+{
+  "type": "terraform",
+  "slug": "app_stack",
+  "name": "App Stack AKS",
+  "repository": "https://gitlab.com/enbuild-staging/iac-templates/app-stack",
+  "project_id": "34209604",
+  "readme_file_path": "README.md",
+  "ref": "main",
+  "sops": false,
+  "image_path": "images/aks.png",
+  "components": [
+    {
+      "type": "component",
+      "name": "AKS",
+      "slug": "AKS",
+      "tool_type": "Distro",
+      "repository": "https://gitlab.com/enbuild-staging/iac-templates/app-stack",
+      "project_id": "34209604",
+      "ref": "main",
+      "readme_file_path": "README.md",
+      "variable_file_path": "aks-cluster.yaml",
+      "image_path": "images/aks.png",
+      "mandatory": true
+    }
+  ],
+  "infrastructure": {
+    "type": "infrastructure",
+    "slug": "kubernetes",
+    "name": "Kubernetes",
+    "mandatory": true,
+    "showKubeConfig": true,
+    "selections": [
+      {
+        "slug": "azure",
+        "name": "Azure",
+        "fields": [
+          {
+            "name": "Kubeconfig",
+            "type": "textbox",
+            "key": "KUBECONFIG",
+            "plaintext": false
+          },
+          {
+            "name": "AZURE TENANT ID",
+            "type": "input_text",
+            "key": "AZURE_TENANT_ID",
+            "plaintext": false
+          },
+          {
+            "name": "AZURE CLIENT ID",
+            "type": "input_text",
+            "key": "AZURE_CLIENT_ID",
+            "plaintext": false
+          },
+          {
+            "name": "AZURE CLIENT SECRET",
+            "type": "input_text",
+            "key": "AZURE_CLIENT_SECRET",
+            "plaintext": false
+          }
+        ]
+      }
+    ]
+  }
+}

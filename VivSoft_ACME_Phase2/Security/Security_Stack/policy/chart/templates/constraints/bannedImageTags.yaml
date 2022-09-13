@@ -1,0 +1,25 @@
+{{- if .Values.violations.bannedImageTags.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.bannedImageTags.kind }}
+metadata:
+  name: {{ .Values.violations.bannedImageTags.name }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "Banned Image Tags"
+    constraints.gatekeeper/description: "Container Images cannot use specified tags"
+    constraints.gatekeeper/source: "Unspecified"
+    constraints.gatekeeper/docs: "https://kubernetes.io/docs/concepts/containers/images/#image-names"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.bannedImageTags.enforcementAction }}
+  match:
+    {{- if .Values.violations.bannedImageTags.match  }}
+    {{- toYaml .Values.violations.bannedImageTags.match | nindent 4}}
+    {{- end }}
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+  parameters:
+    {{- toYaml .Values.violations.bannedImageTags.parameters | nindent 4}}
+{{- end }}

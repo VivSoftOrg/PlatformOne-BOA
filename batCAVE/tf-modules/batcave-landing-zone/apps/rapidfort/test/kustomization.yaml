@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: batcave
+
+resources:
+  - ../base
+  - rapidfort.yaml
+
+configurations:
+  - kustomizeconfig.yaml
+
+patchesStrategicMerge:
+  - patch-rapidfort.yaml
+
+configMapGenerator:
+  - name: rapidfort-values
+    files:
+      - values.yaml=rapidfort-values.yaml

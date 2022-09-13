@@ -1,0 +1,67 @@
+{
+    "type": "terraform",
+    "slug": "azure_landing_zone",
+    "name": "Azure Landing Zone (IL4)",
+    "repository": "https://gitlab.com/enbuild-staging/iac-templates/azure-landing-zone",
+    "project_id": "26440304",
+    "readme_file_path": "README.md",
+    "values_folder_path": "infra",
+    "ref": "main",
+    "sops": false,
+    "image_path": "landingzone.png",
+    "components": [
+        {
+            "type": "component",
+            "name": "Cloud Enclave",
+            "slug": "vnet",
+            "tool_type": "VNET",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/azure-landing-zone",
+            "project_id": "26440304",
+            "ref": "main",
+            "readme_file_path": "README.md",
+            "variable_file_path": "infra/tfvars.json",
+            "image_path": "landingzone.png",
+            "mandatory": true
+        }
+    ],
+    "infrastructure": {
+        "type": "infrastructure",
+        "slug": "cloud",
+        "name": "Cloud",
+        "mandatory": true,
+        "selections": [
+            {
+                "slug": "azure",
+                "name": "Azure",
+                "selected": true,
+                "fields": [
+                    {
+                        "name": "Service Principal Client ID",
+                        "type": "input_text",
+                        "variable": "ARM_CLIENT_ID",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Tenant ID",
+                        "type": "input_text",
+                        "variable": "ARM_TENANT_ID",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Subscription ID",
+                        "type": "input_text",
+                        "variable": "ARM_SUBSCRIPTION_ID",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Service Principal Client Secret",
+                        "type": "password",
+                        "key": "ARM_CLIENT_SECRET",
+                        "plaintext": false
+                    }
+                ]
+            }
+        ]
+    },
+    "configuration": []
+}

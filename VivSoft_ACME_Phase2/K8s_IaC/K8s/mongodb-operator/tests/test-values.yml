@@ -1,0 +1,8 @@
+# Name of the Namespace to use
+namespace: mongodb-operator
+
+## Registry
+registry:
+  imagePullSecrets: private-registry-mil
+
+needsCAInfrastructure: false

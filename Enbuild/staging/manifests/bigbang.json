@@ -1,0 +1,382 @@
+{
+    "type": "helm",
+    "slug": "bigbang",
+    "name": "Platform One Big Bang",
+    "repository": "https://gitlab.com/enbuild-staging/iac-templates/bigbang",
+    "project_id": "25225797",
+    "readme_file_path": "README.md",
+    "values_folder_path": "bigbang/envs/dev/values",
+    "secrets_folder_path": "bigbang/envs/dev/secrets",
+    "ref": "main",
+    "sops": true,
+    "image_path": "bigbang.png",
+    "components": [
+        {
+            "type": "component",
+            "name": "Repo",
+            "slug": "repo",
+            "tool_type": "Settings",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/bigbang",
+            "project_id": "25225797",
+            "ref": "main",
+            "readme_file_path": "README.md",
+            "variable_file_path": "bigbang-values/repository.yaml",
+            "image_path": "images/gear.png",
+            "mandatory": true
+        },
+        {
+            "type": "component",
+            "name": "Istio",
+            "slug": "istio",
+            "tool_type": "Service Mesh",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/bigbang",
+            "project_id": "25225797",
+            "ref": "main",
+            "readme_file_path": "README.md",
+            "variable_file_path": "bigbang-values/istio.yaml",
+            "image_path": "images/istio.png",
+            "mandatory": true
+        },
+        {
+            "type": "component",
+            "name": "Istio Operator",
+            "slug": "istiooperator",
+            "tool_type": "Service Mesh",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/bigbang",
+            "project_id": "25225797",
+            "ref": "main",
+            "readme_file_path": "README.md",
+            "variable_file_path": "bigbang-values/istio-operator.yaml",
+            "image_path": "images/istio.png",
+            "mandatory": true
+        },
+        {
+            "type": "component",
+            "name": "Jaeger",
+            "slug": "jaeger",
+            "tool_type": "Service Mesh",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/bigbang",
+            "project_id": "25225797",
+            "ref": "main",
+            "readme_file_path": "README.md",
+            "variable_file_path": "bigbang-values/jaeger.yaml",
+            "image_path": "images/jaeger.png",
+            "mandatory": true
+        },
+        {
+            "type": "component",
+            "name": "Kiali",
+            "slug": "kiali",
+            "tool_type": "Service Mesh",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/bigbang",
+            "project_id": "25225797",
+            "ref": "main",
+            "readme_file_path": "README.md",
+            "variable_file_path": "bigbang-values/kiali.yaml",
+            "image_path": "images/kiali.png",
+            "mandatory": true
+        },
+        {
+            "type": "component",
+            "name": "Cluster Auditor",
+            "slug": "clusterAuditor",
+            "tool_type": "Security",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/bigbang",
+            "project_id": "25225797",
+            "ref": "main",
+            "readme_file_path": "README.md",
+            "variable_file_path": "bigbang-values/clusterauditor.yaml",
+            "image_path": "images/clusterauditor.png",
+            "mandatory": true
+        },
+        {
+            "type": "component",
+            "name": "Gatekeeper",
+            "slug": "gatekeeper",
+            "tool_type": "Security",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/bigbang",
+            "project_id": "25225797",
+            "ref": "main",
+            "readme_file_path": "README.md",
+            "variable_file_path": "bigbang-values/gatekeeper.yaml",
+            "image_path": "images/clusterauditor.png",
+            "mandatory": true
+        },
+        {
+            "type": "component",
+            "name": "Kyverno",
+            "slug": "kyverno",
+            "tool_type": "Security",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/bigbang",
+            "project_id": "25225797",
+            "ref": "main",
+            "readme_file_path": "README.md",
+            "variable_file_path": "bigbang-values/kyverno.yaml",
+            "image_path": "images/kyverno.jpeg",
+            "mandatory": false
+        },
+        {
+            "type": "component",
+            "name": "ECK operator",
+            "slug": "eckoperator",
+            "tool_type": "Logging",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/bigbang",
+            "project_id": "25225797",
+            "ref": "main",
+            "readme_file_path": "README.md",
+            "variable_file_path": "bigbang-values/eck-operator.yaml",
+            "image_path": "images/eck.png",
+            "mandatory": true
+        },
+        {
+            "type": "component",
+            "name": "Fluentbit",
+            "slug": "fluentbit",
+            "tool_type": "Logging",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/bigbang",
+            "project_id": "25225797",
+            "ref": "main",
+            "readme_file_path": "README.md",
+            "variable_file_path": "bigbang-values/fluentbit.yaml",
+            "image_path": "images/fluentbit.jpg",
+            "mandatory": true
+        },
+        {
+            "type": "component",
+            "name": "EFK stack",
+            "slug": "logging",
+            "tool_type": "Logging",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/bigbang",
+            "project_id": "25225797",
+            "ref": "main",
+            "readme_file_path": "README.md",
+            "variable_file_path": "bigbang-values/logging.yaml",
+            "image_path": "images/eck.png",
+            "mandatory": true
+        },
+        {
+            "type": "component",
+            "name": "Monitoring",
+            "slug": "monitoring",
+            "tool_type": "Monitoring",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/bigbang",
+            "project_id": "25225797",
+            "ref": "main",
+            "readme_file_path": "README.md",
+            "variable_file_path": "bigbang-values/monitoring.yaml",
+            "image_path": "images/monitoring.png",
+            "mandatory": true
+        },
+        {
+            "type": "loki",
+            "name": "Loki",
+            "slug": "loki",
+            "tool_type": "Logging",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/bigbang",
+            "project_id": "25225797",
+            "ref": "main",
+            "readme_file_path": "README.md",
+            "variable_file_path": "bigbang-values/loki.yaml",
+            "image_path": "images/loki.png",
+            "mandatory": false
+        },
+        {
+            "type": "component",
+            "name": "Promtail",
+            "slug": "promtail",
+            "tool_type": "Logging",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/bigbang",
+            "project_id": "25225797",
+            "ref": "main",
+            "readme_file_path": "README.md",
+            "variable_file_path": "bigbang-values/promtail.yaml",
+            "image_path": "images/promtail.jpeg",
+            "mandatory": false
+        },
+        {
+            "type": "component",
+            "name": "TwistLock",
+            "slug": "twistlock",
+            "tool_type": "Security",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/bigbang",
+            "project_id": "25225797",
+            "ref": "main",
+            "readme_file_path": "README.md",
+            "variable_file_path": "bigbang-values/twistlock.yaml",
+            "image_path": "images/twistlock.png",
+            "mandatory": true
+        },
+        {
+            "type": "component",
+            "name": "ArgoCD",
+            "slug": "argocd",
+            "tool_type": "CI Tools",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/bigbang",
+            "project_id": "25225797",
+            "ref": "main",
+            "readme_file_path": "README.md",
+            "variable_file_path": "bigbang-values/argocd.yaml",
+            "image_path": "images/argocd.png",
+            "mandatory": false
+        },
+        {
+            "type": "component",
+            "name": "Auth Service",
+            "tool_type": "Security",
+            "slug": "authservice",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/bigbang",
+            "project_id": "25225797",
+            "ref": "main",
+            "readme_file_path": "README.md",
+            "variable_file_path": "bigbang-values/authservice.yaml",
+            "image_path": "images/istio.png",
+            "mandatory": false
+        }
+    ],
+    "infrastructure": {
+        "type": "infrastructure",
+        "slug": "kubernetes",
+        "name": "Kubernetes",
+        "mandatory": true,
+        "showKubeConfig": true,
+        "selections": [
+            {
+                "slug": "aws",
+                "name": "AWS",
+                "fields": [
+                    {
+                        "name": "Kubeconfig",
+                        "type": "textbox",
+                        "key": "KUBECONFIG",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Cloud Selection",
+                        "type": "text",
+                        "key": "",
+                        "text": "Cloud Selection",
+                        "plaintext": true
+                    },
+                    {
+                        "name": "Select Cloud Type",
+                        "type": "radio",
+                        "key": "CLOUD_TYPE",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Access Key",
+                        "type": "input_text",
+                        "variable": "AWS_ACCESS_KEY_ID",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Secret Key",
+                        "type": "password",
+                        "key": "AWS_SECRET_ACCESS_KEY",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "AWS Region",
+                        "type": "input_text",
+                        "key": "AWS_DEFAULT_REGION",
+                        "plaintext": true
+                    }
+                ]
+            },
+            {
+                "slug": "azure",
+                "name": "Azure",
+                "fields": [
+                    {
+                        "name": "Kubeconfig",
+                        "type": "textbox",
+                        "key": "KUBECONFIG",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Cloud Selection",
+                        "type": "text",
+                        "key": "",
+                        "text": "Cloud Selection",
+                        "plaintext": true
+                    },
+                    {
+                        "name": "Select Cloud Type",
+                        "type": "radio",
+                        "key": "CLOUD_TYPE",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "AZURE TENANT ID",
+                        "type": "input_text",
+                        "key": "AZURE_TENANT_ID",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "AZURE CLIENT ID",
+                        "type": "input_text",
+                        "key": "AZURE_CLIENT_ID",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "AZURE CLIENT SECRET",
+                        "type": "input_text",
+                        "key": "AZURE_CLIENT_SECRET",
+                        "plaintext": false
+                    }
+                ]
+            }
+        ]
+    },
+    "configuration": [
+      {
+        "id": "sops",
+        "name": "SOPS",
+        "fields": [
+          {
+            "id": 1,
+            "name": "",
+            "defaultValue": "{}",
+            "variable": "secrets",
+            "type": "editor"
+          }
+        ]
+      },
+      {
+        "id": "repo",
+        "name": "REPO",
+        "fields": [
+          {
+            "id": 1,
+            "name": "Registry Url",
+            "variable": "registry_url",
+            "type": "input_text"
+          },
+          {
+            "id": 2,
+            "name": "Registry Username",
+            "variable": "registry_username",
+            "type": "input_text"
+          },
+          {
+            "id": 3,
+            "name": "Registry Password",
+            "variable": "registry_password",
+            "type": "input_text_password"
+          },
+          {
+            "id": 4,
+            "name": "Repository Username",
+            "variable": "repository_username",
+            "type": "input_text"
+          },
+          {
+            "id": 5,
+            "name": "Repository Password",
+            "variable": "repository_password",
+            "type": "input_text_password"
+          }
+        ]
+      }
+    ]
+}

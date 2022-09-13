@@ -1,0 +1,21 @@
+{
+    "status_code": 200,
+    "data": {
+        "PolicyNames": [
+            "active_iam_users_action_policy",
+            "active_iam_users_config_policy"
+        ],
+        "IsTruncated": false,
+        "ResponseMetadata": {
+            "RequestId": "4654fcb6-246d-11e8-905a-250362b7f7d7",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "4654fcb6-246d-11e8-905a-250362b7f7d7",
+                "content-type": "text/xml",
+                "content-length": "449",
+                "date": "Sat, 10 Mar 2018 14:13:57 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "type": "helm",
+    "slug": "app-ci",
+    "name": "SampleAPP CI",
+    "repository": "https://gitlab.com/enbuild-staging/iac-templates/app-ci",
+    "project_id": "33573943",
+    "readme_file_path": "README.md",
+    "ref": "main",
+    "sops": false,
+    "image_path": "images/react.jpg",
+    "components": [
+      {
+        "type": "component",
+        "name": "ReactJs",
+        "tool_type": "Language",
+        "slug": "reactjs",
+        "repository": "https://gitlab.com/enbuild-staging/iac-templates/app-ci",
+        "project_id": "33573943",
+        "readme_file_path": "README.md",
+        "variable_file_path": "gitlab-ci.yml",
+        "image_path": "images/react.jpg",
+        "mandatory": true
+      }
+    ],
+    "infrastructure": {}
+  }

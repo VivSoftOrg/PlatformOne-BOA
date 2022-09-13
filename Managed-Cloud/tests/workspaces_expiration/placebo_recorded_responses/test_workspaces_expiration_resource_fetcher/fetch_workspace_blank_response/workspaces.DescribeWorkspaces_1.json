@@ -1,0 +1,17 @@
+{
+    "status_code": 200,
+    "data": {
+        "Workspaces": [],
+        "ResponseMetadata": {
+            "RequestId": "a862f4aa-bcb1-11e7-ae77-61587bb92c18",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "a862f4aa-bcb1-11e7-ae77-61587bb92c18",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "1035",
+                "date": "Sun, 29 Oct 2017 14:01:27 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

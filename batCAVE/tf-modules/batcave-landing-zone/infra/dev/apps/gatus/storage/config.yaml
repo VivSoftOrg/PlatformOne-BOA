@@ -1,0 +1,148 @@
+client:
+  ignore-redirect: true
+  timeout: 5s
+endpoints:
+  - name: ArgoCD
+    group: bat-dev Utility Belt
+    url: https://argocd-charles.batcave-dev.internal.cms.gov
+    interval: 5m
+    client:
+      ignore-redirect: true
+      timeout: 5s
+    conditions:
+      - '[STATUS] < 400'
+      - '[RESPONSE_TIME] < 2s'
+      - '[CERTIFICATE_EXPIRATION] > 1d'
+      - '[CERTIFICATE_EXPIRATION] > 30d'
+  - name: Kiali
+    group: bat-dev Utility Belt
+    url: https://kiali-charles.batcave-dev.internal.cms.gov
+    interval: 5m
+    client:
+      ignore-redirect: true
+      timeout: 5s
+    conditions:
+      - '[STATUS] < 400'
+      - '[RESPONSE_TIME] < 2s'
+      - '[CERTIFICATE_EXPIRATION] > 1d'
+      - '[CERTIFICATE_EXPIRATION] > 30d'
+  - name: Grafana
+    group: bat-dev Utility Belt
+    url: https://grafana-charles.batcave-dev.internal.cms.gov
+    interval: 5m
+    client:
+      ignore-redirect: true
+      timeout: 5s
+    conditions:
+      - '[STATUS] < 400'
+      - '[RESPONSE_TIME] < 2s'
+      - '[CERTIFICATE_EXPIRATION] > 1d'
+      - '[CERTIFICATE_EXPIRATION] > 30d'
+  - name: Alert Manager
+    group: bat-dev Utility Belt
+    url: https://alertmanager-charles.batcave-dev.internal.cms.gov
+    interval: 5m
+    client:
+      ignore-redirect: true
+      timeout: 5s
+    conditions:
+      - '[STATUS] < 400'
+      - '[RESPONSE_TIME] < 2s'
+      - '[CERTIFICATE_EXPIRATION] > 1d'
+      - '[CERTIFICATE_EXPIRATION] > 30d'
+  - name: Jaeger
+    group: bat-dev Utility Belt
+    url: https://tracing-charles.batcave-dev.internal.cms.gov
+    interval: 5m
+    client:
+      ignore-redirect: true
+      timeout: 5s
+    conditions:
+      - '[STATUS] < 400'
+      - '[RESPONSE_TIME] < 2s'
+      - '[CERTIFICATE_EXPIRATION] > 1d'
+      - '[CERTIFICATE_EXPIRATION] > 30d'
+  - name: GitLab
+    group: bat-prod Shared Services
+    url: https://code.batcave.internal.cms.gov/explore
+    interval: 5m
+    client:
+      ignore-redirect: true
+      timeout: 5s
+    conditions:
+      - '[STATUS] < 400'
+      - '[RESPONSE_TIME] < 2s'
+      - '[CERTIFICATE_EXPIRATION] > 1d'
+      - '[CERTIFICATE_EXPIRATION] > 30d'
+  - name: GitLab
+    group: bat-test Shared Services
+    url: https://code.batcave-test.internal.cms.gov/explore
+    interval: 5m
+    client:
+      ignore-redirect: true
+      timeout: 5s
+    conditions:
+      - '[STATUS] < 400'
+      - '[RESPONSE_TIME] < 2s'
+      - '[CERTIFICATE_EXPIRATION] > 1d'
+      - '[CERTIFICATE_EXPIRATION] > 30d'
+  - name: batCAVE Status
+    group: bat-prod Shared Services
+    url: https://status.batcave.internal.cms.gov/api/v1/services
+    interval: 5m
+    client:
+      ignore-redirect: true
+      timeout: 15s
+    conditions:
+      - '[STATUS] < 400'
+      - '[RESPONSE_TIME] < 10s'
+      - '[CERTIFICATE_EXPIRATION] > 1d'
+      - '[CERTIFICATE_EXPIRATION] > 30d'
+  - name: DefectDojo
+    group: bat-prod Shared Services
+    url: https://defectdojo.batcave.internal.cms.gov/explore
+    interval: 5m
+    client:
+      ignore-redirect: true
+      timeout: 5s
+    conditions:
+      - '[STATUS] < 400'
+      - '[RESPONSE_TIME] < 2s'
+      - '[CERTIFICATE_EXPIRATION] > 1d'
+      - '[CERTIFICATE_EXPIRATION] > 30d'
+  - name: DefectDojo
+    group: bat-test Shared Services
+    url: https://defectdojo.batcave-test.internal.cms.gov/explore
+    interval: 5m
+    client:
+      ignore-redirect: true
+      timeout: 5s
+    conditions:
+      - '[STATUS] < 400'
+      - '[RESPONSE_TIME] < 2s'
+      - '[CERTIFICATE_EXPIRATION] > 1d'
+      - '[CERTIFICATE_EXPIRATION] > 30d'
+  - name: CMS Artifactory
+    group: CMS Dependencies
+    url: https://artifactory.cloud.cms.gov/
+    interval: 5m
+    client:
+      ignore-redirect: true
+      timeout: 5s
+    conditions:
+      - '[STATUS] < 400'
+      - '[RESPONSE_TIME] < 2s'
+      - '[CERTIFICATE_EXPIRATION] > 1d'
+      - '[CERTIFICATE_EXPIRATION] > 30d'
+  - name: GitHub
+    group: CMS Dependencies
+    url: https://www.github.com/
+    interval: 5m
+    client:
+      ignore-redirect: true
+      timeout: 5s
+    conditions:
+      - '[STATUS] < 400'
+      - '[RESPONSE_TIME] < 2s'
+      - '[CERTIFICATE_EXPIRATION] > 1d'
+      - '[CERTIFICATE_EXPIRATION] > 30d'

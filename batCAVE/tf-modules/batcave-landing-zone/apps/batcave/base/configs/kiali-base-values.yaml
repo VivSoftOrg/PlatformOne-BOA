@@ -1,0 +1,15 @@
+kiali:
+  enabled: true
+  values:
+    istio:
+      kiali:
+        gateways:
+          - "istio-system/main"
+        hosts:
+          - kiali.{{ .Values.hostname }}
+    image: 
+      repo : artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/kiali/kiali-operator
+    cr:
+      spec:
+        deployment: 
+          image_name: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/kiali/kiali

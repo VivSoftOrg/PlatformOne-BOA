@@ -1,0 +1,26 @@
+{
+    "type": "helm",
+    "slug": "data-ci",
+    "name": "DATA Catalog",
+    "repository": "https://gitlab.com/enbuild-staging/iac-templates/vs-cms",
+    "project_id": "34705140",
+    "readme_file_path": "README.md",
+    "ref": "main",
+    "sops": false,
+    "image_path": "r.jpeg",
+    "components": [
+      {
+        "type": "component",
+        "name": "DataCI",
+        "tool_type": "Language",
+        "slug": "R",
+        "repository": "https://gitlab.com/enbuild-staging/iac-templates/vs-cms",
+        "project_id": "34705140",
+        "readme_file_path": "README.md",
+        "variable_file_path": "gitlab-ci.yml",
+        "image_path": "r.jpeg",
+        "mandatory": true
+      }
+    ],
+    "infrastructure": {}
+  }

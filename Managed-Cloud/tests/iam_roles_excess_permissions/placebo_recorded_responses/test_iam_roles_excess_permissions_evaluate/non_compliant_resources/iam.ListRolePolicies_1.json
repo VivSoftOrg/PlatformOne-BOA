@@ -1,0 +1,20 @@
+{
+    "status_code": 200,
+    "data": {
+        "PolicyNames": [
+            "some_Policy"
+        ],
+        "IsTruncated": false,
+        "ResponseMetadata": {
+            "RequestId": "428d1f57-246d-11e8-bb20-27965214ee31",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "428d1f57-246d-11e8-bb20-27965214ee31",
+                "content-type": "text/xml",
+                "content-length": "393",
+                "date": "Sat, 10 Mar 2018 14:13:51 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "status_code": 200,
+    "data": {
+        "StoppingInstances": [
+            {
+                "CurrentState": {
+                    "Code": 64,
+                    "Name": "stopping"
+                },
+                "InstanceId": "i-0ed0e8761c77dc903",
+                "PreviousState": {
+                    "Code": 16,
+                    "Name": "running"
+                }
+            }
+        ],
+        "ResponseMetadata": {
+            "RequestId": "583c23b4-af34-4823-b544-697bac12f4f1",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "content-type": "text/xml;charset=UTF-8",
+                "content-length": "579",
+                "date": "Fri, 09 Nov 2018 09:25:21 GMT",
+                "server": "AmazonEC2"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

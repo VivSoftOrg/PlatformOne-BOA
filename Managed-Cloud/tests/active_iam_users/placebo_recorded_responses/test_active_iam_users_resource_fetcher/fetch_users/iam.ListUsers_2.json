@@ -1,0 +1,523 @@
+{
+    "data": {
+        "ResponseMetadata": {
+            "RetryAttempts": 0,
+            "RequestId": "29fd3ba8-0fbc-11e8-a1fd-5d8bd94c64a0",
+            "HTTPHeaders": {
+                "x-amzn-requestid": "29fd3ba8-0fbc-11e8-a1fd-5d8bd94c64a0",
+                "vary": "Accept-Encoding",
+                "content-type": "text/xml",
+                "content-length": "7133",
+                "date": "Mon, 12 Feb 2018 06:15:46 GMT"
+            },
+            "HTTPStatusCode": 200
+        },
+        "IsTruncated": true,
+        "Marker": "string",
+        "Users": [
+            {
+                "CreateDate": {
+                    "microsecond": 0,
+                    "year": 2017,
+                    "__class__": "datetime",
+                    "month": 12,
+                    "second": 20,
+                    "day": 20,
+                    "hour": 10,
+                    "minute": 36
+                },
+                "PasswordLastUsed": {
+                    "microsecond": 0,
+                    "year": 2018,
+                    "__class__": "datetime",
+                    "month": 2,
+                    "second": 9,
+                    "day": 8,
+                    "hour": 5,
+                    "minute": 19
+                },
+                "UserId": "AIDAJH2KUE4BMWFYD3BNK",
+                "UserName": "akshay.deshpande",
+                "Path": "/",
+                "Arn": "arn:aws:iam::693265998683:user/akshay.deshpande"
+            },
+            {
+                "CreateDate": {
+                    "microsecond": 0,
+                    "year": 2017,
+                    "__class__": "datetime",
+                    "month": 12,
+                    "second": 47,
+                    "day": 20,
+                    "hour": 13,
+                    "minute": 50
+                },
+                "PasswordLastUsed": {
+                    "microsecond": 0,
+                    "year": 2018,
+                    "__class__": "datetime",
+                    "month": 2,
+                    "second": 26,
+                    "day": 9,
+                    "hour": 18,
+                    "minute": 17
+                },
+                "UserId": "AIDAJBYCQ4LARRM2BE2NO",
+                "UserName": "anish.bhagwat",
+                "Path": "/",
+                "Arn": "arn:aws:iam::693265998683:user/anish.bhagwat"
+            },
+            {
+                "CreateDate": {
+                    "microsecond": 0,
+                    "year": 2017,
+                    "__class__": "datetime",
+                    "month": 12,
+                    "second": 36,
+                    "day": 20,
+                    "hour": 13,
+                    "minute": 58
+                },
+                "PasswordLastUsed": {
+                    "microsecond": 0,
+                    "year": 2018,
+                    "__class__": "datetime",
+                    "month": 2,
+                    "second": 41,
+                    "day": 2,
+                    "hour": 6,
+                    "minute": 20
+                },
+                "UserId": "AIDAJL4OU5RQKCVG4SZJ6",
+                "UserName": "ankush.tehele",
+                "Path": "/",
+                "Arn": "arn:aws:iam::693265998683:user/ankush.tehele"
+            },
+            {
+                "CreateDate": {
+                    "microsecond": 0,
+                    "year": 2018,
+                    "__class__": "datetime",
+                    "month": 1,
+                    "second": 19,
+                    "day": 19,
+                    "hour": 14,
+                    "minute": 3
+                },
+                "PasswordLastUsed": {
+                    "microsecond": 0,
+                    "year": 2018,
+                    "__class__": "datetime",
+                    "month": 1,
+                    "second": 26,
+                    "day": 19,
+                    "hour": 15,
+                    "minute": 3
+                },
+                "UserId": "AIDAJKWJH23KE2ARFZ6TU",
+                "UserName": "ashish.modak",
+                "Path": "/",
+                "Arn": "arn:aws:iam::693265998683:user/ashish.modak"
+            },
+            {
+                "CreateDate": {
+                    "microsecond": 0,
+                    "year": 2017,
+                    "__class__": "datetime",
+                    "month": 12,
+                    "second": 57,
+                    "day": 19,
+                    "hour": 6,
+                    "minute": 21
+                },
+                "UserId": "AIDAJY27CGBP5ESAHGGXQ",
+                "UserName": "devendra.suthar",
+                "Path": "/",
+                "Arn": "arn:aws:iam::693265998683:user/devendra.suthar"
+            },
+            {
+                "CreateDate": {
+                    "microsecond": 0,
+                    "year": 2017,
+                    "__class__": "datetime",
+                    "month": 12,
+                    "second": 3,
+                    "day": 20,
+                    "hour": 14,
+                    "minute": 8
+                },
+                "PasswordLastUsed": {
+                    "microsecond": 0,
+                    "year": 2018,
+                    "__class__": "datetime",
+                    "month": 1,
+                    "second": 7,
+                    "day": 31,
+                    "hour": 10,
+                    "minute": 23
+                },
+                "UserId": "AIDAIMF5HOHIWKVMGKDNY",
+                "UserName": "gaurav.ashtikar",
+                "Path": "/",
+                "Arn": "arn:aws:iam::693265998683:user/gaurav.ashtikar"
+            },
+            {
+                "CreateDate": {
+                    "microsecond": 0,
+                    "year": 2017,
+                    "__class__": "datetime",
+                    "month": 12,
+                    "second": 5,
+                    "day": 20,
+                    "hour": 14,
+                    "minute": 11
+                },
+                "UserId": "AIDAJHXOHROXJSF2O2DSK",
+                "UserName": "gunanand.nagarkar",
+                "Path": "/",
+                "Arn": "arn:aws:iam::693265998683:user/gunanand.nagarkar"
+            },
+            {
+                "CreateDate": {
+                    "microsecond": 0,
+                    "year": 2017,
+                    "__class__": "datetime",
+                    "month": 12,
+                    "second": 3,
+                    "day": 20,
+                    "hour": 14,
+                    "minute": 16
+                },
+                "UserId": "AIDAJJUGX2OJCBLYHCRXY",
+                "UserName": "hiteshri.ramteke",
+                "Path": "/",
+                "Arn": "arn:aws:iam::693265998683:user/hiteshri.ramteke"
+            },
+            {
+                "CreateDate": {
+                    "microsecond": 0,
+                    "year": 2018,
+                    "__class__": "datetime",
+                    "month": 1,
+                    "second": 6,
+                    "day": 19,
+                    "hour": 14,
+                    "minute": 26
+                },
+                "UserId": "AIDAIZPUKCIS43D7SK2KM",
+                "UserName": "mallinath.paratnale",
+                "Path": "/",
+                "Arn": "arn:aws:iam::693265998683:user/mallinath.paratnale"
+            },
+            {
+                "CreateDate": {
+                    "microsecond": 0,
+                    "year": 2017,
+                    "__class__": "datetime",
+                    "month": 12,
+                    "second": 42,
+                    "day": 20,
+                    "hour": 14,
+                    "minute": 18
+                },
+                "UserId": "AIDAISFR6ZVBEYMELJVSE",
+                "UserName": "mayuri.patil",
+                "Path": "/",
+                "Arn": "arn:aws:iam::693265998683:user/mayuri.patil"
+            },
+            {
+                "CreateDate": {
+                    "microsecond": 0,
+                    "year": 2017,
+                    "__class__": "datetime",
+                    "month": 12,
+                    "second": 34,
+                    "day": 20,
+                    "hour": 14,
+                    "minute": 32
+                },
+                "PasswordLastUsed": {
+                    "microsecond": 0,
+                    "year": 2018,
+                    "__class__": "datetime",
+                    "month": 2,
+                    "second": 31,
+                    "day": 6,
+                    "hour": 8,
+                    "minute": 59
+                },
+                "UserId": "AIDAIRYIPBYN7JPTSVEJQ",
+                "UserName": "paras.mishra",
+                "Path": "/",
+                "Arn": "arn:aws:iam::693265998683:user/paras.mishra"
+            },
+            {
+                "CreateDate": {
+                    "microsecond": 0,
+                    "year": 2017,
+                    "__class__": "datetime",
+                    "month": 12,
+                    "second": 0,
+                    "day": 20,
+                    "hour": 14,
+                    "minute": 44
+                },
+                "PasswordLastUsed": {
+                    "microsecond": 0,
+                    "year": 2018,
+                    "__class__": "datetime",
+                    "month": 1,
+                    "second": 36,
+                    "day": 5,
+                    "hour": 5,
+                    "minute": 54
+                },
+                "UserId": "AIDAJEFXE3HDXKVANYADW",
+                "UserName": "pradip.jarwal",
+                "Path": "/",
+                "Arn": "arn:aws:iam::693265998683:user/pradip.jarwal"
+            },
+            {
+                "CreateDate": {
+                    "microsecond": 0,
+                    "year": 2018,
+                    "__class__": "datetime",
+                    "month": 1,
+                    "second": 37,
+                    "day": 19,
+                    "hour": 14,
+                    "minute": 24
+                },
+                "UserId": "AIDAJPDNA6DQ5MF7REYPU",
+                "UserName": "pratiksha.mandale",
+                "Path": "/",
+                "Arn": "arn:aws:iam::693265998683:user/pratiksha.mandale"
+            },
+            {
+                "CreateDate": {
+                    "microsecond": 0,
+                    "year": 2017,
+                    "__class__": "datetime",
+                    "month": 12,
+                    "second": 37,
+                    "day": 19,
+                    "hour": 18,
+                    "minute": 58
+                },
+                "PasswordLastUsed": {
+                    "microsecond": 0,
+                    "year": 2018,
+                    "__class__": "datetime",
+                    "month": 2,
+                    "second": 51,
+                    "day": 8,
+                    "hour": 10,
+                    "minute": 50
+                },
+                "UserId": "AIDAJ2AQFXRFG2CF7JBFA",
+                "UserName": "priyanka.khairnar",
+                "Path": "/",
+                "Arn": "arn:aws:iam::693265998683:user/priyanka.khairnar"
+            },
+            {
+                "CreateDate": {
+                    "microsecond": 0,
+                    "year": 2018,
+                    "__class__": "datetime",
+                    "month": 1,
+                    "second": 17,
+                    "day": 19,
+                    "hour": 14,
+                    "minute": 13
+                },
+                "PasswordLastUsed": {
+                    "microsecond": 0,
+                    "year": 2018,
+                    "__class__": "datetime",
+                    "month": 1,
+                    "second": 27,
+                    "day": 19,
+                    "hour": 15,
+                    "minute": 23
+                },
+                "UserId": "AIDAIY3NOEM5AYU64RHGS",
+                "UserName": "ramit.surana",
+                "Path": "/",
+                "Arn": "arn:aws:iam::693265998683:user/ramit.surana"
+            },
+            {
+                "CreateDate": {
+                    "microsecond": 0,
+                    "year": 2018,
+                    "__class__": "datetime",
+                    "month": 1,
+                    "second": 5,
+                    "day": 22,
+                    "hour": 8,
+                    "minute": 53
+                },
+                "PasswordLastUsed": {
+                    "microsecond": 0,
+                    "year": 2018,
+                    "__class__": "datetime",
+                    "month": 1,
+                    "second": 32,
+                    "day": 22,
+                    "hour": 9,
+                    "minute": 35
+                },
+                "UserId": "AIDAIHBV3PRMNAYVIGYWW",
+                "UserName": "sainath.ankireddy",
+                "Path": "/",
+                "Arn": "arn:aws:iam::693265998683:user/sainath.ankireddy"
+            },
+            {
+                "CreateDate": {
+                    "microsecond": 0,
+                    "year": 2017,
+                    "__class__": "datetime",
+                    "month": 12,
+                    "second": 31,
+                    "day": 26,
+                    "hour": 16,
+                    "minute": 7
+                },
+                "PasswordLastUsed": {
+                    "microsecond": 0,
+                    "year": 2017,
+                    "__class__": "datetime",
+                    "month": 12,
+                    "second": 50,
+                    "day": 28,
+                    "hour": 6,
+                    "minute": 0
+                },
+                "UserId": "AIDAJBGK5FP4PNHALC6BE",
+                "UserName": "saurav.kumar",
+                "Path": "/",
+                "Arn": "arn:aws:iam::693265998683:user/saurav.kumar"
+            },
+            {
+                "CreateDate": {
+                    "microsecond": 0,
+                    "year": 2017,
+                    "__class__": "datetime",
+                    "month": 12,
+                    "second": 35,
+                    "day": 20,
+                    "hour": 14,
+                    "minute": 47
+                },
+                "PasswordLastUsed": {
+                    "microsecond": 0,
+                    "year": 2018,
+                    "__class__": "datetime",
+                    "month": 1,
+                    "second": 21,
+                    "day": 5,
+                    "hour": 6,
+                    "minute": 35
+                },
+                "UserId": "AIDAI7YZ5LC7T4SQWCEMO",
+                "UserName": "shekhar.londhe",
+                "Path": "/",
+                "Arn": "arn:aws:iam::693265998683:user/shekhar.londhe"
+            },
+            {
+                "CreateDate": {
+                    "microsecond": 0,
+                    "year": 2018,
+                    "__class__": "datetime",
+                    "month": 1,
+                    "second": 15,
+                    "day": 19,
+                    "hour": 14,
+                    "minute": 11
+                },
+                "PasswordLastUsed": {
+                    "microsecond": 0,
+                    "year": 2018,
+                    "__class__": "datetime",
+                    "month": 1,
+                    "second": 45,
+                    "day": 22,
+                    "hour": 5,
+                    "minute": 28
+                },
+                "UserId": "AIDAJ4IKBPMUY736F4MX2",
+                "UserName": "supriya.kanawade",
+                "Path": "/",
+                "Arn": "arn:aws:iam::693265998683:user/supriya.kanawade"
+            },
+            {
+                "CreateDate": {
+                    "microsecond": 0,
+                    "year": 2017,
+                    "__class__": "datetime",
+                    "month": 12,
+                    "second": 46,
+                    "day": 20,
+                    "hour": 14,
+                    "minute": 49
+                },
+                "UserId": "AIDAIXZYWLFMLPZTVYFI6",
+                "UserName": "swathi.suryadevara",
+                "Path": "/",
+                "Arn": "arn:aws:iam::693265998683:user/swathi.suryadevara"
+            },
+            {
+                "CreateDate": {
+                    "microsecond": 0,
+                    "year": 2017,
+                    "__class__": "datetime",
+                    "month": 12,
+                    "second": 24,
+                    "day": 20,
+                    "hour": 14,
+                    "minute": 52
+                },
+                "PasswordLastUsed": {
+                    "microsecond": 0,
+                    "year": 2018,
+                    "__class__": "datetime",
+                    "month": 2,
+                    "second": 17,
+                    "day": 12,
+                    "hour": 5,
+                    "minute": 13
+                },
+                "UserId": "AIDAIPQPCPQJYELFOKCFK",
+                "UserName": "vaibhav.fulsundar",
+                "Path": "/",
+                "Arn": "arn:aws:iam::693265998683:user/vaibhav.fulsundar"
+            },
+            {
+                "CreateDate": {
+                    "microsecond": 0,
+                    "year": 2017,
+                    "__class__": "datetime",
+                    "month": 12,
+                    "second": 20,
+                    "day": 6,
+                    "hour": 20,
+                    "minute": 6
+                },
+                "PasswordLastUsed": {
+                    "microsecond": 0,
+                    "year": 2017,
+                    "__class__": "datetime",
+                    "month": 12,
+                    "second": 0,
+                    "day": 20,
+                    "hour": 6,
+                    "minute": 40
+                },
+                "UserId": "AIDAJ4SHDMD55VQCUBXS2",
+                "UserName": "yogesh.maloo",
+                "Path": "/",
+                "Arn": "arn:aws:iam::693265998683:user/yogesh.maloo"
+            }
+        ]
+    },
+    "status_code": 200
+}

@@ -1,0 +1,88 @@
+[
+    {
+        "id": 1,
+        "type": "terraform",
+        "slug": "aws_landing_zone",
+        "name": "AWS Landing Zone (IL2)"
+    
+    },
+    {
+        "id": 2,
+        "type": "terraform",
+        "slug": "aws_landing_zone",
+        "name": "AWS Landing Zone (IL4)"
+        
+    },
+
+    {
+        "id": 3,
+        "type": "terraform",
+        "slug": "kubernetes",
+        "name": "Kubernetes"
+        
+    },
+        {
+        "id": 4,
+        "type": "helm",
+        "slug": "bigbang",
+        "name": "BigBang"
+        
+    },
+    {
+        "id": 5,
+        "type": "helm",
+        "slug": "data_ingestion",
+        "name": "Data Ingestion"
+    
+    },
+    {
+        "id": 6,
+        "type": "helm",
+        "slug": "Blockchain",
+        "name": "Blockchain"
+        
+    },
+    {
+        "id": 7,
+        "type": "helm",
+        "slug": "iot",
+        "name": "IoT"
+       
+    },
+    {
+        "id": 8,
+        "type": "helm",
+        "slug": "ml_development",
+        "name": "ML Development"
+        
+    },
+    {
+        "id": 9,
+        "type": "helm",
+        "slug": "app-ci",
+        "name": "APP CI"
+        
+    },
+    {
+        "id": 10,
+        "type": "terraform",
+        "slug": "app-stack",
+        "name": "APP Stack"
+        
+    },
+    {
+        "id": 11,
+        "type": "helm",
+        "slug": "data-ci",
+        "name": "Data CI"
+        
+    },
+    {
+        "id": 12,
+        "type": "terraform",
+        "slug": "kubevela-sample-app",
+        "name": "kubevela Sample APP"
+        
+    }
+     
+]

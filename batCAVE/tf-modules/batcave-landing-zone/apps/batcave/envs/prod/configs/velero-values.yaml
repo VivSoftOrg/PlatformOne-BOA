@@ -1,0 +1,15 @@
+addons:
+  velero:
+    values:
+      resources:
+        requests:
+          cpu: 500m
+          memory: 128Mi
+        limits:
+          cpu: 1000m
+          memory: 512Mi
+      schedules:
+        dev-cluster-backup:
+          schedule: "0 0 * * *"
+          template:
+            ttl: "168h"

@@ -1,0 +1,22 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "5815d8ba-bc0e-11e7-a45c-19a1adaee3b7",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "5815d8ba-bc0e-11e7-a45c-19a1adaee3b7",
+                "content-type": "application/json",
+                "content-length": "59",
+                "date": "Sat, 28 Oct 2017 18:32:25 GMT"
+            },
+            "RetryAttempts": 0
+        },
+        "TagList": [
+            {
+                "Key": "ExpirationDate",
+                "Value": "2017-10-20"
+            }
+        ]
+    }
+}

@@ -1,0 +1,26 @@
+{{- if .Values.violations.podsHaveIstio.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.podsHaveIstio.kind }}
+metadata:
+  name: {{ .Values.violations.podsHaveIstio.name }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "Istio Sidecar in Containers"
+    constraints.gatekeeper/description: "Containers must have Istio Sidecar injection enabled."
+    constraints.gatekeeper/source: "Unspecified"
+    constraints.gatekeeper/docs: "https://istio.io/latest/docs/setup/additional-setup/sidecar-injection/#injection"
+    constraints.gatekeeper/related: "https://istio.io/latest/docs/reference/config/networking/sidecar/"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.podsHaveIstio.enforcementAction }}
+  match:
+    {{- if .Values.violations.podsHaveIstio.match  }}
+    {{- toYaml .Values.violations.podsHaveIstio.match | nindent 4}}
+    {{- end }}
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+  parameters:
+    {{- toYaml .Values.violations.podsHaveIstio.parameters | nindent 4}}
+{{- end }}

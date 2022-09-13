@@ -1,0 +1,20 @@
+{
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "7eb9e5f4-af84-473f-a904-2706bf5d7b87",
+            "HTTPHeaders": {
+                "transfer-encoding": "chunked",
+                "server": "AmazonEC2",
+                "content-type": "text/xml;charset=UTF-8",
+                "date": "Mon, 29 Jan 2018 11:37:01 GMT",
+                "vary": "Accept-Encoding"
+            },
+            "RetryAttempts": 0,
+            "HTTPStatusCode": 200
+        },
+        "Reservations": [
+
+        ]
+    },
+    "status_code": 200
+}

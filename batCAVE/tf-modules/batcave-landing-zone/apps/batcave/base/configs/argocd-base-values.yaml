@@ -1,0 +1,29 @@
+addons:
+  argocd:
+    enabled: true
+    ingress:
+      gateway: "main"
+    sso:
+      enabled: false
+    values:
+      server:
+        rbacConfig:
+          scopes: '[groups, batcave-groups]'
+        config:
+          kustomize.buildOptions: "--enable-alpha-plugins"
+          url: https://argocd.${batcave_base_domain}
+          statusbadge.enabled: "true"
+      global:
+        image:
+          repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/big-bang/argocd
+      dex:
+        image:
+          repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/dexidp/dex
+      redis-bb:
+        image:
+          registry: artifactory.cloud.cms.gov
+          repository: batcave-docker/ironbank/bitnami/redis
+        metrics:
+          image:
+            registry: artifactory.cloud.cms.gov
+            repository: batcave-docker/ironbank/bitnami/analytics/redis-exporter

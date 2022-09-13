@@ -1,0 +1,1573 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.3",
+  "serialNumber": "urn:uuid:aa16d28f-6a85-48ff-84c5-5ce7a6c75923",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2022-02-11T12:13:52Z",
+    "tools": [
+      {
+        "vendor": "anchore",
+        "name": "syft",
+        "version": "0.34.0"
+      }
+    ],
+    "component": {
+      "type": "container",
+      "name": "registry.gitlab.com/enbuild-staging/tkappd/react-js-sample-app:a961154c6b555879a0668dfcc2a9e1b9b7243c02",
+      "version": "sha256:789c436fe3d208ae46c1c9bc84db6ed98bdd6ebb543ea9da84244255f96e6b05"
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "PyGObject",
+      "version": "3.28.3",
+      "licenses": [
+        {
+          "license": {
+            "name": "GNU LGPL"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/PyGObject@3.28.3"
+    },
+    {
+      "type": "library",
+      "name": "PySocks",
+      "version": "1.6.8",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/PySocks@1.6.8"
+    },
+    {
+      "type": "library",
+      "name": "acl",
+      "version": "2.2.53-1.el8",
+      "purl": "pkg:rpm/redhat/acl@2.2.53-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "audit-libs",
+      "version": "3.0-0.17.20191104git1c2f876.el8",
+      "purl": "pkg:rpm/redhat/audit-libs@3.0-0.17.20191104git1c2f876.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "basesystem",
+      "version": "11-5.el8",
+      "purl": "pkg:rpm/redhat/basesystem@11-5.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "bash",
+      "version": "4.4.20-2.el8",
+      "purl": "pkg:rpm/redhat/bash@4.4.20-2.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "brotli",
+      "version": "1.0.6-3.el8",
+      "purl": "pkg:rpm/redhat/brotli@1.0.6-3.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "bzip2-libs",
+      "version": "1.0.6-26.el8",
+      "purl": "pkg:rpm/redhat/bzip2-libs@1.0.6-26.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "ca-certificates",
+      "version": "2021.2.50-80.0.el8_4",
+      "purl": "pkg:rpm/redhat/ca-certificates@2021.2.50-80.0.el8_4?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "chardet",
+      "version": "3.0.4",
+      "licenses": [
+        {
+          "license": {
+            "name": "LGPL"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/chardet@3.0.4"
+    },
+    {
+      "type": "library",
+      "name": "chkconfig",
+      "version": "1.19.1-1.el8",
+      "purl": "pkg:rpm/redhat/chkconfig@1.19.1-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "coreutils-single",
+      "version": "8.30-12.el8",
+      "purl": "pkg:rpm/redhat/coreutils-single@8.30-12.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "cracklib",
+      "version": "2.9.6-15.el8",
+      "purl": "pkg:rpm/redhat/cracklib@2.9.6-15.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "cracklib-dicts",
+      "version": "2.9.6-15.el8",
+      "purl": "pkg:rpm/redhat/cracklib-dicts@2.9.6-15.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "crypto-policies",
+      "version": "20210617-1.gitc776d3e.el8",
+      "purl": "pkg:rpm/redhat/crypto-policies@20210617-1.gitc776d3e.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "crypto-policies-scripts",
+      "version": "20210617-1.gitc776d3e.el8",
+      "purl": "pkg:rpm/redhat/crypto-policies-scripts@20210617-1.gitc776d3e.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "cryptsetup-libs",
+      "version": "2.3.3-4.el8",
+      "purl": "pkg:rpm/redhat/cryptsetup-libs@2.3.3-4.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "curl",
+      "version": "7.61.1-22.el8",
+      "purl": "pkg:rpm/redhat/curl@7.61.1-22.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "cyrus-sasl-lib",
+      "version": "2.1.27-5.el8",
+      "purl": "pkg:rpm/redhat/cyrus-sasl-lib@2.1.27-5.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "dbus",
+      "version": "1:1.12.8-14.el8",
+      "purl": "pkg:rpm/redhat/dbus@1.12.8-14.el8?arch=x86_64\u0026epoch=1"
+    },
+    {
+      "type": "library",
+      "name": "dbus-common",
+      "version": "1:1.12.8-14.el8",
+      "purl": "pkg:rpm/redhat/dbus-common@1.12.8-14.el8?arch=noarch\u0026epoch=1"
+    },
+    {
+      "type": "library",
+      "name": "dbus-daemon",
+      "version": "1:1.12.8-14.el8",
+      "purl": "pkg:rpm/redhat/dbus-daemon@1.12.8-14.el8?arch=x86_64\u0026epoch=1"
+    },
+    {
+      "type": "library",
+      "name": "dbus-glib",
+      "version": "0.110-2.el8",
+      "purl": "pkg:rpm/redhat/dbus-glib@0.110-2.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "dbus-libs",
+      "version": "1:1.12.8-14.el8",
+      "purl": "pkg:rpm/redhat/dbus-libs@1.12.8-14.el8?arch=x86_64\u0026epoch=1"
+    },
+    {
+      "type": "library",
+      "name": "dbus-python",
+      "version": "1.2.4",
+      "licenses": [
+        {
+          "license": {
+            "name": "Expat (MIT/X11)"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/dbus-python@1.2.4"
+    },
+    {
+      "type": "library",
+      "name": "dbus-tools",
+      "version": "1:1.12.8-14.el8",
+      "purl": "pkg:rpm/redhat/dbus-tools@1.12.8-14.el8?arch=x86_64\u0026epoch=1"
+    },
+    {
+      "type": "library",
+      "name": "decorator",
+      "version": "4.2.1",
+      "licenses": [
+        {
+          "license": {
+            "name": "new BSD License"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/decorator@4.2.1"
+    },
+    {
+      "type": "library",
+      "name": "device-mapper",
+      "version": "8:1.02.177-10.el8",
+      "purl": "pkg:rpm/redhat/device-mapper@1.02.177-10.el8?arch=x86_64\u0026epoch=8"
+    },
+    {
+      "type": "library",
+      "name": "device-mapper-libs",
+      "version": "8:1.02.177-10.el8",
+      "purl": "pkg:rpm/redhat/device-mapper-libs@1.02.177-10.el8?arch=x86_64\u0026epoch=8"
+    },
+    {
+      "type": "library",
+      "name": "diffutils",
+      "version": "3.6-6.el8",
+      "purl": "pkg:rpm/redhat/diffutils@3.6-6.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "dmidecode",
+      "version": "1:3.2-10.el8",
+      "purl": "pkg:rpm/redhat/dmidecode@3.2-10.el8?arch=x86_64\u0026epoch=1"
+    },
+    {
+      "type": "library",
+      "name": "dnf",
+      "version": "4.7.0-4.el8",
+      "purl": "pkg:rpm/redhat/dnf@4.7.0-4.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "dnf-data",
+      "version": "4.7.0-4.el8",
+      "purl": "pkg:rpm/redhat/dnf-data@4.7.0-4.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "dnf-plugin-subscription-manager",
+      "version": "1.28.21-3.el8",
+      "purl": "pkg:rpm/redhat/dnf-plugin-subscription-manager@1.28.21-3.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "elfutils-default-yama-scope",
+      "version": "0.185-1.el8",
+      "purl": "pkg:rpm/redhat/elfutils-default-yama-scope@0.185-1.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "elfutils-libelf",
+      "version": "0.185-1.el8",
+      "purl": "pkg:rpm/redhat/elfutils-libelf@0.185-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "elfutils-libs",
+      "version": "0.185-1.el8",
+      "purl": "pkg:rpm/redhat/elfutils-libs@0.185-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "ethtool",
+      "version": "0.14",
+      "licenses": [
+        {
+          "license": {
+            "name": "GPL-2.0"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/ethtool@0.14"
+    },
+    {
+      "type": "library",
+      "name": "expat",
+      "version": "2.2.5-4.el8",
+      "purl": "pkg:rpm/redhat/expat@2.2.5-4.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "file-libs",
+      "version": "5.33-20.el8",
+      "purl": "pkg:rpm/redhat/file-libs@5.33-20.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "filesystem",
+      "version": "3.8-6.el8",
+      "purl": "pkg:rpm/redhat/filesystem@3.8-6.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "findutils",
+      "version": "1:4.6.0-20.el8",
+      "purl": "pkg:rpm/redhat/findutils@4.6.0-20.el8?arch=x86_64\u0026epoch=1"
+    },
+    {
+      "type": "library",
+      "name": "gawk",
+      "version": "4.2.1-2.el8",
+      "purl": "pkg:rpm/redhat/gawk@4.2.1-2.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "gdb-gdbserver",
+      "version": "8.2-16.el8",
+      "purl": "pkg:rpm/redhat/gdb-gdbserver@8.2-16.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "gdbm",
+      "version": "1:1.18-1.el8",
+      "purl": "pkg:rpm/redhat/gdbm@1.18-1.el8?arch=x86_64\u0026epoch=1"
+    },
+    {
+      "type": "library",
+      "name": "gdbm-libs",
+      "version": "1:1.18-1.el8",
+      "purl": "pkg:rpm/redhat/gdbm-libs@1.18-1.el8?arch=x86_64\u0026epoch=1"
+    },
+    {
+      "type": "library",
+      "name": "gettext",
+      "version": "0.19.8.1-17.el8",
+      "purl": "pkg:rpm/redhat/gettext@0.19.8.1-17.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "gettext-libs",
+      "version": "0.19.8.1-17.el8",
+      "purl": "pkg:rpm/redhat/gettext-libs@0.19.8.1-17.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "glib2",
+      "version": "2.56.4-156.el8",
+      "purl": "pkg:rpm/redhat/glib2@2.56.4-156.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "glibc",
+      "version": "2.28-164.el8",
+      "purl": "pkg:rpm/redhat/glibc@2.28-164.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "glibc-common",
+      "version": "2.28-164.el8",
+      "purl": "pkg:rpm/redhat/glibc-common@2.28-164.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "glibc-minimal-langpack",
+      "version": "2.28-164.el8",
+      "purl": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-164.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "gmp",
+      "version": "1:6.1.2-10.el8",
+      "purl": "pkg:rpm/redhat/gmp@6.1.2-10.el8?arch=x86_64\u0026epoch=1"
+    },
+    {
+      "type": "library",
+      "name": "gnupg2",
+      "version": "2.2.20-2.el8",
+      "purl": "pkg:rpm/redhat/gnupg2@2.2.20-2.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "gnutls",
+      "version": "3.6.16-4.el8",
+      "purl": "pkg:rpm/redhat/gnutls@3.6.16-4.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "gobject-introspection",
+      "version": "1.56.1-1.el8",
+      "purl": "pkg:rpm/redhat/gobject-introspection@1.56.1-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "gpg",
+      "version": "1.13.1",
+      "licenses": [
+        {
+          "license": {
+            "name": "LGPL2.1+ (the library), GPL2+ (tests and examples)"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/gpg@1.13.1"
+    },
+    {
+      "type": "library",
+      "name": "gpg-pubkey",
+      "version": "7bd9bf62-5762b5f8",
+      "purl": "pkg:rpm/redhat/gpg-pubkey@7bd9bf62-5762b5f8?arch="
+    },
+    {
+      "type": "library",
+      "name": "gpg-pubkey",
+      "version": "d4082792-5b32db75",
+      "purl": "pkg:rpm/redhat/gpg-pubkey@d4082792-5b32db75?arch="
+    },
+    {
+      "type": "library",
+      "name": "gpg-pubkey",
+      "version": "fd431d51-4ae0493b",
+      "purl": "pkg:rpm/redhat/gpg-pubkey@fd431d51-4ae0493b?arch="
+    },
+    {
+      "type": "library",
+      "name": "gpgme",
+      "version": "1.13.1-9.el8",
+      "purl": "pkg:rpm/redhat/gpgme@1.13.1-9.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "grep",
+      "version": "3.1-6.el8",
+      "purl": "pkg:rpm/redhat/grep@3.1-6.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "gzip",
+      "version": "1.9-12.el8",
+      "purl": "pkg:rpm/redhat/gzip@1.9-12.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "hwdata",
+      "version": "0.314-8.10.el8",
+      "purl": "pkg:rpm/redhat/hwdata@0.314-8.10.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "idna",
+      "version": "2.5",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD-like"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/idna@2.5"
+    },
+    {
+      "type": "library",
+      "name": "ima-evm-utils",
+      "version": "1.3.2-12.el8",
+      "purl": "pkg:rpm/redhat/ima-evm-utils@1.3.2-12.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "info",
+      "version": "6.5-6.el8",
+      "purl": "pkg:rpm/redhat/info@6.5-6.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "iniparse",
+      "version": "0.4",
+      "licenses": [
+        {
+          "license": {
+            "name": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/iniparse@0.4"
+    },
+    {
+      "type": "library",
+      "name": "iptables",
+      "version": "1.8.4-20.el8",
+      "purl": "pkg:rpm/redhat/iptables@1.8.4-20.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "iptables-libs",
+      "version": "1.8.4-20.el8",
+      "purl": "pkg:rpm/redhat/iptables-libs@1.8.4-20.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "json-c",
+      "version": "0.13.1-2.el8",
+      "purl": "pkg:rpm/redhat/json-c@0.13.1-2.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "json-glib",
+      "version": "1.4.4-1.el8",
+      "purl": "pkg:rpm/redhat/json-glib@1.4.4-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "keyutils-libs",
+      "version": "1.5.10-9.el8",
+      "purl": "pkg:rpm/redhat/keyutils-libs@1.5.10-9.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "kmod-libs",
+      "version": "25-18.el8",
+      "purl": "pkg:rpm/redhat/kmod-libs@25-18.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "krb5-libs",
+      "version": "1.18.2-14.el8",
+      "purl": "pkg:rpm/redhat/krb5-libs@1.18.2-14.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "langpacks-en",
+      "version": "1.0-12.el8",
+      "purl": "pkg:rpm/redhat/langpacks-en@1.0-12.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "libacl",
+      "version": "2.2.53-1.el8",
+      "purl": "pkg:rpm/redhat/libacl@2.2.53-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libarchive",
+      "version": "3.3.3-1.el8",
+      "purl": "pkg:rpm/redhat/libarchive@3.3.3-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libassuan",
+      "version": "2.5.1-3.el8",
+      "purl": "pkg:rpm/redhat/libassuan@2.5.1-3.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libattr",
+      "version": "2.4.48-3.el8",
+      "purl": "pkg:rpm/redhat/libattr@2.4.48-3.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libblkid",
+      "version": "2.32.1-28.el8",
+      "purl": "pkg:rpm/redhat/libblkid@2.32.1-28.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libcap",
+      "version": "2.26-5.el8",
+      "purl": "pkg:rpm/redhat/libcap@2.26-5.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libcap-ng",
+      "version": "0.7.11-1.el8",
+      "purl": "pkg:rpm/redhat/libcap-ng@0.7.11-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libcom_err",
+      "version": "1.45.6-2.el8",
+      "purl": "pkg:rpm/redhat/libcom_err@1.45.6-2.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libcomps",
+      "version": "0.1.16",
+      "licenses": [
+        {
+          "license": {
+            "name": "GPLv2+"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/libcomps@0.1.16"
+    },
+    {
+      "type": "library",
+      "name": "libcomps",
+      "version": "0.1.16-2.el8",
+      "purl": "pkg:rpm/redhat/libcomps@0.1.16-2.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libcroco",
+      "version": "0.6.12-4.el8_2.1",
+      "purl": "pkg:rpm/redhat/libcroco@0.6.12-4.el8_2.1?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libcurl",
+      "version": "7.61.1-22.el8",
+      "purl": "pkg:rpm/redhat/libcurl@7.61.1-22.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libdb",
+      "version": "5.3.28-42.el8_4",
+      "purl": "pkg:rpm/redhat/libdb@5.3.28-42.el8_4?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libdb-utils",
+      "version": "5.3.28-42.el8_4",
+      "purl": "pkg:rpm/redhat/libdb-utils@5.3.28-42.el8_4?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libdnf",
+      "version": "0.63.0-3.el8",
+      "purl": "pkg:rpm/redhat/libdnf@0.63.0-3.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libfdisk",
+      "version": "2.32.1-28.el8",
+      "purl": "pkg:rpm/redhat/libfdisk@2.32.1-28.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libffi",
+      "version": "3.1-22.el8",
+      "purl": "pkg:rpm/redhat/libffi@3.1-22.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libgcc",
+      "version": "8.5.0-4.el8_5",
+      "purl": "pkg:rpm/redhat/libgcc@8.5.0-4.el8_5?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libgcrypt",
+      "version": "1.8.5-6.el8",
+      "purl": "pkg:rpm/redhat/libgcrypt@1.8.5-6.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libgomp",
+      "version": "8.5.0-4.el8_5",
+      "purl": "pkg:rpm/redhat/libgomp@8.5.0-4.el8_5?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libgpg-error",
+      "version": "1.31-1.el8",
+      "purl": "pkg:rpm/redhat/libgpg-error@1.31-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libibverbs",
+      "version": "35.0-1.el8",
+      "purl": "pkg:rpm/redhat/libibverbs@35.0-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libidn2",
+      "version": "2.2.0-1.el8",
+      "purl": "pkg:rpm/redhat/libidn2@2.2.0-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libksba",
+      "version": "1.3.5-7.el8",
+      "purl": "pkg:rpm/redhat/libksba@1.3.5-7.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libmnl",
+      "version": "1.0.4-6.el8",
+      "purl": "pkg:rpm/redhat/libmnl@1.0.4-6.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libmodulemd",
+      "version": "2.13.0-1.el8",
+      "purl": "pkg:rpm/redhat/libmodulemd@2.13.0-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libmount",
+      "version": "2.32.1-28.el8",
+      "purl": "pkg:rpm/redhat/libmount@2.32.1-28.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libnetfilter_conntrack",
+      "version": "1.0.6-5.el8",
+      "purl": "pkg:rpm/redhat/libnetfilter_conntrack@1.0.6-5.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libnfnetlink",
+      "version": "1.0.1-13.el8",
+      "purl": "pkg:rpm/redhat/libnfnetlink@1.0.1-13.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libnftnl",
+      "version": "1.1.5-4.el8",
+      "purl": "pkg:rpm/redhat/libnftnl@1.1.5-4.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libnghttp2",
+      "version": "1.33.0-3.el8_2.1",
+      "purl": "pkg:rpm/redhat/libnghttp2@1.33.0-3.el8_2.1?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libnl3",
+      "version": "3.5.0-1.el8",
+      "purl": "pkg:rpm/redhat/libnl3@3.5.0-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libnsl2",
+      "version": "1.2.0-2.20180605git4a062cf.el8",
+      "purl": "pkg:rpm/redhat/libnsl2@1.2.0-2.20180605git4a062cf.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libpcap",
+      "version": "14:1.9.1-5.el8",
+      "purl": "pkg:rpm/redhat/libpcap@1.9.1-5.el8?arch=x86_64\u0026epoch=14"
+    },
+    {
+      "type": "library",
+      "name": "libpsl",
+      "version": "0.20.2-6.el8",
+      "purl": "pkg:rpm/redhat/libpsl@0.20.2-6.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libpwquality",
+      "version": "1.4.4-3.el8",
+      "purl": "pkg:rpm/redhat/libpwquality@1.4.4-3.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "librepo",
+      "version": "1.14.0-2.el8",
+      "purl": "pkg:rpm/redhat/librepo@1.14.0-2.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libreport-filesystem",
+      "version": "2.9.5-15.el8",
+      "purl": "pkg:rpm/redhat/libreport-filesystem@2.9.5-15.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "librhsm",
+      "version": "0.0.3-4.el8",
+      "purl": "pkg:rpm/redhat/librhsm@0.0.3-4.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libseccomp",
+      "version": "2.5.1-1.el8",
+      "purl": "pkg:rpm/redhat/libseccomp@2.5.1-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libselinux",
+      "version": "2.9-5.el8",
+      "purl": "pkg:rpm/redhat/libselinux@2.9-5.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libsemanage",
+      "version": "2.9-6.el8",
+      "purl": "pkg:rpm/redhat/libsemanage@2.9-6.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libsepol",
+      "version": "2.9-3.el8",
+      "purl": "pkg:rpm/redhat/libsepol@2.9-3.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libsigsegv",
+      "version": "2.11-5.el8",
+      "purl": "pkg:rpm/redhat/libsigsegv@2.11-5.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libsmartcols",
+      "version": "2.32.1-28.el8",
+      "purl": "pkg:rpm/redhat/libsmartcols@2.32.1-28.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libsolv",
+      "version": "0.7.19-1.el8",
+      "purl": "pkg:rpm/redhat/libsolv@0.7.19-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libssh",
+      "version": "0.9.4-3.el8",
+      "purl": "pkg:rpm/redhat/libssh@0.9.4-3.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libssh-config",
+      "version": "0.9.4-3.el8",
+      "purl": "pkg:rpm/redhat/libssh-config@0.9.4-3.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "libstdc++",
+      "version": "8.5.0-4.el8_5",
+      "purl": "pkg:rpm/redhat/libstdc++@8.5.0-4.el8_5?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libtasn1",
+      "version": "4.13-3.el8",
+      "purl": "pkg:rpm/redhat/libtasn1@4.13-3.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libtirpc",
+      "version": "1.1.4-5.el8",
+      "purl": "pkg:rpm/redhat/libtirpc@1.1.4-5.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libunistring",
+      "version": "0.9.9-3.el8",
+      "purl": "pkg:rpm/redhat/libunistring@0.9.9-3.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libusbx",
+      "version": "1.0.23-4.el8",
+      "purl": "pkg:rpm/redhat/libusbx@1.0.23-4.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libuser",
+      "version": "0.62-23.el8",
+      "purl": "pkg:rpm/redhat/libuser@0.62-23.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libutempter",
+      "version": "1.1.6-14.el8",
+      "purl": "pkg:rpm/redhat/libutempter@1.1.6-14.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libuuid",
+      "version": "2.32.1-28.el8",
+      "purl": "pkg:rpm/redhat/libuuid@2.32.1-28.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libverto",
+      "version": "0.3.0-5.el8",
+      "purl": "pkg:rpm/redhat/libverto@0.3.0-5.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libxcrypt",
+      "version": "4.1.1-6.el8",
+      "purl": "pkg:rpm/redhat/libxcrypt@4.1.1-6.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libxkbcommon",
+      "version": "0.9.1-1.el8",
+      "purl": "pkg:rpm/redhat/libxkbcommon@0.9.1-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libxml2",
+      "version": "2.9.7-9.el8_4.2",
+      "purl": "pkg:rpm/redhat/libxml2@2.9.7-9.el8_4.2?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libyaml",
+      "version": "0.1.7-5.el8",
+      "purl": "pkg:rpm/redhat/libyaml@0.1.7-5.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "libzstd",
+      "version": "1.4.4-1.el8",
+      "purl": "pkg:rpm/redhat/libzstd@1.4.4-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "lua-libs",
+      "version": "5.3.4-12.el8",
+      "purl": "pkg:rpm/redhat/lua-libs@5.3.4-12.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "lz4-libs",
+      "version": "1.8.3-3.el8_4",
+      "purl": "pkg:rpm/redhat/lz4-libs@1.8.3-3.el8_4?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "mpfr",
+      "version": "3.1.6-1.el8",
+      "purl": "pkg:rpm/redhat/mpfr@3.1.6-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "ncurses-base",
+      "version": "6.1-9.20180224.el8",
+      "purl": "pkg:rpm/redhat/ncurses-base@6.1-9.20180224.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "ncurses-libs",
+      "version": "6.1-9.20180224.el8",
+      "purl": "pkg:rpm/redhat/ncurses-libs@6.1-9.20180224.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "nettle",
+      "version": "3.4.1-7.el8",
+      "purl": "pkg:rpm/redhat/nettle@3.4.1-7.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "nginx",
+      "version": "1:1.21.4-1.el8.ngx",
+      "purl": "pkg:rpm/redhat/nginx@1.21.4-1.el8.ngx?arch=x86_64\u0026epoch=1"
+    },
+    {
+      "type": "library",
+      "name": "npth",
+      "version": "1.5-4.el8",
+      "purl": "pkg:rpm/redhat/npth@1.5-4.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "nspr",
+      "version": "4.32.0-1.el8_4",
+      "purl": "pkg:rpm/redhat/nspr@4.32.0-1.el8_4?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "nss",
+      "version": "3.67.0-7.el8_5",
+      "purl": "pkg:rpm/redhat/nss@3.67.0-7.el8_5?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "nss-softokn",
+      "version": "3.67.0-7.el8_5",
+      "purl": "pkg:rpm/redhat/nss-softokn@3.67.0-7.el8_5?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "nss-softokn-freebl",
+      "version": "3.67.0-7.el8_5",
+      "purl": "pkg:rpm/redhat/nss-softokn-freebl@3.67.0-7.el8_5?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "nss-sysinit",
+      "version": "3.67.0-7.el8_5",
+      "purl": "pkg:rpm/redhat/nss-sysinit@3.67.0-7.el8_5?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "nss-util",
+      "version": "3.67.0-7.el8_5",
+      "purl": "pkg:rpm/redhat/nss-util@3.67.0-7.el8_5?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "openldap",
+      "version": "2.4.46-18.el8",
+      "purl": "pkg:rpm/redhat/openldap@2.4.46-18.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "openssl",
+      "version": "1:1.1.1k-5.el8_5",
+      "purl": "pkg:rpm/redhat/openssl@1.1.1k-5.el8_5?arch=x86_64\u0026epoch=1"
+    },
+    {
+      "type": "library",
+      "name": "openssl-libs",
+      "version": "1:1.1.1k-5.el8_5",
+      "purl": "pkg:rpm/redhat/openssl-libs@1.1.1k-5.el8_5?arch=x86_64\u0026epoch=1"
+    },
+    {
+      "type": "library",
+      "name": "openssl-pkcs11",
+      "version": "0.4.10-2.el8",
+      "purl": "pkg:rpm/redhat/openssl-pkcs11@0.4.10-2.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "p11-kit",
+      "version": "0.23.22-1.el8",
+      "purl": "pkg:rpm/redhat/p11-kit@0.23.22-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "p11-kit-trust",
+      "version": "0.23.22-1.el8",
+      "purl": "pkg:rpm/redhat/p11-kit-trust@0.23.22-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "pam",
+      "version": "1.3.1-15.el8",
+      "purl": "pkg:rpm/redhat/pam@1.3.1-15.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "passwd",
+      "version": "0.80-3.el8",
+      "purl": "pkg:rpm/redhat/passwd@0.80-3.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "pciutils",
+      "version": "3.7.0-1.el8",
+      "purl": "pkg:rpm/redhat/pciutils@3.7.0-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "pciutils-libs",
+      "version": "3.7.0-1.el8",
+      "purl": "pkg:rpm/redhat/pciutils-libs@3.7.0-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "pcre",
+      "version": "8.42-6.el8",
+      "purl": "pkg:rpm/redhat/pcre@8.42-6.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "pcre2",
+      "version": "10.32-2.el8",
+      "purl": "pkg:rpm/redhat/pcre2@10.32-2.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "platform-python",
+      "version": "3.6.8-41.el8",
+      "purl": "pkg:rpm/redhat/platform-python@3.6.8-41.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "platform-python-setuptools",
+      "version": "39.2.0-6.el8",
+      "purl": "pkg:rpm/redhat/platform-python-setuptools@39.2.0-6.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "popt",
+      "version": "1.18-1.el8",
+      "purl": "pkg:rpm/redhat/popt@1.18-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "publicsuffix-list-dafsa",
+      "version": "20180723-1.el8",
+      "purl": "pkg:rpm/redhat/publicsuffix-list-dafsa@20180723-1.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "pyinotify",
+      "version": "0.9.6",
+      "licenses": [
+        {
+          "license": {
+            "name": "MIT License"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/pyinotify@0.9.6"
+    },
+    {
+      "type": "library",
+      "name": "python-dateutil",
+      "version": "2.6.1",
+      "licenses": [
+        {
+          "license": {
+            "name": "Simplified BSD"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/python-dateutil@2.6.1"
+    },
+    {
+      "type": "library",
+      "name": "python-dmidecode",
+      "version": "3.12.2",
+      "licenses": [
+        {
+          "license": {
+            "name": "GPL-2"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/python-dmidecode@3.12.2"
+    },
+    {
+      "type": "library",
+      "name": "python3-chardet",
+      "version": "3.0.4-7.el8",
+      "purl": "pkg:rpm/redhat/python3-chardet@3.0.4-7.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "python3-cloud-what",
+      "version": "1.28.21-3.el8",
+      "purl": "pkg:rpm/redhat/python3-cloud-what@1.28.21-3.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "python3-dateutil",
+      "version": "1:2.6.1-6.el8",
+      "purl": "pkg:rpm/redhat/python3-dateutil@2.6.1-6.el8?arch=noarch\u0026epoch=1"
+    },
+    {
+      "type": "library",
+      "name": "python3-dbus",
+      "version": "1.2.4-15.el8",
+      "purl": "pkg:rpm/redhat/python3-dbus@1.2.4-15.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "python3-decorator",
+      "version": "4.2.1-2.el8",
+      "purl": "pkg:rpm/redhat/python3-decorator@4.2.1-2.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "python3-dmidecode",
+      "version": "3.12.2-15.el8",
+      "purl": "pkg:rpm/redhat/python3-dmidecode@3.12.2-15.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "python3-dnf",
+      "version": "4.7.0-4.el8",
+      "purl": "pkg:rpm/redhat/python3-dnf@4.7.0-4.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "python3-dnf-plugins-core",
+      "version": "4.0.21-3.el8",
+      "purl": "pkg:rpm/redhat/python3-dnf-plugins-core@4.0.21-3.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "python3-ethtool",
+      "version": "0.14-3.el8",
+      "purl": "pkg:rpm/redhat/python3-ethtool@0.14-3.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "python3-gobject-base",
+      "version": "3.28.3-2.el8",
+      "purl": "pkg:rpm/redhat/python3-gobject-base@3.28.3-2.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "python3-gpg",
+      "version": "1.13.1-9.el8",
+      "purl": "pkg:rpm/redhat/python3-gpg@1.13.1-9.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "python3-hawkey",
+      "version": "0.63.0-3.el8",
+      "purl": "pkg:rpm/redhat/python3-hawkey@0.63.0-3.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "python3-idna",
+      "version": "2.5-5.el8",
+      "purl": "pkg:rpm/redhat/python3-idna@2.5-5.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "python3-iniparse",
+      "version": "0.4-31.el8",
+      "purl": "pkg:rpm/redhat/python3-iniparse@0.4-31.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "python3-inotify",
+      "version": "0.9.6-13.el8",
+      "purl": "pkg:rpm/redhat/python3-inotify@0.9.6-13.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "python3-libcomps",
+      "version": "0.1.16-2.el8",
+      "purl": "pkg:rpm/redhat/python3-libcomps@0.1.16-2.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "python3-libdnf",
+      "version": "0.63.0-3.el8",
+      "purl": "pkg:rpm/redhat/python3-libdnf@0.63.0-3.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "python3-librepo",
+      "version": "1.14.0-2.el8",
+      "purl": "pkg:rpm/redhat/python3-librepo@1.14.0-2.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "python3-libs",
+      "version": "3.6.8-41.el8",
+      "purl": "pkg:rpm/redhat/python3-libs@3.6.8-41.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "python3-libxml2",
+      "version": "2.9.7-9.el8_4.2",
+      "purl": "pkg:rpm/redhat/python3-libxml2@2.9.7-9.el8_4.2?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "python3-pip-wheel",
+      "version": "9.0.3-20.el8",
+      "purl": "pkg:rpm/redhat/python3-pip-wheel@9.0.3-20.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "python3-pysocks",
+      "version": "1.6.8-3.el8",
+      "purl": "pkg:rpm/redhat/python3-pysocks@1.6.8-3.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "python3-requests",
+      "version": "2.20.0-2.1.el8_1",
+      "purl": "pkg:rpm/redhat/python3-requests@2.20.0-2.1.el8_1?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "python3-rpm",
+      "version": "4.14.3-19.el8",
+      "purl": "pkg:rpm/redhat/python3-rpm@4.14.3-19.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "python3-setuptools-wheel",
+      "version": "39.2.0-6.el8",
+      "purl": "pkg:rpm/redhat/python3-setuptools-wheel@39.2.0-6.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "python3-six",
+      "version": "1.11.0-8.el8",
+      "purl": "pkg:rpm/redhat/python3-six@1.11.0-8.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "python3-subscription-manager-rhsm",
+      "version": "1.28.21-3.el8",
+      "purl": "pkg:rpm/redhat/python3-subscription-manager-rhsm@1.28.21-3.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "python3-syspurpose",
+      "version": "1.28.21-3.el8",
+      "purl": "pkg:rpm/redhat/python3-syspurpose@1.28.21-3.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "python3-urllib3",
+      "version": "1.24.2-5.el8",
+      "purl": "pkg:rpm/redhat/python3-urllib3@1.24.2-5.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "rdma-core",
+      "version": "35.0-1.el8",
+      "purl": "pkg:rpm/redhat/rdma-core@35.0-1.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "readline",
+      "version": "7.0-10.el8",
+      "purl": "pkg:rpm/redhat/readline@7.0-10.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "redhat-release",
+      "version": "8.5-0.8.el8",
+      "purl": "pkg:rpm/redhat/redhat-release@8.5-0.8.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "requests",
+      "version": "2.20.0",
+      "licenses": [
+        {
+          "license": {
+            "name": "Apache 2.0"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/requests@2.20.0"
+    },
+    {
+      "type": "library",
+      "name": "rootfiles",
+      "version": "8.1-22.el8",
+      "purl": "pkg:rpm/redhat/rootfiles@8.1-22.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "rpm",
+      "version": "4.14.3",
+      "licenses": [
+        {
+          "license": {
+            "name": "UNKNOWN"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/rpm@4.14.3"
+    },
+    {
+      "type": "library",
+      "name": "rpm",
+      "version": "4.14.3-19.el8",
+      "purl": "pkg:rpm/redhat/rpm@4.14.3-19.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "rpm-build-libs",
+      "version": "4.14.3-19.el8",
+      "purl": "pkg:rpm/redhat/rpm-build-libs@4.14.3-19.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "rpm-libs",
+      "version": "4.14.3-19.el8",
+      "purl": "pkg:rpm/redhat/rpm-libs@4.14.3-19.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "sed",
+      "version": "4.5-2.el8",
+      "purl": "pkg:rpm/redhat/sed@4.5-2.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "setup",
+      "version": "2.12.2-6.el8",
+      "purl": "pkg:rpm/redhat/setup@2.12.2-6.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "setuptools",
+      "version": "39.2.0",
+      "licenses": [
+        {
+          "license": {
+            "name": "UNKNOWN"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/setuptools@39.2.0"
+    },
+    {
+      "type": "library",
+      "name": "shadow-utils",
+      "version": "2:4.6-14.el8",
+      "purl": "pkg:rpm/redhat/shadow-utils@4.6-14.el8?arch=x86_64\u0026epoch=2"
+    },
+    {
+      "type": "library",
+      "name": "six",
+      "version": "1.11.0",
+      "licenses": [
+        {
+          "license": {
+            "name": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/six@1.11.0"
+    },
+    {
+      "type": "library",
+      "name": "sqlite-libs",
+      "version": "3.26.0-15.el8",
+      "purl": "pkg:rpm/redhat/sqlite-libs@3.26.0-15.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "subscription-manager",
+      "version": "1.28.21",
+      "licenses": [
+        {
+          "license": {
+            "name": "GPLv2"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/subscription-manager@1.28.21"
+    },
+    {
+      "type": "library",
+      "name": "subscription-manager",
+      "version": "1.28.21-3.el8",
+      "purl": "pkg:rpm/redhat/subscription-manager@1.28.21-3.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "subscription-manager-rhsm-certificates",
+      "version": "1.28.21-3.el8",
+      "purl": "pkg:rpm/redhat/subscription-manager-rhsm-certificates@1.28.21-3.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "syspurpose",
+      "version": "1.28.21",
+      "licenses": [
+        {
+          "license": {
+            "name": "GPLv2"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/syspurpose@1.28.21"
+    },
+    {
+      "type": "library",
+      "name": "systemd",
+      "version": "239-51.el8_5.3",
+      "purl": "pkg:rpm/redhat/systemd@239-51.el8_5.3?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "systemd-libs",
+      "version": "239-51.el8_5.3",
+      "purl": "pkg:rpm/redhat/systemd-libs@239-51.el8_5.3?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "systemd-pam",
+      "version": "239-51.el8_5.3",
+      "purl": "pkg:rpm/redhat/systemd-pam@239-51.el8_5.3?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "tar",
+      "version": "2:1.30-5.el8",
+      "purl": "pkg:rpm/redhat/tar@1.30-5.el8?arch=x86_64\u0026epoch=2"
+    },
+    {
+      "type": "library",
+      "name": "tpm2-tss",
+      "version": "2.3.2-4.el8",
+      "purl": "pkg:rpm/redhat/tpm2-tss@2.3.2-4.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "tzdata",
+      "version": "2021e-1.el8",
+      "purl": "pkg:rpm/redhat/tzdata@2021e-1.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "urllib3",
+      "version": "1.24.2",
+      "licenses": [
+        {
+          "license": {
+            "name": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/urllib3@1.24.2"
+    },
+    {
+      "type": "library",
+      "name": "usermode",
+      "version": "1.113-2.el8",
+      "purl": "pkg:rpm/redhat/usermode@1.113-2.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "util-linux",
+      "version": "2.32.1-28.el8",
+      "purl": "pkg:rpm/redhat/util-linux@2.32.1-28.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "vim-minimal",
+      "version": "2:8.0.1763-16.el8",
+      "purl": "pkg:rpm/redhat/vim-minimal@8.0.1763-16.el8?arch=x86_64\u0026epoch=2"
+    },
+    {
+      "type": "library",
+      "name": "virt-what",
+      "version": "1.18-12.el8",
+      "purl": "pkg:rpm/redhat/virt-what@1.18-12.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "which",
+      "version": "2.21-16.el8",
+      "purl": "pkg:rpm/redhat/which@2.21-16.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "xkeyboard-config",
+      "version": "2.28-1.el8",
+      "purl": "pkg:rpm/redhat/xkeyboard-config@2.28-1.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "xz-libs",
+      "version": "5.2.4-3.el8",
+      "purl": "pkg:rpm/redhat/xz-libs@5.2.4-3.el8?arch=x86_64"
+    },
+    {
+      "type": "library",
+      "name": "yum",
+      "version": "4.7.0-4.el8",
+      "purl": "pkg:rpm/redhat/yum@4.7.0-4.el8?arch=noarch"
+    },
+    {
+      "type": "library",
+      "name": "zlib",
+      "version": "1.2.11-17.el8",
+      "purl": "pkg:rpm/redhat/zlib@1.2.11-17.el8?arch=x86_64"
+    }
+  ]
+}

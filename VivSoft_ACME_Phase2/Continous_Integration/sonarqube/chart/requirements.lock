@@ -1,0 +1,9 @@
+dependencies:
+- name: postgresql
+  repository: file://./deps/postgresql
+  version: 8.6.4
+- name: gluon
+  repository: oci://registry.dso.mil/platform-one/big-bang/apps/library-charts/gluon
+  version: 0.2.3
+digest: sha256:a57b95a57d6ac4b3be27c898c42a19a99d49912dde5b5d2f6219fc5cb426b42b
+generated: "2021-09-07T15:18:21.000886-06:00"

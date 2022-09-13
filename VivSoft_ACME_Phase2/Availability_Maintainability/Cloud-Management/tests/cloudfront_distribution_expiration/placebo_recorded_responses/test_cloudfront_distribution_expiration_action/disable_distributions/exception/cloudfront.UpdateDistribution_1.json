@@ -1,0 +1,18 @@
+{
+    "status_code": 300,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "c9e15791-b424-11e7-b00e-65cb9985710c",
+            "HTTPStatusCode": 400,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "c9e15791-b424-11e7-b00e-65cb9985710c",
+                "etag": "E30RM73U8XLMCU",
+                "content-type": "text/xml",
+                "content-length": "2631",
+                "vary": "Accept-Encoding",
+                "date": "Wed, 18 Oct 2018 16:52:55 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

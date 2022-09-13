@@ -1,0 +1,16 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: rapidfort
+  namespace: batcave
+spec:
+  releaseName: rapidfort
+  targetNamespace: rapidfort
+  chart:
+    spec:
+      chart: chart
+      sourceRef:
+        kind: GitRepository
+        name: rapidfort
+        namespace: batcave
+  interval: 2m0s

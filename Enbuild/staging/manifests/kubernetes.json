@@ -1,0 +1,222 @@
+{
+  "type": "terraform",
+  "slug": "kubernetes",
+  "name": "Kubernetes",
+  "repository": "https://gitlab.com/enbuild-staging/iac-templates/rke2",
+  "project_id": "25246145",
+  "readme_file_path": "README.md",
+  "values_folder_path": "infra",
+  "ref": "main",
+  "sops": false,
+  "image_path": "kubernetes.png",
+  "components": [
+    {
+      "type": "component",
+      "name": "RKE2",
+      "slug": "rke2",
+      "tool_type": "Distro",
+      "repository": "https://gitlab.com/enbuild-staging/iac-templates/rke2",
+      "project_id": "25246145",
+      "ref": "main",
+      "readme_file_path": "README.md",
+      "variable_file_path": "infra/tfvars.json",
+      "image_path": "images/rke2.png",
+      "mandatory": false
+    },
+    {
+      "type": "component",
+      "name": "EKS",
+      "slug": "EKS",
+      "tool_type": "Distro",
+      "repository": "https://gitlab.com/enbuild-staging/iac-templates/eks",
+      "project_id": "26132685",
+      "ref": "main",
+      "readme_file_path": "README.md",
+      "variable_file_path": "infra/tfvars.json",
+      "image_path": "eks.png",
+      "mandatory": false
+    },
+    {
+      "type": "component",
+      "name": "AKS",
+      "slug": "AKS",
+      "tool_type": "Distro",
+      "repository": "https://gitlab.com/enbuild-staging/iac-templates/aks",
+      "project_id": "26132703",
+      "ref": "main",
+      "readme_file_path": "README.md",
+      "variable_file_path": "infra/tfvars.json",
+      "image_path": "AKS.png",
+      "mandatory": false
+    },
+    {
+      "type": "component",
+      "name": "OKE",
+      "slug": "OKE",
+      "tool_type": "Distro",
+      "repository": "https://gitlab.com/enbuild-staging/iac-templates/oke",
+      "project_id": "34600112",
+      "ref": "main",
+      "readme_file_path": "README.md",
+      "variable_file_path": "infra/tfvars.json",
+      "image_path": "OKE.jpeg",
+      "mandatory": false
+    }
+  ],
+  "infrastructure": {
+    "type": "infrastructure",
+    "slug": "cloud",
+    "name": "Cloud",
+    "mandatory": true,
+    "selections": [
+      {
+        "slug": "aws",
+        "name": "AWS",
+        "selected": true,
+        "accessedTo": ["rke2", "EKS"],
+        "fields": [
+          {
+            "name": "Cloud Selection",
+            "type": "text",
+            "key": "",
+            "plaintext": true
+          },
+          {
+            "name": "Select Cloud Type",
+            "type": "radio",
+            "key": "CLOUD_TYPE",
+            "plaintext": false
+          },
+          {
+            "name": "Access Key",
+            "type": "input_text",
+            "variable": "AWS_ACCESS_KEY_ID",
+            "plaintext": false
+          },
+          {
+            "name": "Secret Key",
+            "type": "password",
+            "key": "AWS_SECRET_ACCESS_KEY",
+            "plaintext": false
+          },
+          {
+            "name": "AWS Region",
+            "type": "input_text",
+            "key": "AWS_DEFAULT_REGION",
+            "plaintext": true
+          }
+        ]
+      },
+      {
+        "slug": "azure",
+        "name": "Azure",
+        "accessedTo": ["AKS"],
+        "fields": [
+          {
+            "name": "Cloud Selection",
+            "type": "text",
+            "key": "",
+            "plaintext": true
+          },
+          {
+            "name": "Select Cloud Type",
+            "type": "radio",
+            "key": "CLOUD_TYPE",
+            "variable": "CLOUD_TYPE",
+            "plaintext": false
+          },
+          {
+            "name": "Service Principal Client ID",
+            "type": "input_text",
+            "key": "ARM_CLIENT_ID",
+            "variable": "ARM_CLIENT_ID",
+            "plaintext": false
+          },
+          {
+            "name": "Tenant ID",
+            "type": "input_text",
+            "key": "ARM_TENANT_ID",
+            "variable": "ARM_TENANT_ID",
+            "plaintext": false
+          },
+          {
+            "name": "Subscription ID",
+            "type": "input_text",
+            "key": "ARM_SUBSCRIPTION_ID",
+            "variable": "ARM_SUBSCRIPTION_ID",
+            "plaintext": false
+          },
+          {
+            "name": "Service Principal Client Secret",
+            "type": "password",
+            "key": "ARM_CLIENT_SECRET",
+            "variable": "ARM_CLIENT_SECRET",
+            "plaintext": false
+          }
+        ]
+      },
+      {
+        "slug": "oracle",
+        "name": "Oracle",
+        "accessedTo": ["OKE"],
+        "fields": [
+          {
+            "name": "Cloud Selection",
+            "type": "text",
+            "key": "",
+            "plaintext": true
+          },
+          {
+            "name": "Select Cloud Type",
+            "type": "radio",
+            "key": "CLOUD_TYPE",
+            "variable": "CLOUD_TYPE",
+            "plaintext": false
+          },
+          {
+            "name": "Home Region",
+            "type": "input_text",
+            "key": "TF_VAR_home_region",
+            "variable": "TF_VAR_home_region",
+            "plaintext": true
+          },
+          {
+            "name": "Tenancy ID",
+            "type": "input_text",
+            "key": "TF_VAR_tenancy_id",
+            "variable": "TF_VAR_tenancy_id",
+            "plaintext": true
+          },
+          {
+            "name": "Compartment ID",
+            "type": "input_text",
+            "key": "TF_VAR_compartment_id",
+            "variable": "TF_VAR_compartment_id",
+            "plaintext": true
+          },
+          {
+            "name": "User ID",
+            "type": "input_text",
+            "key": "TF_VAR_user_id",
+            "variable": "TF_VAR_user_id",
+            "plaintext": true
+          },
+          {
+            "name": "API Fingerprint",
+            "type": "input_text",
+            "key": "TF_VAR_api_fingerprint",
+            "variable": "TF_VAR_api_fingerprint",
+            "plaintext": true
+          },
+          {
+            "name": "API Private Key 1",
+            "type": "textbox",
+            "key": "TF_VAR_api_private_key",
+            "variable": "TF_VAR_api_private_key",
+            "plaintext": true
+          }
+        ]
+      }
+    ]
+  }
+}

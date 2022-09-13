@@ -1,0 +1,25 @@
+{{- if .Values.violations.noBigContainers.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.noBigContainers.kind  }}
+metadata:
+  name: {{ .Values.violations.noBigContainers.name  }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "Resource Limits"
+    constraints.gatekeeper/description: "Containers must have cpu / memory limits and the values must be below the specified maximum."
+    constraints.gatekeeper/source: "https://github.com/open-policy-agent/gatekeeper-library/tree/master/library/general/containerlimits"
+    constraints.gatekeeper/docs: "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.noBigContainers.enforcementAction  }}
+  match:
+    {{- if .Values.violations.noBigContainers.match  }}
+    {{- toYaml .Values.violations.noBigContainers.match | nindent 4 }}
+    {{- end }}
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+  parameters:
+    {{- toYaml .Values.violations.noBigContainers.parameters | nindent 4}}
+{{- end }}

@@ -1,0 +1,6 @@
+imagePullSecrets:
+- name: private-registry
+
+networkPolicies:
+  enabled: true
+  controlPlaneCidr: 172.16.0.0/12

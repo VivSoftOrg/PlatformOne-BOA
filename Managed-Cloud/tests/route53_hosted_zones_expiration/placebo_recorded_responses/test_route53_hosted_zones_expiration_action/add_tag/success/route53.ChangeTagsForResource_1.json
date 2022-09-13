@@ -1,0 +1,16 @@
+{
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "4ed5ff5c-fc2b-11e7-a4eb-11c465327fe3",
+            "RetryAttempts": 0,
+            "HTTPHeaders": {
+                "content-type": "text/xml",
+                "x-amzn-requestid": "4ed5ff5c-fc2b-11e7-a4eb-11c465327fe3",
+                "date": "Thu, 18 Jan 2018 08:40:59 GMT",
+                "content-length": "139"
+            },
+            "HTTPStatusCode": 200
+        }
+    },
+    "status_code": 200
+}

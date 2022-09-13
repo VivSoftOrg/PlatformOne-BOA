@@ -1,0 +1,21 @@
+addons:
+  gitlab:
+    enabled: true
+    database:
+      host: "db.${batcave_base_domain}"
+      port: 5432
+      database: "gitlab"
+    values:
+      redis:
+        master:
+          persistence:
+            size: "8Gi"
+      minio:
+        persistence:
+          size: "500Gi"
+      postgresql:
+        install: false
+      gitlab:
+        gitaly:
+          persistence:
+            size: 1000Gi

@@ -1,0 +1,80 @@
+{
+    "status_code": 200,
+    "data": {
+        "Volumes": [
+            {
+                "Attachments": [
+                    {
+                        "AttachTime": {
+                            "__class__": "datetime",
+                            "year": 2018,
+                            "month": 6,
+                            "day": 8,
+                            "hour": 5,
+                            "minute": 31,
+                            "second": 50,
+                            "microsecond": 0
+                        },
+                        "Device": "/dev/sda1",
+                        "InstanceId": "i-03a4eac622ca0fdd8",
+                        "State": "attached",
+                        "VolumeId": "vol-0cbf80ff35ffe3537",
+                        "DeleteOnTermination": true
+                    }
+                ],
+                "AvailabilityZone": "us-east-1a",
+                "CreateTime": {
+                    "__class__": "datetime",
+                    "year": 2018,
+                    "month": 6,
+                    "day": 8,
+                    "hour": 5,
+                    "minute": 31,
+                    "second": 50,
+                    "microsecond": 254000
+                },
+                "Encrypted": false,
+                "Size": 20,
+                "SnapshotId": "snap-0eea1ed47e203f3b8",
+                "State": "in-use",
+                "VolumeId": "vol-0cbf80ff35ffe3537",
+                "Iops": 100,
+                "Tags": [
+                    {
+                        "Key": "Project",
+                        "Value": "mnc"
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "MNC_Instance"
+                    },
+                    {
+                        "Key": "Owner",
+                        "Value": "devendra.suthar"
+                    },
+                    {
+                        "Key": "Environment",
+                        "Value": "Testing"
+                    },
+                    {
+                        "Key": "ExpirationDate",
+                        "Value": "2018-07-19"
+                    }
+                ],
+                "VolumeType": "gp2"
+            }
+        ],
+        "ResponseMetadata": {
+            "RequestId": "ca4e71a7-714c-4d98-94dd-beaeb0aec605",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "content-type": "text/xml;charset=UTF-8",
+                "transfer-encoding": "chunked",
+                "vary": "Accept-Encoding",
+                "date": "Tue, 17 Jul 2018 08:43:47 GMT",
+                "server": "AmazonEC2"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

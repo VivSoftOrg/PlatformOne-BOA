@@ -1,0 +1,15 @@
+{
+    "status_code": 204,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "4de7f135-b432-11e7-9e69-5fb24e766e33",
+            "HTTPStatusCode": 404,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "4de7f135-b432-11e7-9e69-5fb24e766e33",
+                "content-type": "text/xml",
+                "date": "Wed, 18 Oct 2018 18:29:40 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

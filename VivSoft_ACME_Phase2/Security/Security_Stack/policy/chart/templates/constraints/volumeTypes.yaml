@@ -1,0 +1,25 @@
+{{- if .Values.violations.volumeTypes.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.volumeTypes.kind }}
+metadata:
+  name: {{ .Values.violations.volumeTypes.name }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "Volume Types"
+    constraints.gatekeeper/description: "Containers may only use the specified volume types in volume mounts."
+    constraints.gatekeeper/source: "https://github.com/open-policy-agent/gatekeeper-library/tree/master/library/pod-security-policy/volumes"
+    constraints.gatekeeper/docs: "https://kubernetes.io/docs/concepts/storage/volumes/#volume-types"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.volumeTypes.enforcementAction | default "dryrun" }}
+  match:
+    {{- if .Values.violations.volumeTypes.match  }}
+    {{- toYaml .Values.violations.volumeTypes.match | nindent 4}}
+    {{- end }}
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+  parameters:
+    {{- toYaml .Values.violations.volumeTypes.parameters | nindent 4}}
+{{- end }}

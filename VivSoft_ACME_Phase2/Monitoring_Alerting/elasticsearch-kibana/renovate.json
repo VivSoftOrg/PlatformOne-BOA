@@ -1,0 +1,81 @@
+{
+  "baseBranches": ["main"],
+  "configWarningReuseIssue": false,
+  "dependencyDashboard": "true",
+  "dependencyDashboardHeader": "- [ ] Follow steps in [package update docs](./docs/PACKAGE_UPDATES.md) to upgrade the package.",
+  "dependencyDashboardTitle": "Renovate: Upgrade Elasticsearch/Kibana Package Dependencies",
+  "draftPR": true,
+  "ignorePaths": ["chart/charts/**"],
+  "labels": ["elasticsearch","Big Bang Core","Package Sustainment","kind::maintenance"],
+  "separateMajorMinor": false,
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "groupName": "Ironbank"
+    }
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": ["^chart/Chart\\.yaml$"],
+      "matchStrings": [
+        "appVersion:\\s+(?<currentValue>.+)"
+      ],
+      "depNameTemplate": "ironbank/elastic/elasticsearch/elasticsearch",
+      "datasourceTemplate": "docker",
+      "registryUrlTemplate": "https://registry1.dso.mil"
+    },
+    {
+      "fileMatch": ["^chart/values\\.yaml$"],
+      "matchStrings": [
+         "elasticsearch:\\s+tag:\\s+(?<currentValue>.+)"
+      ],
+      "depNameTemplate": "ironbank/elastic/elasticsearch/elasticsearch",
+      "datasourceTemplate": "docker",
+      "registryUrlTemplate": "https://registry1.dso.mil"
+    },
+    {
+      "fileMatch": ["^chart/values\\.yaml$"],
+      "matchStrings": [
+         "elasticsearch:\\s+version:\\s+(?<currentValue>.+)"
+      ],
+      "depNameTemplate": "ironbank/elastic/elasticsearch/elasticsearch",
+      "datasourceTemplate": "docker",
+      "registryUrlTemplate": "https://registry1.dso.mil"
+    },
+    {
+      "fileMatch": ["^chart/values\\.yaml$"],
+      "matchStrings": [
+         "kibana:\\s+tag:\\s+(?<currentValue>.+)"
+      ],
+      "depNameTemplate": "ironbank/elastic/kibana/kibana",
+      "datasourceTemplate": "docker",
+      "registryUrlTemplate": "https://registry1.dso.mil"
+    },      {
+      "fileMatch": ["^chart/values\\.yaml$"],
+      "matchStrings": [
+         "kibana:\\s+version:\\s+(?<currentValue>.+)"
+      ],
+      "depNameTemplate": "ironbank/elastic/kibana/kibana",
+      "datasourceTemplate": "docker",
+      "registryUrlTemplate": "https://registry1.dso.mil"
+    },
+    {
+      "fileMatch": ["^chart/Chart\\.yaml$"],
+      "matchStrings": [
+         "- Elasticsearch:\\s+(?<currentValue>.+)"
+      ],
+      "depNameTemplate": "ironbank/elastic/elasticsearch/elasticsearch",
+      "datasourceTemplate": "docker",
+      "registryUrlTemplate": "https://registry1.dso.mil"
+    },
+    {
+      "fileMatch": ["^chart/Chart\\.yaml$"],
+      "matchStrings": [
+         "- Kibana:\\s+(?<currentValue>.+)"
+      ],
+      "depNameTemplate": "ironbank/elastic/kibana/kibana",
+      "datasourceTemplate": "docker",
+      "registryUrlTemplate": "https://registry1.dso.mil"
+    }
+  ]
+}

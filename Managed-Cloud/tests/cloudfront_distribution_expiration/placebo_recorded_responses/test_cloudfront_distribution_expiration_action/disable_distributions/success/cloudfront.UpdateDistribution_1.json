@@ -1,0 +1,134 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "c9e15791-b424-11e7-b00e-65cb9985710c",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "c9e15791-b424-11e7-b00e-65cb9985710c",
+                "etag": "E30RM73U8XLMCU",
+                "content-type": "text/xml",
+                "content-length": "2631",
+                "vary": "Accept-Encoding",
+                "date": "Wed, 18 Oct 2018 16:52:55 GMT"
+            },
+            "RetryAttempts": 0
+        },
+        "ETag": "E30RM73U8XLMCU",
+        "Distribution": {
+            "Id": "E3UWKFWYMLZ9M7",
+            "ARN": "arn:aws:cloudfront::107339370656:distribution/E3UWKFWYMLZ9M7",
+            "Status": "InProgress",
+            "LastModifiedTime": {
+                "__class__": "datetime",
+                "year": 2018,
+                "month": 10,
+                "day": 18,
+                "hour": 16,
+                "minute": 52,
+                "second": 55,
+                "microsecond": 828000
+            },
+            "InProgressInvalidationBatches": 0,
+            "DomainName": "d3agllqd5l8lcl.cloudfront.net",
+            "ActiveTrustedSigners": {
+                "Enabled": false,
+                "Quantity": 0
+            },
+            "DistributionConfig": {
+                "CallerReference": "1508319919736",
+                "Aliases": {
+                    "Quantity": 0
+                },
+                "DefaultRootObject": "",
+                "Origins": {
+                    "Quantity": 1,
+                    "Items": [
+                        {
+                            "Id": "S3-cf-test-bucket-expiration",
+                            "DomainName": "cf-test-bucket-expiration.s3.amazonaws.com",
+                            "OriginPath": "",
+                            "CustomHeaders": {
+                                "Quantity": 0
+                            },
+                            "S3OriginConfig": {
+                                "OriginAccessIdentity": ""
+                            }
+                        }
+                    ]
+                },
+                "DefaultCacheBehavior": {
+                    "TargetOriginId": "S3-cf-test-bucket-expiration",
+                    "ForwardedValues": {
+                        "QueryString": false,
+                        "Cookies": {
+                            "Forward": "none"
+                        },
+                        "Headers": {
+                            "Quantity": 0
+                        },
+                        "QueryStringCacheKeys": {
+                            "Quantity": 0
+                        }
+                    },
+                    "TrustedSigners": {
+                        "Enabled": false,
+                        "Quantity": 0
+                    },
+                    "ViewerProtocolPolicy": "allow-all",
+                    "MinTTL": 0,
+                    "AllowedMethods": {
+                        "Quantity": 2,
+                        "Items": [
+                            "HEAD",
+                            "GET"
+                        ],
+                        "CachedMethods": {
+                            "Quantity": 2,
+                            "Items": [
+                                "HEAD",
+                                "GET"
+                            ]
+                        }
+                    },
+                    "SmoothStreaming": false,
+                    "DefaultTTL": 86400,
+                    "MaxTTL": 31536000,
+                    "Compress": false,
+                    "LambdaFunctionAssociations": {
+                        "Quantity": 0
+                    }
+                },
+                "CacheBehaviors": {
+                    "Quantity": 0
+                },
+                "CustomErrorResponses": {
+                    "Quantity": 0
+                },
+                "Comment": "",
+                "Logging": {
+                    "Enabled": false,
+                    "IncludeCookies": false,
+                    "Bucket": "",
+                    "Prefix": ""
+                },
+                "PriceClass": "PriceClass_All",
+                "Enabled": true,
+                "ViewerCertificate": {
+                    "CloudFrontDefaultCertificate": true,
+                    "MinimumProtocolVersion": "TLSv1",
+                    "CertificateSource": "cloudfront"
+                },
+                "Restrictions": {
+                    "GeoRestriction": {
+                        "RestrictionType": "none",
+                        "Quantity": 0
+                    }
+                },
+                "WebACLId": "",
+                "HttpVersion": "http2",
+                "IsIPV6Enabled": true
+            }
+        }
+    }
+}

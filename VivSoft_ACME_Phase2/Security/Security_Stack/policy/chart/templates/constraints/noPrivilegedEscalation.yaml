@@ -1,0 +1,26 @@
+{{- if .Values.violations.noPrivilegedEscalation.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.noPrivilegedEscalation.kind  }}
+metadata:
+  name: {{ .Values.violations.noPrivilegedEscalation.name  }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "Privilege Escalation"
+    constraints.gatekeeper/description: "Containers must not allow escalaton of privileges."
+    constraints.gatekeeper/source: "https://github.com/open-policy-agent/gatekeeper-library/tree/master/library/pod-security-policy/allow-privilege-escalation"
+    constraints.gatekeeper/docs: "https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context-1"
+    constraints.gatekeeper/related: "https://en.wikipedia.org/wiki/Privilege_escalation"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.noPrivilegedEscalation.enforcementAction  }}
+  match:
+    {{- if .Values.violations.noPrivilegedEscalation.match  }}
+    {{- toYaml .Values.violations.noPrivilegedEscalation.match | nindent 4}}
+    {{- end }}
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+  parameters:
+    {{- toYaml .Values.violations.noPrivilegedEscalation.parameters | nindent 4}}
+{{- end }}

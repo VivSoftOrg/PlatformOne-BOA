@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gatekeeper-crds
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ template "gatekeeper.name" . }}
+    chart: {{ template "gatekeeper.name" . }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+  annotations:
+    helm.sh/hook: pre-install,pre-upgrade
+    helm.sh/hook-weight: "1"
+    helm.sh/hook-delete-policy: "hook-succeeded,before-hook-creation"
+data:
+  {{- (.Files.Glob "crds/**.yaml").AsConfig | nindent 2 }}

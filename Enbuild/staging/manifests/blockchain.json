@@ -1,0 +1,132 @@
+{
+    "type": "helm",
+    "slug": "blockchain",
+    "name": "Blockchain",
+    "repository": "https://gitlab.com/enbuild-staging/iac-templates/blockchain",
+    "project_id": "26059662",
+    "readme_file_path": "README.md",
+    "ref": "main",
+    "sops": false,
+    "image_path": "images/blockchain.png",
+    "components": [
+        {
+            "type": "component",
+            "name": "HyperLedger Fabric",
+            "tool_type": "Network",
+            "slug": "hyperledgerfabric",
+            "repository": "https://gitlab.com/enbuild-staging/iac-templates/blockchain",
+            "project_id": "26059662",
+            "readme_file_path": "README.md",
+            "variable_file_path": "values.yaml",
+            "image_path": "images/hyperledger-fabric.png",
+            "mandatory": true
+        }
+    ],
+    "infrastructure": {
+        "type": "infrastructure",
+        "slug": "kubernetes",
+        "name": "Kubernetes",
+        "mandatory": true,
+        "showKubeConfig": true,
+        "selections": [
+            {
+                "slug": "aws",
+                "name": "AWS",
+                "fields": [
+                    {
+                        "name": "Kubeconfig",
+                        "type": "textbox",
+                        "key": "KUBECONFIG",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Cloud Selection",
+                        "type": "text",
+                        "key": "",
+                        "text": "Cloud Selection",
+                        "plaintext": true
+                    },
+                    {
+                        "name": "Select Cloud Type",
+                        "type": "radio",
+                        "key": "CLOUD_TYPE",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Access Key",
+                        "type": "input_text",
+                        "variable": "AWS_ACCESS_KEY_ID",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Secret Key",
+                        "type": "password",
+                        "key": "AWS_SECRET_ACCESS_KEY",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "AWS Region",
+                        "type": "input_text",
+                        "key": "AWS_DEFAULT_REGION",
+                        "plaintext": true
+                    }
+                ]
+            },
+            {
+                "slug": "azure",
+                "name": "Azure",
+                "fields": [
+                    {
+                        "name": "Kubeconfig",
+                        "type": "textbox",
+                        "key": "KUBECONFIG",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Cloud Selection",
+                        "type": "text",
+                        "key": "",
+                        "text": "Cloud Selection",
+                        "plaintext": true
+                    },
+                    {
+                        "name": "Select Cloud Type",
+                        "type": "radio",
+                        "key": "CLOUD_TYPE",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Tenant Id",
+                        "type": "input_text",
+                        "key": "TENANT_ID",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Subscription Id",
+                        "type": "input_text",
+                        "key": "SUBSCRIPTION_ID",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Client Id",
+                        "type": "input_text",
+                        "key": "CLIENT_ID",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Client Secret",
+                        "type": "input_text",
+                        "key": "CLIENT_SECRET",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "AZURE Location",
+                        "type": "input_text",
+                        "key": "AZURE_LOCATION",
+                        "plaintext": true
+                    }
+                ]
+            }
+        ]
+    }
+}

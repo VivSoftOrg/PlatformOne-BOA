@@ -1,0 +1,12 @@
+{
+  "configRuleId": "config-rule-1v52mx",
+  "version": "1.0",
+  "configRuleName": "enforce_allow_deny_groups_to_iam_users",
+  "configRuleArn": "arn:aws:config:us-east-1:693265998683:config-rule/config-rule-1v52mx",
+  "invokingEvent": "{\n \"messageType\": \"ScheduledNotification\",\n  \"recordVersion\": \"1.2\"\n}",
+  "resultToken": "",
+  "ruleParameters": "{\"performAction\": \"True\", \"allowGroup\": \"REAN-AllUsers-Allow\", \"denyGroup\": \"REAN-AllUsers-Deny\", \"actionName\": \"EnforceAllowAndDenyGroupsAction\", \"evaluateName\": \"EnforceAllowAndDenyGroupsEvaluate\",   \"resourceFetcherName\" : \"EnforceAllowAndDenyGroupsResourceFetcher\",  \"moduleName\": \"enforce_allow_deny_groups_to_iam_users\", \n \"notifier\":\"email\",\n \"toEmail\": \"vaibhav.menkudale@reancloud.com\",\n \"ccEmail\": \"vaibhav.menkudale@reancloud.com\",\"excludeUsers\" : \"akshay.deshpande,gaurav.ashtikar,vaibhav.menkudale\"}",
+  "eventLeftScope": "False",
+  "executionRoleArn": "arn:aws:iam::693265998683:role/awsconfig-role",
+  "accountId": "693265998683"
+}

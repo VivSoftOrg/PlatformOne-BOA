@@ -1,0 +1,35 @@
+{
+    "status_code": 200,
+    "data": {
+        "Credentials": {
+            "AccessKeyId": "",
+            "SecretAccessKey": "",
+            "SessionToken": "",
+            "Expiration": {
+                "__class__": "datetime",
+                "year": 2017,
+                "month": 10,
+                "day": 29,
+                "hour": 15,
+                "minute": 0,
+                "second": 59,
+                "microsecond": 0
+            }
+        },
+        "AssumedRoleUser": {
+            "AssumedRoleId": "AROAJRPRAVKIOOH3BWGMO:AWSConfigAssumeRoleSession",
+            "Arn": "arn:aws:sts::107339370656:assumed-role/workspaces_expiration_read_role/AWSConfigAssumeRoleSession"
+        },
+        "ResponseMetadata": {
+            "RequestId": "97966acf-bcb1-11e7-a949-83bb27919161",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "97966acf-bcb1-11e7-a949-83bb27919161",
+                "content-type": "text/xml",
+                "content-length": "1142",
+                "date": "Sun, 29 Oct 2017 14:00:58 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

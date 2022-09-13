@@ -1,0 +1,100 @@
+loki:
+  enabled: true
+  git:
+    tag: "1.8.10-bb.1" # hardcode tag because upgrades will cause breaking changes
+  strategy: scalable
+  values:
+    global:
+      image:
+        registry: artifactory.cloud.cms.gov/batcave-docker
+    monolith:
+      enabled: false
+    loki:
+      auth_enabled: true
+      storage:
+        s3:
+          endpoint: minio.logging.svc.cluster.local
+          region: us-east-1
+          accessKeyId: minio
+        bucketNames:
+          admin: batcave-impl-loki-admin
+          chunks: ${batcave_bucket_loki}
+          ruler: ${batcave_bucket_loki}
+    gel: # todo: make PR for this
+      tokengen:
+        tolerations:
+          - key: "CriticalAddonsOnly"
+            operator: "Exists"
+            effect: "NoSchedule"
+    enterprise:
+      enabled: true
+      cluster_name: batcave-impl
+      tokengen:
+        annotations:
+          sidecar.istio.io/inject: "false"
+      adminApi:
+        tolerations:
+          - key: "CriticalAddonsOnly"
+            operator: "Exists"
+            effect: "NoSchedule"
+      compactor:
+        tolerations:
+          - key: "CriticalAddonsOnly"
+            operator: "Exists"
+            effect: "NoSchedule"
+        annotations:
+          sidecar.istio.io/inject: "false"
+    gateway:
+      enabled: true
+      service:
+        port: 3101
+      tolerations:
+        - key: "CriticalAddonsOnly"
+          operator: "Exists"
+          effect: "NoSchedule"
+    write:
+      tolerations:
+        - key: "CriticalAddonsOnly"
+          operator: "Exists"
+          effect: "NoSchedule"
+    read:
+      tolerations:
+        - key: "CriticalAddonsOnly"
+          operator: "Exists"
+          effect: "NoSchedule"
+    minio:
+      enabled: true
+      tenant:
+        defaultUserCredentials:
+          username: minio-user
+        secrets:
+          accessKey: minio
+        pools:
+          - servers: 1
+            size: 128Gi
+            securityContext:
+              runAsUser: 1001
+              runAsGroup: 1001
+              fsGroup: 1001
+            tolerations:
+              - key: "CriticalAddonsOnly"
+                operator: "Exists"
+                effect: "NoSchedule"
+        buckets:
+          - name: batcave-impl-loki-admin
+          - name: batcave-impl-logs
+
+# Note this minio operator addon is only used for Loki logs in shared-dev (impl)
+addons:
+  minioOperator:
+    enabled: true
+    git:
+      tag: 4.4.28-bb.0 # required for GEL upgrades
+    values:
+      operator:
+        tolerations:
+          - key: "CriticalAddonsOnly"
+            operator: "Exists"
+            effect: "NoSchedule"
+        image:
+          repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/minio/operator

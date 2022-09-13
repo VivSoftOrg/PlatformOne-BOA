@@ -1,0 +1,8 @@
+addons:
+  velero:
+    values:
+      schedules:
+        dev-cluster-backup:
+          schedule: "0 0 * * *"
+          template:
+            ttl: "168h"

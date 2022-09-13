@@ -1,0 +1,10 @@
+---
+
+- name: Setup RHEL8 host
+  hosts: all
+  become: yes
+  roles:
+    - providers
+    - cis_hardening
+    - hardening
+    - sysprep

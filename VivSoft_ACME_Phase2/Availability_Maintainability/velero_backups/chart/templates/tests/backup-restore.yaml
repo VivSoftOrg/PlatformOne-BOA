@@ -1,0 +1,19 @@
+{{- include "gluon.tests.script-configmap.overrides" (list . "backup-restore-test.script-configmap") }}
+{{- define "backup-restore-test.script-configmap" }}
+metadata:
+  labels:
+    helm.sh/chart: {{ include "velero.chart" . }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end }}
+---
+{{- include "gluon.tests.script-runner.overrides" (list . "velero-test.script-runner") }}
+{{- define "velero-test.script-runner" }}
+  metadata:
+    labels:
+      helm.sh/chart: {{ include "velero.chart" . }}
+      app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+      app.kubernetes.io/managed-by: {{ .Release.Service }}
+  spec:
+    serviceAccountName: {{ include "velero.serverServiceAccount" . }}
+{{- end }}

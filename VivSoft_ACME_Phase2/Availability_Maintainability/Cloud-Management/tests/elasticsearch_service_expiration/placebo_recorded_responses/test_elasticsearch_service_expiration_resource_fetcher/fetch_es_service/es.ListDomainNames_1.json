@@ -1,0 +1,24 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "5681cb04-bc0e-11e7-88ae-b9faa8b45a12",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "5681cb04-bc0e-11e7-88ae-b9faa8b45a12",
+                "content-type": "application/json",
+                "content-length": "72",
+                "date": "Sat, 28 Oct 2017 18:32:21 GMT"
+            },
+            "RetryAttempts": 0
+        },
+        "DomainNames": [
+            {
+                "DomainName": "MockDomain1"
+            },
+            {
+                "DomainName": "MockDomain2"
+            }
+        ]
+    }
+}

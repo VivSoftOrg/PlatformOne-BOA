@@ -1,0 +1,189 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bad-test-pod-1
+  annotations:
+    sidecar.istio.io/inject: "false"
+    seccomp.security.alpha.kubernetes.io/pod: runtime/default
+    container.apparmor.security.beta.kubernetes.io/opa: unconfined
+spec:
+  hostPID: true
+  hostIPC: true
+  hostNetwork: true
+  securityContext:
+    fsGroup: 10
+    runAsUser: 0
+    runAsGroup: 250
+    supplementalGroups: [250]
+    sysctls:
+      - name: kernel.msgmax
+        value: "65536"
+  containers:
+    - name: opa
+      image: openpolicyagent/opa:latest
+      args:
+        - "run"
+        - "--server"
+        - "--addr=localhost:8080"
+      ports:
+        - containerPort: 8081
+          hostPort: 8081
+      livenessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /healthz
+          port: 9090
+          scheme: HTTP
+        periodSeconds: 10
+      securityContext:
+        privileged: true
+        allowPrivilegeEscalation: true
+        procMount: Invalid
+        readOnlyRootFilesystem: false
+        capabilities:
+          add: ["disallowedcapability"]
+        seLinuxOptions:
+          level: s1:c234,c567
+          user: sysadm_u
+          role: sysadm_r
+          type: svirt_lxc_net_t
+      volumeMounts:
+      - mountPath: /test
+        name: test-volume
+        readOnly: true
+      - mountPath: /cache
+        name: cache-volume
+        readOnly: true
+      - mountPath: /test-cinder
+        name: cinder-volume
+  volumes:
+  - name: test-volume
+    flexVolume:
+      driver: "notallowed/lvm"
+  - name: cache-volume
+    hostPath:
+      path: /tmp # directory location on host
+  - name: cinder-volume
+    # This OpenStack volume must already exist.
+    cinder:
+      volumeID: "<volume id>"
+      fsType: ext4
+---
+#To capture violations like resource ratio
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bad-test-pod-2
+spec:
+  securityContext:
+    seLinuxOptions:
+      level: s1:c234,c567
+      user: sysadm_u
+      role: sysadm_r
+      type: svirt_lxc_net_t
+  serviceAccountName: default
+  containers:
+    - name: opa
+      image: openpolicyagent/opa:0.9
+      args:
+        - "run"
+        - "--server"
+        - "--addr=localhost:8080"
+      resources:
+        limits:
+          cpu: "800m"
+          memory: "2Gi"
+        requests:
+          cpu: "100m"
+          memory: "100Mi"
+      readinessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /readyz
+          port: 9090
+          scheme: HTTP
+        periodSeconds: 10
+      securityContext:
+        procMount: Unmasked
+  tolerations:
+  - key: "privileged"
+    operator: "Equal"
+    value: "true"
+    effect: "NoSchedule"
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: bad-pod-test-ns
+  labels:
+    istio-injection: "disabled"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bad-test-service-1
+spec:
+  selector:
+    key: value
+  ports:
+    - port: 80
+      targetPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bad-test-service-2
+spec:
+  type: NodePort
+  selector:
+    key: value
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30007
+  externalIPs:
+    - 1.1.1.1
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bad-test-ingress-1
+  annotations:
+     "kubernetes.io/ingress.allow-http": "false"
+spec:
+  tls:
+  - hosts:
+      - example-host.example.com
+    secretName: testsecret-tls
+  rules:
+  - host: example-host.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: opa
+            port:
+              number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bad-test-ingress-2
+spec:
+  tls:
+  - hosts:
+      - example-host.example.com
+    secretName: testsecret-tls
+  rules:
+  - host: example-host.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: opa
+            port:
+              number: 80

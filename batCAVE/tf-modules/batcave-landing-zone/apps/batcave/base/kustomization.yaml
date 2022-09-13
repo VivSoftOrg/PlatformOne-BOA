@@ -1,0 +1,79 @@
+namespace: batcave
+
+commonLabels:
+  owner: batcave
+
+# disable the hash so that the HRs in the overlays know the names of the base CMs
+generatorOptions:
+  disableNameSuffixHash: true
+
+resources:
+  - ebs.yaml
+  - namespace.yaml
+  - bigbang.yaml
+  - third-party/falco.yaml
+
+configurations:
+  - kustomizeconfig.yaml
+
+configMapGenerator:
+  - name: argocd-base-values
+    files:
+      - values.yaml=configs/argocd-base-values.yaml
+  - name: authmanager-base-values
+    files:
+      - values.yaml=configs/authmanager-base-values.yaml
+  - name: cluster-auditor-base-values
+    files:
+      - values.yaml=configs/cluster-auditor-base-values.yaml
+  - name: eck-operator-base-values
+    files:
+      - values.yaml=configs/eck-operator-base-values.yaml
+  - name: fluentbit-base-values
+    files:
+      - values.yaml=configs/fluentbit-base-values.yaml
+  - name: gatekeeper-base-values
+    files:
+      - values.yaml=configs/gatekeeper-base-values.yaml
+  - name: gitlab-base-values
+    files:
+      - values.yaml=configs/gitlab-base-values.yaml
+  - name: gitlab-runner-base-values
+    files:
+      - values.yaml=configs/gitlab-runner-base-values.yaml
+  - name: istio-base-values
+    files:
+      - values.yaml=configs/istio-base-values.yaml
+  - name: istio-operator-base-values
+    files:
+      - values.yaml=configs/istio-operator-base-values.yaml
+  - name: jaeger-base-values
+    files:
+      - values.yaml=configs/jaeger-base-values.yaml
+  - name: kiali-base-values
+    files:
+      - values.yaml=configs/kiali-base-values.yaml
+  - name: kyverno-base-values
+    files:
+      - values.yaml=configs/kyverno-base-values.yaml
+  - name: logging-base-values
+    files:
+      - values.yaml=configs/logging-base-values.yaml
+  - name: loki-base-values
+    files:
+      - values.yaml=configs/loki-base-values.yaml
+  - name: metrics-server-base-values
+    files:
+      - values.yaml=configs/metrics-server-base-values.yaml
+  - name: monitoring-base-values
+    files:
+      - values.yaml=configs/monitoring-base-values.yaml
+  - name: sso-base-values
+    files:
+      - values.yaml=configs/sso-base-values.yaml
+  - name: twistlock-base-values
+    files:
+      - values.yaml=configs/twistlock-base-values.yaml
+  - name: velero-base-values
+    files:
+      - values.yaml=configs/velero-base-values.yaml

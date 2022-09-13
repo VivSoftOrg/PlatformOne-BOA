@@ -1,0 +1,21 @@
+{
+    "Records": [
+      {
+        "EventSource": "aws:sns",
+        "EventVersion": "1.0",
+        "EventSubscriptionArn": "arn:aws:sns:us-east-1:107339370656:sns-testing:95903905-199c-485b-9197-199ca3228116",
+        "Sns": {
+          "Type": "Notification",
+          "MessageId": "7563e605-b19c-5ee8-b565-b42c273f3f78",
+          "TopicArn": "arn:aws:sns:us-east-1:107339370656:sns-testing",
+          "Subject": "SNS Message",
+          "Message": "{\"configParam\": {\"performAction\": \"True\", \"notifier\": \"ses\", \"toEmail\": \"anish.bhagwat@reancloud.com\", \"forbiddenPorts\": \"22\"}, \"accountId\": \"107339370656\", \"resourceDetails\": [{\"configItem\": {\"rootdevicetype\": \"ebs\", \"instanceid\": \"i-cb660d3b\", \"placement\": {\"tenancy\": \"default\", \"groupname\": \"\", \"availabilityzone\": \"us-east-1b\"}, \"statereason\": {\"message\": \"Client.UserInitiatedShutdown: User initiated shutdown\", \"code\": \"Client.UserInitiatedShutdown\"}, \"virtualizationtype\": \"hvm\", \"tags\": [{\"key\": \"Name\", \"value\": \"win_2003_new_ssd\"}], \"sourcedestcheck\": true, \"rootdevicename\": \"/dev/sda1\", \"clienttoken\": \"skwQN1426316216934\", \"amilaunchindex\": 0, \"subnetid\": \"subnet-da04a4f1\", \"ebsoptimized\": false, \"productcodes\": [], \"platform\": \"windows\", \"networkinterfaces\": [{\"groups\": [{\"groupid\": \"sg-cead26aa\", \"groupname\": \"launch-wizard-1\"}], \"vpcid\": \"vpc-47105e22\", \"privateipaddress\": \"172.31.54.203\", \"privateipaddresses\": [{\"privatednsname\": \"ip-172-31-54-203.ec2.internal\", \"primary\": true, \"privateipaddress\": \"172.31.54.203\"}], \"sourcedestcheck\": true, \"privatednsname\": \"ip-172-31-54-203.ec2.internal\", \"description\": \"\", \"networkinterfaceid\": \"eni-a288b18f\", \"subnetid\": \"subnet-da04a4f1\", \"attachment\": {\"status\": \"attached\", \"attachtime\": \"2015-03-14T06:57:03+00:00\", \"attachmentid\": \"eni-attach-0865f774\", \"deleteontermination\": true, \"deviceindex\": 0}, \"status\": \"in-use\", \"macaddress\": \"12:e6:db:41:b9:8b\", \"ownerid\": \"107339370656\"}], \"keyname\": \"CloudEndureKP\", \"architecture\": \"x86_64\", \"securitygroups\": [{\"groupid\": \"sg-cead26aa\", \"groupname\": \"launch-wizard-1\"}], \"vpcid\": \"vpc-47105e22\", \"instancetype\": \"t2.medium\", \"hypervisor\": \"xen\", \"state\": {\"code\": 80, \"name\": \"stopped\"}, \"imageid\": \"ami-1286a77a\", \"monitoring\": {\"state\": \"disabled\"}, \"privatednsname\": \"ip-172-31-54-203.ec2.internal\", \"privateipaddress\": \"172.31.54.203\", \"blockdevicemappings\": [], \"launchtime\": \"2015-03-23T08:25:36+00:00\", \"publicdnsname\": \"\", \"statetransitionreason\": \"User initiated (2015-03-23 08:31:08 GMT)\"}, \"resourceId\": \"i-cb660d3b\", \"ComplianceType\": \"NON_COMPLIANT\", \"evaluationMessage\": \"This resource is compliant with the rule.\", \"resourceType\": \"AWS::EC2::Instance\"}], \"notifier\": \"ses\"}",
+          "Timestamp": "2017-09-06T06:23:31.136Z",
+          "SignatureVersion": "1",
+          "Signature": "KDYBNEs601RXv0uyi1ElzSEtCIo+u6vlKpYRgxIHsRFCsPqOV6cqYbPWpKiJ3hN2VNzWAZ1qcL51xJzmTJg3HsqwcjoUqvEBfMCw5RduI3EprFtEh7F67Te4ae4gAwDrLxQKKjUaMuC8qjZfBDc/br/no6XE+2zcwykz0pJO30Okt0Ku0nThJ2Tqo7y4bgBqqBvjjZsJNK7vG55XZPpxrvs3JlBf8cHgYwo0W3c0kiTPl/JRy8PEjdZvBc4Pv97kLgLSi4GviGwdp96+emmaJczYXduuvQlQ/5N0b4eQyFJzNwm9YOj6dINM0v9uPksQR92qCHEF52QVqhYQAF++uQ==",
+          "SigningCertUrl": "https://sns.us-east-1.amazonaws.com/SimpleNotificationService-433026a4050d206028891664da859041.pem', 'UnsubscribeUrl': 'https://sns.us-east-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:us-east-1:107339370656:sns-testing:95903905-199c-485b-9197-199ca3228116",
+          "MessageAttributes": {}
+        }
+      }
+    ]
+  }

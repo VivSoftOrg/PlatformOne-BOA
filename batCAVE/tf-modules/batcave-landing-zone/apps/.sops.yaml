@@ -1,0 +1,13 @@
+creation_rules:
+  - path_regex: .*/dev/.*
+    kms: 'arn:aws:kms:us-east-1:373346310182:key/3a0cef2d-d5ad-48f3-904d-25c4d52b2504'
+    encrypted_regex: '^(data|stringData)$'
+  - path_regex: .*/test/.*
+    kms: 'arn:aws:kms:us-east-1:831579051573:key/bd985743-efb5-4f7c-bb0c-d6d8ef13f211'
+    encrypted_regex: '^(data|stringData)$'
+  - path_regex: .*/impl/.*
+    kms: 'arn:aws:kms:us-east-1:111594127594:key/cbfacbe4-73d6-45a3-8d81-71aaf1d2da46'
+    encrypted_regex: '^(data|stringData)$'
+  - path_regex: .*/prod/.*
+    kms: 'arn:aws:kms:us-east-1:863306670509:key/a0c98664-e12a-44b1-b3b0-4bb062de7a9e'
+    encrypted_regex: '^(data|stringData)$'

@@ -1,0 +1,74 @@
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    description: Controls the seccomp profile used by containers.
+  name: k8spspseccomp
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sPSPSeccomp
+      validation:
+        openAPIV3Schema:
+          type: object
+          properties:
+            allowedProfiles:
+              items:
+                type: string
+              type: array
+            excludedResources:
+              type: array
+              items:
+                type: string
+  targets:
+  - rego: |
+      package k8spspseccomp
+
+      included(resourceName, exclusions) = true {
+        patterns := {pattern | exclusion := exclusions[_]; pattern := sprintf("^%v$", [exclusion])}
+        resource := concat("/", [input.review.object.metadata.namespace, resourceName])
+        matches := {match | match := patterns[_]; true == regex.match(match, resource)}
+        count(matches) == 0
+      }
+
+      violation[{"msg": msg, "details": {}}] {
+          metadata := input.review.object.metadata
+          not input_wildcard_allowed(metadata)
+          container := input_containers[_]
+          included(container.name, input.parameters.excludedResources)
+          not input_container_allowed(metadata, container)
+          msg := sprintf("Seccomp profile is not allowed, pod: %v, container: %v, Allowed profiles: %v", [metadata.name, container.name, input.parameters.allowedProfiles])
+      }
+
+      input_wildcard_allowed(metadata) {
+          input.parameters.allowedProfiles[_] == "*"
+      }
+
+      input_container_allowed(metadata, container) {
+          not get_container_profile(metadata, container)
+          metadata.annotations["seccomp.security.alpha.kubernetes.io/pod"] == input.parameters.allowedProfiles[_]
+      }
+
+      input_container_allowed(metadata, container) {
+        profile := get_container_profile(metadata, container)
+        profile == input.parameters.allowedProfiles[_]
+      }
+
+      get_container_profile(metadata, container) = profile {
+        value := metadata.annotations[key]
+          startswith(key, "container.seccomp.security.alpha.kubernetes.io/")
+          [prefix, name] := split(key, "/")
+          name == container.name
+          profile = value
+      }
+
+      input_containers[c] {
+          c := input.review.object.spec.containers[_]
+      }
+      input_containers[c] {
+          c := input.review.object.spec.initContainers[_]
+      }
+    target: admission.k8s.gatekeeper.sh

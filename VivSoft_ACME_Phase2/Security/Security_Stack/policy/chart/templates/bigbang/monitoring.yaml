@@ -1,0 +1,21 @@
+{{- if .Values.monitoring.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: gatekeeper
+  namespace: {{ .Release.Namespace }}
+  labels:
+    monitoring: gatekeeper
+    release: {{ .Release.Namespace }}-gatekeeper
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      app: gatekeeper
+  namespaceSelector:
+    matchNames:
+    - {{ .Release.Namespace }}
+  podMetricsEndpoints:
+  - port: metrics
+    interval: 10s
+{{- end }}

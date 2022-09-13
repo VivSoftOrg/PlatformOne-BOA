@@ -1,0 +1,4 @@
+export AWS_DEFAULT_REGION="us-east-1"
+export CLUSTER_NAME="yourname" # Cluster name, usually your name
+export AWS_PROFILE="373346310182_batcave-application-admin"
+export KUBECONFIG="${HOME}/.kube/config-batcave-dev"

@@ -1,0 +1,26 @@
+{{- if .Values.violations.noHostNamespace.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.noHostNamespace.kind  }}
+metadata:
+  name: {{ .Values.violations.noHostNamespace.name  }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "Host Namespace"
+    constraints.gatekeeper/description: "Containers must not share the host's namespaces"
+    constraints.gatekeeper/source: "https://github.com/open-policy-agent/gatekeeper-library/tree/master/library/pod-security-policy/host-namespaces"
+    constraints.gatekeeper/docs: "https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#hosts-namespaces"
+    constraints.gatekeeper/related: "https://kubernetes.io/docs/concepts/policy/pod-security-policy/#host-namespaces"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.noHostNamespace.enforcementAction  }}
+  match:
+    {{- if .Values.violations.noHostNamespace.match  }}
+    {{- toYaml .Values.violations.noHostNamespace.match | nindent 4}}
+    {{- end }}
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+  parameters:
+    {{- toYaml .Values.violations.noHostNamespace.parameters | nindent 4}}
+{{- end }}

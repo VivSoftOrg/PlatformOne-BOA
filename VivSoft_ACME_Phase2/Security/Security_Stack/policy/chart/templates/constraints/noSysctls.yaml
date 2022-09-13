@@ -1,0 +1,26 @@
+{{- if .Values.violations.noSysctls.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.noSysctls.kind }}
+metadata:
+  name: {{ .Values.violations.noSysctls.name }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "SysCtls"
+    constraints.gatekeeper/description: "Containers must not use specified sysctls."
+    constraints.gatekeeper/source: "https://github.com/open-policy-agent/gatekeeper-library/tree/master/library/pod-security-policy/forbidden-sysctls"
+    constraints.gatekeeper/docs: "https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/#setting-sysctls-for-a-pod"
+    constraints.gatekeeper/related: "https://man7.org/linux/man-pages/man8/sysctl.8.html"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.noSysctls.enforcementAction }}
+  match:
+    {{- if .Values.violations.noSysctls.match  }}
+    {{- toYaml .Values.violations.noSysctls.match | nindent 4 }}
+    {{- end }}
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+  parameters:
+    {{- toYaml .Values.violations.noSysctls.parameters | nindent 4}}
+{{- end }}

@@ -1,0 +1,73 @@
+stages:
+  - unit-test
+  - build-image
+  - create-sbom
+  - scan-image
+
+unit-test:
+  image: registry.gitlab.com/enbuild-staging/hardened-gitlab-runner/dind:latest
+  stage: unit-test
+  allow_failure: false
+  only:
+    - main
+  script:
+    - echo "Here we will run the Unit Tests"
+
+build-image:
+  image: registry.gitlab.com/enbuild-staging/hardened-gitlab-runner/dind:latest
+  stage: build-image
+  only:
+    - main
+  services:
+    - docker:dind
+  before_script:
+    # create a buildx builder
+    - docker buildx create --use
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  variables:
+    DOCKER_BUILDKIT: 1
+  script:
+    - docker buildx bake sample-app --print
+    - docker buildx bake sample-app --pull --push
+    - echo "${CI_REGISTRY_IMAGE}/react-js-sample-app:${CI_COMMIT_SHA} pushed"
+
+create-sbom:
+  image: registry.gitlab.com/enbuild-staging/hardened-gitlab-runner/dind:latest
+  stage: create-sbom
+  only:
+    - main
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  variables:
+    DOCKER_BUILDKIT: 1
+    COSIGN_EXPERIMENTAL: 1
+  script:
+    - /usr/local/bin/syft packages "${CI_REGISTRY_IMAGE}/react-js-sample-app:${CI_COMMIT_SHA}" -o cyclonedx-json  > react-js-sample-app-sbom.json
+    - cosign attach sbom --sbom react-js-sample-app-sbom.json ${CI_REGISTRY_IMAGE}/react-js-sample-app:${CI_COMMIT_SHA}
+    # Sign the image. Skipped for now, As gitlab does not support keyless sign. Otherwise we have to provide the private ket for signing. Not good idea in a template project.
+    # - cosign sign ${CI_REGISTRY_IMAGE}/react-js-sample-app:${CI_COMMIT_SHA}
+  artifacts:
+    paths:
+      - react-js-sample-app-sbom.json
+    expire_in: never
+
+scan-image:
+  image: registry.gitlab.com/enbuild-staging/hardened-gitlab-runner/dind:latest
+  stage: scan-image
+  only:
+    - main
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  variables:
+    DOCKER_BUILDKIT: 1
+  script:
+    - trivy image --no-progress --output sample-app-trivy-report.txt ${CI_REGISTRY_IMAGE}/react-js-sample-app:${CI_COMMIT_SHA}
+    - cat sample-app-trivy-report.txt
+  artifacts:
+    paths:
+      - sample-app-trivy-report.txt
+    expire_in: never

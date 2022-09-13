@@ -1,0 +1,35 @@
+jaeger:
+  enabled: true
+  values:
+    istio:
+      enabled: true
+      jaeger:
+        hosts:
+          - tracing.${batcave_base_domain}
+        gateways:
+          - "istio-system/main"
+    cleanSvcMonitor:
+      image:
+        repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/big-bang/base
+    image:
+      repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/jaegertracing/jaeger-operator
+    jaeger:
+      spec:
+        agent:
+          image: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/jaegertracing/jaeger-agent
+        allInOne:
+          image: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/jaegertracing/all-in-one
+        collector:
+          image: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/jaegertracing/jaeger-collector
+        ingester:
+          image: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/jaegertracing/jaeger-ingester
+        query:
+          image: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/jaegertracing/jaeger-query
+    retention:
+      image: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/jaegertracing/jaeger-es-index-cleaner
+    webhookCertGen:
+      cleanupProxy:
+        image:
+          repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/big-bang/base
+      image:
+        repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/ingress-nginx/kube-webhook-certgen

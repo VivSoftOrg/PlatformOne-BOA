@@ -1,0 +1,9 @@
+# Profiles + KFAM
+- kubeflow-manifests/apps/profiles/upstream/overlays/kubeflow
+# Volumes Web App
+- kubeflow-manifests/apps/volumes-web-app/upstream/overlays/istio
+# Training Operator
+- kubeflow-manifests/apps/training-operator/upstream/overlays/kubeflow
+# MPI Operator
+- kubeflow-manifests/apps/mpi-job/upstream/overlays/kubeflow
+

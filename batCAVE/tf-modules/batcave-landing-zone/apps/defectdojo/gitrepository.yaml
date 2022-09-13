@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: defectdojo
+  namespace: batcave
+spec:
+  url: https://github.com/DefectDojo/django-DefectDojo
+  ref:
+    tag: 2.12.0
+  interval: 1m

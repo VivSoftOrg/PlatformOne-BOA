@@ -1,0 +1,25 @@
+{{- if .Values.violations.allowedIPs.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.allowedIPs.kind }}
+metadata:
+  name: {{ .Values.violations.allowedIPs.name }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "External IPs"
+    constraints.gatekeeper/description: "Services may only contain specified external IPs."
+    constraints.gatekeeper/source: "https://github.com/open-policy-agent/gatekeeper-library/tree/master/library/general/externalip"
+    constraints.gatekeeper/docs: "https://kubernetes.io/docs/concepts/services-networking/service/#external-ips"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.allowedIPs.enforcementAction }}
+  match:
+    {{- if .Values.violations.allowedIPs.match  }}
+    {{- toYaml .Values.violations.allowedIPs.match | nindent 4}}
+    {{- end }}
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+  parameters:
+    {{- toYaml .Values.violations.allowedIPs.parameters | nindent 4}}
+{{- end }}

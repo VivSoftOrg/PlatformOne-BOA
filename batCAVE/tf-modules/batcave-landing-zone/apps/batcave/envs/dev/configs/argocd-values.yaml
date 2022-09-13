@@ -1,0 +1,82 @@
+addons:
+  argocd:
+    enabled: true
+    values:
+      istio:
+        argocd:
+          hosts:
+            - argocd-${batcave_cluster_name}.{{ .Values.domain }}
+      sso:
+        rbac:
+          policy.csv: |
+            p, role:helloargouser, applications, get, helloargo/*, allow
+            p, role:helloargouser, applications, sync, helloargo/*, allow
+            p, role:helloargouser, applications, delete, helloargo/*, deny
+            g, BAT_DEV_CLUSTER_ADM, role:admin
+            g, BAT_DEV_SECURITY, role:readonly
+      redis-bb:
+        replica:
+          replicaCount: 1
+      server:
+        rbacConfig:
+          policy.default: role:helloargouser
+          scopes: '[groups, batcave-groups]'
+        configs:
+          repositories:
+            - url: https://code.batcave.internal.cms.gov/batcave-iac/test-pipelines/argocd-test-app.git
+        additionalApplications:
+          - name: helloargo
+            namespace: argocd
+            project: helloargo
+            source:
+              repoURL: https://code.batcave.internal.cms.gov/batcave-iac/test-pipelines/argocd-test-app.git
+              targetRevision: no-tolerations
+              path: .
+            destination:
+              name: in-cluster
+              namespace: helloargo
+              server: ''
+            syncPolicy:
+              syncOptions:
+                - CreateNamespace=true
+              automated:
+                prune: true
+                selfHeal: true
+          - name: helloargo-admin
+            namespace: argocd
+            project: helloargo-admin
+            source:
+              repoURL: https://code.batcave.internal.cms.gov/batcave-iac/test-pipelines/argocd-test-app.git
+              targetRevision: no-tolerations
+              path: .
+            destination:
+              name: in-cluster
+              namespace: helloargo-admin
+              server: ''
+            syncPolicy:
+              syncOptions:
+                - CreateNamespace=true
+              automated:
+                prune: true
+                selfHeal: true
+        additionalProjects:
+          - name: helloargo
+            namespace: argocd
+            destinations:
+            - namespace: helloargo
+              server: https://kubernetes.default.svc
+            sourceRepos:
+            -  https://code.batcave.internal.cms.gov/batcave-iac/test-pipelines/argocd-test-app.git
+            clusterResourceWhitelist:
+            - kind : '*'
+              group: '*'
+          - name: helloargo-admin
+            namespace: argocd
+            destinations:
+            - namespace: helloargo-admin
+              server: https://kubernetes.default.svc
+            sourceRepos:
+            -  https://code.batcave.internal.cms.gov/batcave-iac/test-pipelines/argocd-test-app.git
+            clusterResourceWhitelist:
+            - kind : '*'
+              group: '*'

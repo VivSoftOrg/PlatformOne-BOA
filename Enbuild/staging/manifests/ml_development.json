@@ -1,0 +1,263 @@
+{
+  "type": "helm",
+  "slug": "ml_development",
+  "name": "ML Development",
+  "repository": "https://gitlab.com/enbuild-staging/iac-templates/ml_development",
+  "project_id": "25681545",
+  "readme_file_path": "README.md",
+  "ref": "main",
+  "sops": false,
+  "image_path": "images/ml_development.png",
+  "components": [
+    {
+      "type": "component",
+      "name": "certmanager",
+      "tool_type": "Certmanager",
+      "slug": "certmanager",
+      "variable_file_path": "1-certmanager.yaml",
+      "image_path": "images/certmanager.png",
+      "mandatory": false
+    },
+    {
+      "type": "component",
+      "name": "istio",
+      "tool_type": "istio",
+      "slug": "istio",
+      "variable_file_path": "2-istio.yaml",
+      "image_path": "images/istio.png",
+      "mandatory": false
+    },
+    {
+      "type": "component",
+      "name": "dex",
+      "tool_type": "dex",
+      "slug": "dex",
+      "variable_file_path": "3-dex.yaml",
+      "image_path": "images/dex.png",
+      "mandatory": false
+    },
+    {
+      "type": "component",
+      "name": "Knative",
+      "tool_type": "knative",
+      "slug": "knative",
+      "variable_file_path": "4-knative.yaml",
+      "image_path": "images/knative.png",
+      "mandatory": true
+    },
+    {
+      "type": "component",
+      "name": "Kubeflow with Kserver and Pipelines",
+      "tool_type": "kubeflow",
+      "slug": "kubeflow",
+      "variable_file_path": "5-kubeflow.yaml",
+      "image_path": "images/kubeflow.png",
+      "mandatory": true
+    },
+    {
+      "type": "component",
+      "name": "Katib Hyperparameter Tuning",
+      "tool_type": "katib",
+      "slug": "katib",
+      "variable_file_path": "6-katib.yaml",
+      "image_path": "images/katib.png",
+      "mandatory": true
+    },
+    {
+      "type": "component",
+      "name": "jupyter notebook controller",
+      "tool_type": "jupyter",
+      "slug": "jupyter",
+      "variable_file_path": "7-jupyter.yaml",
+      "image_path": "images/jupyter.png",
+      "mandatory": true
+    },
+    {
+      "type": "component",
+      "name": "Tensorboard",
+      "tool_type": "tensorboard",
+      "slug": "tensorboard",
+      "variable_file_path": "8-tensorboard.yaml",
+      "image_path": "images/tensorboard.png",
+      "mandatory": true
+    },
+    {
+      "type": "component",
+      "name": "mpi-operator",
+      "tool_type": "mpi-operator",
+      "slug": "mpi-operator",
+      "variable_file_path": "9-mpi-operator.yaml",
+      "image_path": "images/mpi-operator.png",
+      "mandatory": true
+    }
+  ],
+  "infrastructure": {
+    "type": "infrastructure",
+    "slug": "kubernetes",
+    "name": "Kubernetes",
+    "mandatory": true,
+    "showKubeConfig": true,
+    "selections": [
+      {
+        "slug": "aws",
+        "name": "AWS",
+        "fields": [
+          {
+            "name": "Kubeconfig",
+            "type": "textbox",
+            "key": "KUBECONFIG",
+            "plaintext": false
+          },
+          {
+            "name": "Cloud Selection",
+            "type": "text",
+            "key": "",
+            "text": "Cloud Selection",
+            "plaintext": true
+          },
+          {
+            "name": "Select Cloud Type",
+            "type": "radio",
+            "key": "CLOUD_TYPE",
+            "plaintext": false
+          },
+          {
+            "name": "Access Key",
+            "type": "input_text",
+            "variable": "AWS_ACCESS_KEY_ID",
+            "plaintext": false
+          },
+          {
+            "name": "Secret Key",
+            "type": "password",
+            "key": "AWS_SECRET_ACCESS_KEY",
+            "plaintext": false
+          },
+          {
+            "name": "AWS Region",
+            "type": "input_text",
+            "key": "AWS_DEFAULT_REGION",
+            "plaintext": true
+          }
+        ]
+      },
+      {
+        "slug": "azure",
+        "name": "Azure",
+        "fields": [
+          {
+            "name": "Kubeconfig",
+            "type": "textbox",
+            "key": "KUBECONFIG",
+            "plaintext": false
+          },
+          {
+            "name": "Cloud Selection",
+            "type": "text",
+            "key": "",
+            "text": "Cloud Selection",
+            "plaintext": true
+          },
+          {
+            "name": "Select Cloud Type",
+            "type": "radio",
+            "key": "CLOUD_TYPE",
+            "plaintext": false
+          },
+          {
+            "name": "Tenant Id",
+            "type": "input_text",
+            "key": "TENANT_ID",
+            "plaintext": false
+          },
+          {
+            "name": "Subscription Id",
+            "type": "input_text",
+            "key": "SUBSCRIPTION_ID",
+            "plaintext": false
+          },
+          {
+            "name": "Client Id",
+            "type": "input_text",
+            "key": "CLIENT_ID",
+            "plaintext": false
+          },
+          {
+            "name": "Client Secret",
+            "type": "input_text",
+            "key": "CLIENT_SECRET",
+            "plaintext": false
+          },
+          {
+            "name": "AZURE Location",
+            "type": "input_text",
+            "key": "AZURE_LOCATION",
+            "plaintext": true
+          }
+        ]
+      },
+      {
+        "slug": "oracle",
+        "name": "Oracle",
+        "accessedTo": ["OKE"],
+        "fields": [
+          {
+            "name": "Cloud Selection",
+            "type": "text",
+            "key": "",
+            "plaintext": true
+          },
+          {
+            "name": "Select Cloud Type",
+            "type": "radio",
+            "key": "CLOUD_TYPE",
+            "variable": "CLOUD_TYPE",
+            "plaintext": false
+          },
+          {
+            "name": "Home Region",
+            "type": "input_text",
+            "key": "TF_VAR_home_region",
+            "variable": "TF_VAR_home_region",
+            "plaintext": true
+          },
+          {
+            "name": "Tenancy ID",
+            "type": "input_text",
+            "key": "TF_VAR_tenancy_id",
+            "variable": "TF_VAR_tenancy_id",
+            "plaintext": true
+          },
+          {
+            "name": "Compartment ID",
+            "type": "input_text",
+            "key": "TF_VAR_compartment_id",
+            "variable": "TF_VAR_compartment_id",
+            "plaintext": true
+          },
+          {
+            "name": "User ID",
+            "type": "input_text",
+            "key": "TF_VAR_user_id",
+            "variable": "TF_VAR_user_id",
+            "plaintext": true
+          },
+          {
+            "name": "API Fingerprint",
+            "type": "input_text",
+            "key": "TF_VAR_api_fingerprint",
+            "variable": "TF_VAR_api_fingerprint",
+            "plaintext": true
+          },
+          {
+            "name": "API Private Key 1",
+            "type": "textbox",
+            "key": "TF_VAR_api_private_key",
+            "variable": "TF_VAR_api_private_key",
+            "plaintext": true
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+---
+apiVersion: v1
+
+# The repository name in registry1, excluding /ironbank/
+name: "vivsoft/enbuild/frontend"
+
+# List of tags to push for the repository in registry1
+# The most specific version should be the first tag and will be shown
+# on ironbank.dsop.io
+tags:
+- "0.0.1"
+- "latest"
+
+# Build args passed to Dockerfile ARGs
+args:
+  BASE_IMAGE: "opensource/nginx/nginx"
+  BASE_TAG: "1.21.6"
+
+
+# Docker image labels
+labels:
+  org.opencontainers.image.title: "frontend"
+  ## Human-readable description of the software packaged in the image
+  org.opencontainers.image.description: "EnBuild frontend"
+  ## License(s) under which contained software is distributed
+  org.opencontainers.image.licenses: "MIT"
+  ## URL to find more information on the image
+  org.opencontainers.image.url: "https://vivsoft.io"
+  ## Name of the distributing entity, organization or individual
+  org.opencontainers.image.vendor: "Vivsoft"
+  org.opencontainers.image.version: "0.0.1"
+  ## Keywords to help with search (ex. "cicd,gitops,golang")
+  mil.dso.ironbank.image.keywords: "cicd,platform one,iron bank"
+  ## This value can be "opensource" or "commercial"
+  mil.dso.ironbank.image.type: "commercial"
+  ## Product the image belongs to for grouping multiple images
+  mil.dso.ironbank.product.name: "Vivsoft EnBuild"
+
+# List of resources to make available to the offline build context
+resources:
+- tag: public.ecr.aws/b6r5a2q9/enbuild/frontend:0.0.1
+  url: docker://public.ecr.aws/b6r5a2q9/enbuild/frontend:0.0.1
+
+# List of project maintainers
+maintainers:
+- name: "Elvis Chi"
+  username: "echi"
+  email: "echi@vivsoft.io"
+  cht_member: true

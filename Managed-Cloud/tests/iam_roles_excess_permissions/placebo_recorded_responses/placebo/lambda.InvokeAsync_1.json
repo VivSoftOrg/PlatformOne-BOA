@@ -1,0 +1,18 @@
+{
+    "status_code": 202,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "41e8abd0-246e-11e8-a4aa-83fa5ddd5775",
+            "HTTPStatusCode": 202,
+            "HTTPHeaders": {
+                "date": "Sat, 10 Mar 2018 14:21:00 GMT",
+                "content-type": "application/json",
+                "content-length": "0",
+                "connection": "keep-alive",
+                "x-amzn-requestid": "41e8abd0-246e-11e8-a4aa-83fa5ddd5775"
+            },
+            "RetryAttempts": 0
+        },
+        "Status": 202
+    }
+}

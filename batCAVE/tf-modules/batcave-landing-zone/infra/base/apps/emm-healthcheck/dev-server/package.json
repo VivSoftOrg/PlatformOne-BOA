@@ -1,0 +1,15 @@
+{
+  "name": "emm-healthcheck-dev-server",
+  "version": "1.0.0",
+  "description": "Host the emm-healthcheck lambda in a local express.js server",
+  "main": "server.js",
+  "type": "module",
+  "dependencies": {
+    "emm-healthcheck": "file:../lambda",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.18"
+  },
+  "scripts": {
+    "serve": "nodemon ./server.js --watch ../lambda/*.js"
+  }
+}

@@ -1,0 +1,100 @@
+client:
+  ignore-redirect: true
+  timeout: 5s
+endpoints:
+  - name: Kiali
+    group: batcave Utility Belt
+    url: https://kiali.batcave.internal.cms.gov?healthcheck=gatus.batcave.internal.cms.gov
+    interval: 5m
+    client:
+      ignore-redirect: true
+      timeout: 5s
+    conditions:
+      - '[STATUS] < 400'
+      - '[RESPONSE_TIME] < 2s'
+      - '[CERTIFICATE_EXPIRATION] > 1d'
+      - '[CERTIFICATE_EXPIRATION] > 30d'
+  - name: Grafana
+    group: batcave Utility Belt
+    url: https://grafana.batcave.internal.cms.gov?healthcheck=gatus.batcave.internal.cms.gov
+    interval: 5m
+    client:
+      ignore-redirect: true
+      timeout: 5s
+    conditions:
+      - '[STATUS] < 400'
+      - '[RESPONSE_TIME] < 2s'
+      - '[CERTIFICATE_EXPIRATION] > 1d'
+      - '[CERTIFICATE_EXPIRATION] > 30d'
+  - name: Alert Manager
+    group: batcave Utility Belt
+    url: https://alertmanager.batcave.internal.cms.gov?healthcheck=gatus.batcave.internal.cms.gov
+    interval: 5m
+    client:
+      ignore-redirect: true
+      timeout: 5s
+    conditions:
+      - '[STATUS] < 400'
+      - '[RESPONSE_TIME] < 2s'
+      - '[CERTIFICATE_EXPIRATION] > 1d'
+      - '[CERTIFICATE_EXPIRATION] > 30d'
+  - name: Jaeger
+    group: batcave Utility Belt
+    url: https://tracing.batcave.internal.cms.gov?healthcheck=gatus.batcave.internal.cms.gov
+    interval: 5m
+    client:
+      ignore-redirect: true
+      timeout: 5s
+    conditions:
+      - '[STATUS] < 400'
+      - '[RESPONSE_TIME] < 2s'
+      - '[CERTIFICATE_EXPIRATION] > 1d'
+      - '[CERTIFICATE_EXPIRATION] > 30d'
+  - name: DefectDojo
+    group: batcave Utility Belt
+    url: https://defectdojo.batcave.internal.cms.gov?healthcheck=gatus.batcave.internal.cms.gov
+    interval: 5m
+    client:
+      ignore-redirect: true
+      timeout: 5s
+    conditions:
+      - '[STATUS] < 400'
+      - '[RESPONSE_TIME] < 2s'
+      - '[CERTIFICATE_EXPIRATION] > 1d'
+      - '[CERTIFICATE_EXPIRATION] > 30d'
+  - name: GitLab
+    group: batcave Utility Belt
+    url: https://code.batcave.internal.cms.gov?healthcheck=gatus.batcave.internal.cms.gov
+    interval: 5m
+    client:
+      ignore-redirect: true
+      timeout: 5s
+    conditions:
+      - '[STATUS] < 400'
+      - '[RESPONSE_TIME] < 2s'
+      - '[CERTIFICATE_EXPIRATION] > 1d'
+      - '[CERTIFICATE_EXPIRATION] > 30d'
+  - name: CMS Artifactory
+    group: External Dependencies
+    url: https://artifactory.cloud.cms.gov/?healthcheck=gatus.batcave.internal.cms.gov
+    interval: 5m
+    client:
+      ignore-redirect: true
+      timeout: 5s
+    conditions:
+      - '[STATUS] < 400'
+      - '[RESPONSE_TIME] < 2s'
+      - '[CERTIFICATE_EXPIRATION] > 1d'
+      - '[CERTIFICATE_EXPIRATION] > 30d'
+  - name: GitHub
+    group: External Dependencies
+    url: https://www.github.com/?healthcheck=gatus.batcave.internal.cms.gov
+    interval: 5m
+    client:
+      ignore-redirect: true
+      timeout: 5s
+    conditions:
+      - '[STATUS] < 400'
+      - '[RESPONSE_TIME] < 2s'
+      - '[CERTIFICATE_EXPIRATION] > 1d'
+      - '[CERTIFICATE_EXPIRATION] > 30d'

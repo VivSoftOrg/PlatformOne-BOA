@@ -1,0 +1,19 @@
+{
+    "status_code": 200,
+    "data": {
+        "UserId": "AIDAJWMMIMSQKMG2MYJGC",
+        "Account": "107339370656",
+        "Arn": "arn:aws:iam::107339370656:user/devendra.suthar",
+        "ResponseMetadata": {
+            "RequestId": "3ea4088e-246e-11e8-bdfb-b96c3167b3c0",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "3ea4088e-246e-11e8-bdfb-b96c3167b3c0",
+                "content-type": "text/xml",
+                "content-length": "412",
+                "date": "Sat, 10 Mar 2018 14:20:54 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

@@ -1,0 +1,3 @@
+export CLUSTER_NAME=rob-dev # your dev cluster name, CHANGE THIS
+export AWS_PROFILE="373346310182_batcave-application-admin"
+export AWS_DEFAULT_REGION="us-east-1"

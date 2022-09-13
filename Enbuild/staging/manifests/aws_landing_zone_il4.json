@@ -1,0 +1,68 @@
+{
+    "type": "terraform",
+    "slug": "aws_landing_zone_il4",
+    "name": "AWS Landing Zone (IL4)",
+    "repository": "https://gitlab.com/enbuild-staging/iac-templates/aws-landing-zone",
+    "project_id": "25225482",
+    "readme_file_path": "README.md",
+    "values_folder_path": "infra",
+    "ref": "main",
+    "sops": false,
+    "image_path": "landingzone.png",
+    "components": [
+        {
+            "type": "component",
+            "name": "Cloud Enclave",
+            "slug": "vpc",
+            "tool_type": "VPC",
+            "variable_file_path": "infra/tfvars.json",
+            "image_path": "infra/vpc.png",
+            "mandatory": true
+        }
+    ],
+    "infrastructure": {
+        "type": "infrastructure",
+        "slug": "cloud",
+        "name": "Cloud",
+        "mandatory": true,
+        "selections": [
+            {
+                "slug": "aws",
+                "name": "AWS",
+                "selected": true,
+                "fields": [
+                    {
+                        "name": "Cloud Selection",
+                        "type": "text",
+                        "key": "",
+                        "plaintext": true
+                    },
+                    {
+                        "name": "Select Cloud Type",
+                        "type": "radio",
+                        "key": "CLOUD_TYPE",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Access Key",
+                        "type": "input_text",
+                        "variable": "AWS_ACCESS_KEY_ID",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "Secret Key",
+                        "type": "password",
+                        "key": "AWS_SECRET_ACCESS_KEY",
+                        "plaintext": false
+                    },
+                    {
+                        "name": "AWS Region",
+                        "type": "input_text",
+                        "key": "AWS_DEFAULT_REGION",
+                        "plaintext": true
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: batcave
+
+resources:
+  - ../dev
+  - k3d-values.yaml
+
+patchesStrategicMerge:
+  # Having multiple Kustomizations attempting to patch the same HelmRelease results in thrashing
+  # where each time reconciliation happens the target HelmRelease has a different patch applied.
+  # The only solution is to eliminate the dev Kustomization manifest.
+  - skip-batcave-values.yaml
+  - patch-batcave.yaml
+  - patch-ebs.yaml
+
+configMapGenerator:
+  - name: monitoring-k3d-values
+    files:
+      - values.yaml=configs/monitoring-k3d-values.yaml
+  - name: fluentbit-k3d-values
+    files:
+      - values.yaml=configs/fluentbit-k3d-values.yaml

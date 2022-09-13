@@ -1,0 +1,39 @@
+{{- if and .Values.istio.enabled .Values.istio.sidekick.enabled -}}
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: falco-sidekick
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ template "falco.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+  {{- if .Values.istio.sidekick.labels }}
+    {{ toYaml .Values.istio.sidekick.labels | nindent 4 }}
+  {{- end }}
+  {{- if .Values.istio.sidekick.annotations }}
+  annotations:
+    {{ toYaml .Values.istio.sidekick.annotations | nindent 4 }}
+  {{- end }}
+spec:
+  gateways:
+  {{- range .Values.istio.sidekick.gateways }}
+    - {{ . }}
+  {{- end }}
+  hosts:
+  {{- range .Values.istio.sidekick.hosts }}
+    - {{ tpl . $ }}
+  {{- end }}
+  http:
+    - match:
+      - uri:
+          exact: /
+      redirect:
+        uri: /ui
+    - route:
+        - destination:
+            host: {{ .Release.Name }}-falcosidekick-ui
+            port:
+              number: {{ .Values.falcosidekick.webui.service.port }}
+{{- end }}

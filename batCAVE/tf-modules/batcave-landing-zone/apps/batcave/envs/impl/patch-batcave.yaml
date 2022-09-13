@@ -1,0 +1,91 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: batcave
+  namespace: batcave
+spec:
+  valuesFrom:
+    # base values
+    - name: argocd-base-values
+      kind: ConfigMap
+    - name: authmanager-base-values
+      kind: ConfigMap
+    - name: cluster-auditor-base-values
+      kind: ConfigMap
+    - name: eck-operator-base-values
+      kind: ConfigMap
+    - name: fluentbit-base-values
+      kind: ConfigMap
+    - name: gatekeeper-base-values
+      kind: ConfigMap
+    - name: istio-base-values
+      kind: ConfigMap
+    - name: istio-operator-base-values
+      kind: ConfigMap
+    - name: jaeger-base-values
+      kind: ConfigMap
+    - name: kiali-base-values
+      kind: ConfigMap
+    - name: kyverno-base-values
+      kind: ConfigMap
+    - name: logging-base-values
+      kind: ConfigMap
+      # Re-enable after latest Loki configs have been updated from BB 1.41 release
+      # Will likely require reworking of the base values and the loki-values here in impl
+#    - name: loki-base-values
+#      kind: ConfigMap
+    - name: metrics-server-base-values
+      kind: ConfigMap
+    - name: monitoring-base-values
+      kind: ConfigMap
+    - name: sso-base-values
+      kind: ConfigMap
+    - name: twistlock-base-values
+      kind: ConfigMap
+    - name: velero-base-values
+      kind: ConfigMap
+
+    # overlay values
+    - name: argocd-values
+      kind: ConfigMap
+    - name: authmanager-values
+      kind: ConfigMap
+    - name: fluentbit-values
+      kind: ConfigMap
+    - name: istio-values
+      kind: ConfigMap
+    - name: istio-operator-values
+      kind: ConfigMap
+    - name: jaeger-values
+      kind: ConfigMap
+    - name: kiali-values
+      kind: ConfigMap
+    - name: kyverno-values
+      kind: ConfigMap
+    - name: loki-values
+      kind: ConfigMap
+    - name: monitoring-values
+      kind: ConfigMap
+    - name: sso-values
+      kind: ConfigMap
+    - name: velero-values
+      kind: ConfigMap
+
+    # overlay secrets
+    - name: argocd-config
+      kind: Secret
+    - name: fluentbit-secret
+      kind: Secret
+    - name: grafana-enterprise-secret
+      kind: Secret
+    - name: istio-secret
+      kind: Secret
+    - name: registry-credentials
+      kind: Secret
+    - name: sso-secret
+      kind: Secret
+
+  values:
+    domain: batcave-impl.internal.cms.gov
+    networkPolicies:
+      enabled: false

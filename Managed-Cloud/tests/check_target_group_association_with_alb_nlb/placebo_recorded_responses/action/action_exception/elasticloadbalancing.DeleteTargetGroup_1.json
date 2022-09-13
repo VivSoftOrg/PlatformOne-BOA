@@ -1,0 +1,16 @@
+{
+    "status_code": 400,
+    "data": {
+        "ResponseMetadata": {
+            "RequestId": "ac0babc5-e678-11e8-a870-39cb0ae33502",
+            "HTTPStatusCode": 400,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "ac0babc5-e678-11e8-a870-39cb0ae33502",
+                "content-type": "text/xml",
+                "content-length": "259",
+                "date": "Mon, 12 Nov 2018 12:44:19 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

@@ -1,0 +1,103 @@
+kyverno:
+  values:
+    resources:
+      limits:
+        cpu: 100m 
+        memory: 300Mi
+      requests:
+        cpu: 45m
+        memory: 269.3Mi
+    initResources:
+      limits:
+        cpu: 100m 
+        memory: 300Mi
+      requests:
+        cpu: 45m
+        memory: 269.3Mi
+loki:
+  values:
+    monolith:
+      resources:
+        limits:
+          cpu: 50m
+          memory: 200Mi
+        requests:
+          cpu: 10m
+          memory: 165.3Mi
+fluentbit:
+  values:
+    resources:
+      limits:
+        cpu: 50m
+        memory: 100Mi
+      requests:
+        cpu: 10m
+        memory: 34.5Mi
+monitoring:
+  values:
+    grafana:
+      resources: 
+        limits:
+          cpu: 50m
+          memory: 200Mi
+        requests:
+          cpu: 10m
+          memory: 128Mi
+      sidecar:
+        resources: 
+          limits:
+            cpu: 50m
+            memory: 150Mi
+          requests:
+            cpu: 10m
+            memory: 110Mi
+    alertmanager:
+      alertmanagerSpec:
+        resources:
+          limits:
+            cpu: 50m
+            memory: 100Mi
+          requests:
+            cpu: 10m
+            memory: 35.5Mi
+    cleanUpgrade:
+      resources:
+        limits:
+          cpu: 100m
+          memory: 256Mi
+        requests:
+          cpu: 100m
+          memory: 256Mi
+    kube-state-metrics:
+      resources: 
+        limits:
+          cpu: 50m
+          memory: 100Mi
+        requests:
+          cpu: 10m
+          memory: 41Mi
+    prometheus:
+      prometheusSpec:
+        resources:
+          limits:
+            cpu: 200m
+            memory: 2Gi
+          requests: 
+            cpu: 136m
+            memory: 1.8Gi
+    prometheus-node-exporter:
+      resources: 
+        limits:
+          cpu: 50m
+          memory: 100Mi
+        requests:
+          cpu: 10m
+          memory: 28.5Mi
+      prometheusConfigReloader:
+        resources: 
+          limits:
+            cpu: 50m
+            memory: 50Mi
+          requests:
+            cpu: 10m
+            memory: 20Mi

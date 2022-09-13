@@ -1,0 +1,33 @@
+{
+    "status_code": 200,
+    "data": {
+        "TargetGroups": [
+            {
+                "TargetGroupArn": "arn:aws:elasticloadbalancing:us-east-2:107339370656:targetgroup/test2/87684cf52feba123",
+                "TargetGroupName": "test2",
+                "Protocol": "TCP",
+                "Port": 80,
+                "VpcId": "vpc-46f11f2f",
+                "HealthCheckProtocol": "TCP",
+                "HealthCheckPort": "traffic-port",
+                "HealthCheckIntervalSeconds": 30,
+                "HealthCheckTimeoutSeconds": 10,
+                "HealthyThresholdCount": 3,
+                "UnhealthyThresholdCount": 3,
+                "LoadBalancerArns": [],
+                "TargetType": "instance"
+            }
+        ],
+        "ResponseMetadata": {
+            "RequestId": "f94a444c-e661-11e8-8618-6b9fe0432ebe",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "f94a444c-e661-11e8-8618-6b9fe0432ebe",
+                "content-type": "text/xml",
+                "content-length": "1072",
+                "date": "Mon, 12 Nov 2018 10:01:49 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

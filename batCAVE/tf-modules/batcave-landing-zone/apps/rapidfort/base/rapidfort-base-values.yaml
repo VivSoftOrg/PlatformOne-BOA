@@ -1,0 +1,79 @@
+domain: ${batcave_base_domain}
+global:
+  rf_app_host: rapidfort.${batcave_base_domain}
+sharedPvcs:
+  image-db-shared:
+    storageSize: 100Gi
+  imgs-work-dir-shared:
+    storageSize: 100Gi
+  local-bucket:
+    storageSize: 100Gi
+istio:
+  enabled: true
+  rapidfort:
+    gateways: ["istio-system/main"]
+keycloak:
+  image:
+    repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/rapidfort/keycloak
+  initContainers:
+    init_mysql:
+      enabled: false
+runner:
+  enabled: true
+  image:
+    # TODO: Change to use IB pull-through image once 1.1.20 is available upstream
+    # Using upstream image pulled into batCAVE artifactory for now
+    #repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/rapidfort/runner
+    repository: artifactory.cloud.cms.gov/batcave-docker/rapidfort/1.1.20/runner
+    tag: 1.1.20a-rfhardened
+  initContainers:
+    init:
+      image:
+        repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/big-bang/base
+backend:
+  image:
+    repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/rapidfort/backend-exe
+  initContainers:
+    volumePermissions:
+      image:
+        repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/redhat/ubi/ubi8-minimal
+    init:
+      image:
+        repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/big-bang/base
+redis:
+  image:
+    registry: artifactory.cloud.cms.gov/batcave-docker
+rfapi:
+  image:
+    repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/rapidfort/rfapi-exe
+  initContainers:
+    init:
+      image:
+        repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/bitnami/redis
+rf-scan:
+  image:
+    repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/rapidfort/rf-scan-exe
+  initContainers:
+    volumePermissions:
+      image:
+        repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/redhat/ubi/ubi8-minimal
+mysql:
+  enabled: true
+  image:
+    registry: artifactory.cloud.cms.gov/batcave-docker/ironbank
+aggregator:
+  image:
+    repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/rapidfort/aggregator-exe
+  initContainers:
+    volumePermissions:
+      image:
+        repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/redhat/ubi/ubi8-minimal
+frontrow:
+  image:
+    repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/rapidfort/frontrow
+iso-master:
+  image:
+    repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/rapidfort/iso-master-exe
+rfpubsub:
+  image:
+    repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/rapidfort/rfpubsub-exe

@@ -1,0 +1,35 @@
+{
+    "data": {
+        "Credentials": {
+            "SecretAccessKey": "9KxbjITqlmdEfq6UJ4y/b3rCeLDZ9ZREj25iBEo4",
+            "Expiration": {
+                "microsecond": 0,
+                "year": 2018,
+                "__class__": "datetime",
+                "month": 2,
+                "second": 43,
+                "day": 12,
+                "hour": 7,
+                "minute": 15
+            },
+            "AccessKeyId": "",
+            "SessionToken": ""
+        },
+        "ResponseMetadata": {
+            "RetryAttempts": 0,
+            "RequestId": "281edf1e-0fbc-11e8-ac5f-e39c8208f538",
+            "HTTPHeaders": {
+                "x-amzn-requestid": "281edf1e-0fbc-11e8-ac5f-e39c8208f538",
+                "content-type": "text/xml",
+                "content-length": "1125",
+                "date": "Mon, 12 Feb 2018 06:15:42 GMT"
+            },
+            "HTTPStatusCode": 400
+        },
+        "AssumedRoleUser": {
+            "AssumedRoleId": "AROAIAPP7GQNIE6JT22PA:AWSConfigAssumeRoleSession",
+            "Arn": "arn:aws:sts::693265998683:assumed-role/active_iam_users_read_role/AWSConfigAssumeRoleSession"
+        }
+    },
+    "status_code": 400
+}

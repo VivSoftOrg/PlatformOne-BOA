@@ -1,0 +1,6 @@
+bases:
+- ../../pod-security
+- ../../best-practices
+
+patchesStrategicMerge:
+- audit-only.yaml

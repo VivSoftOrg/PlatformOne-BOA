@@ -1,0 +1,28 @@
+# Region for the bucket
+region: us-east-1
+
+# Give Proper name to the lambda function
+function_name: "Lambda Function for AWS Config"
+handler: main.lambda_handler
+# role: lambda_basic_execution
+description: Lambda Function for AWS Config
+
+# if access key and secret are left blank, boto will use the credentials
+# defined in the [default] section of ~/.aws/credentials.
+aws_access_key_id:
+aws_secret_access_key:
+
+environment_variables:
+  notifierLambdaFunctionName: "releasepvk_notifier"
+  mncHealingScripts: "mnc-healing-scripts"
+  smExecutionLogBucket: "mnc-script-bucket"
+  DEFAULT_LAMBDA_ARN: "arn:aws:lambda:us-east-1:107339370656:function:mnc-rule-processor-love"
+  cloudWatchEventsTableName: "mnc_cloudwatch_events_customer_data"
+  monitoringResourcesTable: 'mnc_tag_validator'
+  resourceWhitelistingTable: "whitelist_akshay"
+  attributeMappingTableName: "AttributeMapping"
+  alertScriptMappingTableName: "AlertScriptMapping"
+  mncPayloadBucketName: "releasepvkpayload"
+# dist_directory: dist
+# timeout: 15
+# memory_size: 512

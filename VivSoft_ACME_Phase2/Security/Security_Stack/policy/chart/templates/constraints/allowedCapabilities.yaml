@@ -1,0 +1,26 @@
+{{- if .Values.violations.allowedCapabilities.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.allowedCapabilities.kind }}
+metadata:
+  name: {{ .Values.violations.allowedCapabilities.name }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "Linux Capabilities"
+    constraints.gatekeeper/description: "Containers may only use specified Linux capabilities"
+    constraints.gatekeeper/source: "https://github.com/open-policy-agent/gatekeeper-library/tree/master/library/pod-security-policy/capabilities"
+    constraints.gatekeeper/docs: "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-capabilities-for-a-container"
+    constraints.gatekeeper/related: "https://man7.org/linux/man-pages/man7/capabilities.7.html"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.allowedCapabilities.enforcementAction }}
+  match:
+    {{- if .Values.violations.allowedCapabilities.match  }}
+    {{- toYaml .Values.violations.allowedCapabilities.match | nindent 4}}
+    {{- end }}
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+  parameters:
+    {{- toYaml .Values.violations.allowedCapabilities.parameters | nindent 4}}
+{{- end }}

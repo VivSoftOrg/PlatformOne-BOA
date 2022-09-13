@@ -1,0 +1,17 @@
+addons:
+  gitlab:
+    enabled: false
+    hostnames:
+      gitlab: code-${batcave_cluster_name}
+    values:
+      global:
+        hosts:
+          domain: code-${batcave_cluster_name}.${batcave_base_domain}
+      gitlab:
+        toolbox:
+          backups:
+            cron:
+              persistence:
+                storageClass: ebs-immediate
+      use_iam_profile: true
+

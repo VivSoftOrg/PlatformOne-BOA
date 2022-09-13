@@ -1,0 +1,548 @@
++------------------------+------------------+----------+--------------------+-----------------------+-----------------------------------------+
+|        LIBRARY         | VULNERABILITY ID | SEVERITY | INSTALLED VERSION  |     FIXED VERSION     |                  TITLE                  |
++------------------------+------------------+----------+--------------------+-----------------------+-----------------------------------------+
+| bzip2-libs             | CVE-2019-12900   | LOW      | 1.0.6-26.el8       |                       | bzip2: out-of-bounds write              |
+|                        |                  |          |                    |                       | in function BZ2_decompress              |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2019-12900   |
++------------------------+------------------+----------+--------------------+-----------------------+-----------------------------------------+
+| cryptsetup-libs        | CVE-2021-4122    | MEDIUM   | 2.3.3-4.el8        | 2.3.3-4.el8_5.1       | cryptsetup: disable                     |
+|                        |                  |          |                    |                       | encryption via header rewrite           |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-4122    |
++------------------------+------------------+----------+--------------------+-----------------------+-----------------------------------------+
+| dbus                   | CVE-2020-35512   | LOW      | 1:1.12.8-14.el8    |                       | dbus: users with the same numeric UID   |
+|                        |                  |          |                    |                       | could lead to use-after-free and...     |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2020-35512   |
++------------------------+                  +          +                    +-----------------------+                                         +
+| dbus-common            |                  |          |                    |                       |                                         |
+|                        |                  |          |                    |                       |                                         |
+|                        |                  |          |                    |                       |                                         |
++------------------------+                  +          +                    +-----------------------+                                         +
+| dbus-daemon            |                  |          |                    |                       |                                         |
+|                        |                  |          |                    |                       |                                         |
+|                        |                  |          |                    |                       |                                         |
++------------------------+                  +          +                    +-----------------------+                                         +
+| dbus-libs              |                  |          |                    |                       |                                         |
+|                        |                  |          |                    |                       |                                         |
+|                        |                  |          |                    |                       |                                         |
++------------------------+                  +          +                    +-----------------------+                                         +
+| dbus-tools             |                  |          |                    |                       |                                         |
+|                        |                  |          |                    |                       |                                         |
+|                        |                  |          |                    |                       |                                         |
++------------------------+------------------+----------+--------------------+-----------------------+-----------------------------------------+
+| expat                  | CVE-2021-45960   | MEDIUM   | 2.2.5-4.el8        |                       | expat: Large number of prefixed XML     |
+|                        |                  |          |                    |                       | attributes on a single tag can...       |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-45960   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-46143   |          |                    |                       | expat: Integer overflow                 |
+|                        |                  |          |                    |                       | in doProlog in xmlparse.c               |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-46143   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2022-22822   |          |                    |                       | expat: Integer overflow in              |
+|                        |                  |          |                    |                       | addBinding in xmlparse.c                |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2022-22822   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2022-22823   |          |                    |                       | expat: Integer overflow in              |
+|                        |                  |          |                    |                       | build_model in xmlparse.c               |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2022-22823   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2022-22824   |          |                    |                       | expat: Integer overflow in              |
+|                        |                  |          |                    |                       | defineAttribute in xmlparse.c           |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2022-22824   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2022-22825   |          |                    |                       | expat: Integer overflow                 |
+|                        |                  |          |                    |                       | in lookup in xmlparse.c                 |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2022-22825   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2022-22826   |          |                    |                       | expat: Integer overflow in              |
+|                        |                  |          |                    |                       | nextScaffoldPart in xmlparse.c          |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2022-22826   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2022-22827   |          |                    |                       | expat: Integer overflow                 |
+|                        |                  |          |                    |                       | in storeAtts in xmlparse.c              |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2022-22827   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2022-23852   |          |                    |                       | expat: integer overflow                 |
+|                        |                  |          |                    |                       | in function XML_GetBuffer               |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2022-23852   |
++------------------------+------------------+----------+--------------------+-----------------------+-----------------------------------------+
+| file-libs              | CVE-2019-8905    | LOW      | 5.33-20.el8        |                       | file: stack-based buffer over-read      |
+|                        |                  |          |                    |                       | in do_core_note in readelf.c            |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2019-8905    |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2019-8906    |          |                    |                       | file: out-of-bounds read in             |
+|                        |                  |          |                    |                       | do_core_note in readelf.c               |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2019-8906    |
++------------------------+------------------+          +--------------------+-----------------------+-----------------------------------------+
+| glib2                  | CVE-2018-16428   |          | 2.56.4-156.el8     |                       | glib2: NULL pointer dereference in      |
+|                        |                  |          |                    |                       | g_markup_parse_context_end_parse()      |
+|                        |                  |          |                    |                       | function in gmarkup.c                   |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2018-16428   |
++------------------------+------------------+----------+--------------------+-----------------------+-----------------------------------------+
+| glibc                  | CVE-2019-1010022 | CRITICAL | 2.28-164.el8       |                       | glibc: stack guard protection bypass    |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2019-1010022 |
++                        +------------------+----------+                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-3999    | MEDIUM   |                    |                       | glibc: Off-by-one buffer                |
+|                        |                  |          |                    |                       | overflow/underflow in getcwd()          |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-3999    |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2022-23218   |          |                    |                       | glibc: stack-based buffer overflow      |
+|                        |                  |          |                    |                       | in svcunix_create via long pathnames    |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2022-23218   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2022-23219   |          |                    |                       | glibc: stack-based buffer               |
+|                        |                  |          |                    |                       | overflow in sunrpc clnt_create          |
+|                        |                  |          |                    |                       | via a long pathname                     |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2022-23219   |
++------------------------+------------------+----------+                    +-----------------------+-----------------------------------------+
+| glibc-common           | CVE-2019-1010022 | CRITICAL |                    |                       | glibc: stack guard protection bypass    |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2019-1010022 |
++                        +------------------+----------+                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-3999    | MEDIUM   |                    |                       | glibc: Off-by-one buffer                |
+|                        |                  |          |                    |                       | overflow/underflow in getcwd()          |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-3999    |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2022-23218   |          |                    |                       | glibc: stack-based buffer overflow      |
+|                        |                  |          |                    |                       | in svcunix_create via long pathnames    |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2022-23218   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2022-23219   |          |                    |                       | glibc: stack-based buffer               |
+|                        |                  |          |                    |                       | overflow in sunrpc clnt_create          |
+|                        |                  |          |                    |                       | via a long pathname                     |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2022-23219   |
++------------------------+------------------+----------+                    +-----------------------+-----------------------------------------+
+| glibc-minimal-langpack | CVE-2019-1010022 | CRITICAL |                    |                       | glibc: stack guard protection bypass    |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2019-1010022 |
++                        +------------------+----------+                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-3999    | MEDIUM   |                    |                       | glibc: Off-by-one buffer                |
+|                        |                  |          |                    |                       | overflow/underflow in getcwd()          |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-3999    |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2022-23218   |          |                    |                       | glibc: stack-based buffer overflow      |
+|                        |                  |          |                    |                       | in svcunix_create via long pathnames    |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2022-23218   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2022-23219   |          |                    |                       | glibc: stack-based buffer               |
+|                        |                  |          |                    |                       | overflow in sunrpc clnt_create          |
+|                        |                  |          |                    |                       | via a long pathname                     |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2022-23219   |
++------------------------+------------------+----------+--------------------+-----------------------+-----------------------------------------+
+| gmp                    | CVE-2021-43618   | LOW      | 1:6.1.2-10.el8     |                       | gmp: Integer overflow and resultant     |
+|                        |                  |          |                    |                       | buffer overflow via crafted input       |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-43618   |
++------------------------+------------------+----------+--------------------+-----------------------+-----------------------------------------+
+| krb5-libs              | CVE-2020-17049   | MEDIUM   | 1.18.2-14.el8      |                       | Kerberos: delegation                    |
+|                        |                  |          |                    |                       | constrain bypass in S4U2Proxy           |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2020-17049   |
++------------------------+------------------+          +--------------------+-----------------------+-----------------------------------------+
+| libarchive             | CVE-2020-21674   |          | 3.3.3-1.el8        |                       | libarchive: heap-based                  |
+|                        |                  |          |                    |                       | buffer overflow in                      |
+|                        |                  |          |                    |                       | archive_string_append_from_wcs          |
+|                        |                  |          |                    |                       | function in archive_string.c            |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2020-21674   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-23177   |          |                    |                       | libarchive: extracting a symlink        |
+|                        |                  |          |                    |                       | with ACLs modifies ACLs of target       |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-23177   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-31566   |          |                    |                       | libarchive: symbolic links              |
+|                        |                  |          |                    |                       | incorrectly followed when changing      |
+|                        |                  |          |                    |                       | modes, times, ACL and flags...          |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-31566   |
++                        +------------------+----------+                    +-----------------------+-----------------------------------------+
+|                        | CVE-2017-14166   | LOW      |                    |                       | libarchive: Heap-based buffer           |
+|                        |                  |          |                    |                       | over-read in the atol8 function         |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2017-14166   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2017-14501   |          |                    |                       | libarchive: Out-of-bounds               |
+|                        |                  |          |                    |                       | read in parse_file_info                 |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2017-14501   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2018-1000879 |          |                    |                       | libarchive: NULL pointer dereference in |
+|                        |                  |          |                    |                       | ACL parser resulting in a denial of...  |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2018-1000879 |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2018-1000880 |          |                    |                       | libarchive: Improper input              |
+|                        |                  |          |                    |                       | validation in WARC parser               |
+|                        |                  |          |                    |                       | resulting in a denial of...             |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2018-1000880 |
++------------------------+------------------+----------+--------------------+-----------------------+-----------------------------------------+
+| libgcc                 | CVE-2021-42694   | MEDIUM   | 8.5.0-4.el8_5      |                       | Developer environment:                  |
+|                        |                  |          |                    |                       | Homoglyph characters can                |
+|                        |                  |          |                    |                       | lead to trojan source attack            |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-42694   |
++                        +------------------+----------+                    +-----------------------+-----------------------------------------+
+|                        | CVE-2018-20657   | LOW      |                    |                       | libiberty: Memory leak in               |
+|                        |                  |          |                    |                       | demangle_template function              |
+|                        |                  |          |                    |                       | resulting in a denial of service...     |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2018-20657   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2019-14250   |          |                    |                       | binutils: integer overflow in           |
+|                        |                  |          |                    |                       | simple-object-elf.c leads to            |
+|                        |                  |          |                    |                       | a heap-based buffer overflow            |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2019-14250   |
++------------------------+------------------+----------+--------------------+-----------------------+-----------------------------------------+
+| libgcrypt              | CVE-2019-12904   | MEDIUM   | 1.8.5-6.el8        |                       | Libgcrypt: physical addresses           |
+|                        |                  |          |                    |                       | being available to other processes      |
+|                        |                  |          |                    |                       | leads to a flush-and-reload...          |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2019-12904   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-40528   |          |                    |                       | libgcrypt: ElGamal implementation       |
+|                        |                  |          |                    |                       | allows plaintext recovery               |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-40528   |
++------------------------+------------------+          +--------------------+-----------------------+-----------------------------------------+
+| libgomp                | CVE-2021-42694   |          | 8.5.0-4.el8_5      |                       | Developer environment:                  |
+|                        |                  |          |                    |                       | Homoglyph characters can                |
+|                        |                  |          |                    |                       | lead to trojan source attack            |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-42694   |
++                        +------------------+----------+                    +-----------------------+-----------------------------------------+
+|                        | CVE-2018-20657   | LOW      |                    |                       | libiberty: Memory leak in               |
+|                        |                  |          |                    |                       | demangle_template function              |
+|                        |                  |          |                    |                       | resulting in a denial of service...     |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2018-20657   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2019-14250   |          |                    |                       | binutils: integer overflow in           |
+|                        |                  |          |                    |                       | simple-object-elf.c leads to            |
+|                        |                  |          |                    |                       | a heap-based buffer overflow            |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2019-14250   |
++------------------------+------------------+          +--------------------+-----------------------+-----------------------------------------+
+| libssh                 | CVE-2021-3634    |          | 0.9.4-3.el8        |                       | libssh: possible heap-based             |
+|                        |                  |          |                    |                       | buffer overflow when rekeying           |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-3634    |
++------------------------+                  +          +                    +-----------------------+                                         +
+| libssh-config          |                  |          |                    |                       |                                         |
+|                        |                  |          |                    |                       |                                         |
+|                        |                  |          |                    |                       |                                         |
++------------------------+------------------+----------+--------------------+-----------------------+-----------------------------------------+
+| libstdc++              | CVE-2021-42694   | MEDIUM   | 8.5.0-4.el8_5      |                       | Developer environment:                  |
+|                        |                  |          |                    |                       | Homoglyph characters can                |
+|                        |                  |          |                    |                       | lead to trojan source attack            |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-42694   |
++                        +------------------+----------+                    +-----------------------+-----------------------------------------+
+|                        | CVE-2018-20657   | LOW      |                    |                       | libiberty: Memory leak in               |
+|                        |                  |          |                    |                       | demangle_template function              |
+|                        |                  |          |                    |                       | resulting in a denial of service...     |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2018-20657   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2019-14250   |          |                    |                       | binutils: integer overflow in           |
+|                        |                  |          |                    |                       | simple-object-elf.c leads to            |
+|                        |                  |          |                    |                       | a heap-based buffer overflow            |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2019-14250   |
++------------------------+------------------+          +--------------------+-----------------------+-----------------------------------------+
+| libtasn1               | CVE-2018-1000654 |          | 4.13-3.el8         |                       | libtasn1: Infinite loop in              |
+|                        |                  |          |                    |                       | _asn1_expand_object_id(ptree)           |
+|                        |                  |          |                    |                       | leads to memory exhaustion              |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2018-1000654 |
++------------------------+------------------+          +--------------------+-----------------------+-----------------------------------------+
+| libzstd                | CVE-2021-24032   |          | 1.4.4-1.el8        |                       | zstd: Race condition                    |
+|                        |                  |          |                    |                       | allows attacker to access               |
+|                        |                  |          |                    |                       | world-readable destination file         |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-24032   |
++------------------------+------------------+----------+--------------------+-----------------------+-----------------------------------------+
+| lua-libs               | CVE-2021-43519   | MEDIUM   | 5.3.4-12.el8       |                       | lua: stack overflow in lua_resume       |
+|                        |                  |          |                    |                       | of ldo.c allows a DoS via a...          |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-43519   |
++------------------------+------------------+          +--------------------+-----------------------+-----------------------------------------+
+| lz4-libs               | CVE-2019-17543   |          | 1.8.3-3.el8_4      |                       | lz4: heap-based buffer                  |
+|                        |                  |          |                    |                       | overflow in LZ4_write32                 |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2019-17543   |
++------------------------+------------------+          +--------------------+-----------------------+-----------------------------------------+
+| ncurses-base           | CVE-2021-39537   |          | 6.1-9.20180224.el8 |                       | ncurses: heap-based buffer overflow     |
+|                        |                  |          |                    |                       | in _nc_captoinfo() in captoinfo.c       |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-39537   |
++                        +------------------+----------+                    +-----------------------+-----------------------------------------+
+|                        | CVE-2018-19211   | LOW      |                    |                       | ncurses: Null pointer                   |
+|                        |                  |          |                    |                       | dereference at function                 |
+|                        |                  |          |                    |                       | _nc_parse_entry in parse_entry.c        |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2018-19211   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2018-19217   |          |                    |                       | ncurses: Null pointer dereference       |
+|                        |                  |          |                    |                       | at function _nc_name_match              |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2018-19217   |
++------------------------+------------------+----------+                    +-----------------------+-----------------------------------------+
+| ncurses-libs           | CVE-2021-39537   | MEDIUM   |                    |                       | ncurses: heap-based buffer overflow     |
+|                        |                  |          |                    |                       | in _nc_captoinfo() in captoinfo.c       |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-39537   |
++                        +------------------+----------+                    +-----------------------+-----------------------------------------+
+|                        | CVE-2018-19211   | LOW      |                    |                       | ncurses: Null pointer                   |
+|                        |                  |          |                    |                       | dereference at function                 |
+|                        |                  |          |                    |                       | _nc_parse_entry in parse_entry.c        |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2018-19211   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2018-19217   |          |                    |                       | ncurses: Null pointer dereference       |
+|                        |                  |          |                    |                       | at function _nc_name_match              |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2018-19217   |
++------------------------+------------------+----------+--------------------+-----------------------+-----------------------------------------+
+| nss                    | CVE-2020-12401   | MEDIUM   | 3.67.0-7.el8_5     |                       | nss: ECDSA timing                       |
+|                        |                  |          |                    |                       | attack mitigation bypass                |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2020-12401   |
++                        +------------------+----------+                    +-----------------------+-----------------------------------------+
+|                        | CVE-2020-12413   | LOW      |                    |                       | nss: Information exposure when          |
+|                        |                  |          |                    |                       | DH secret are reused across             |
+|                        |                  |          |                    |                       | multiple TLS connections...             |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2020-12413   |
++------------------------+------------------+----------+                    +-----------------------+-----------------------------------------+
+| nss-softokn            | CVE-2020-12401   | MEDIUM   |                    |                       | nss: ECDSA timing                       |
+|                        |                  |          |                    |                       | attack mitigation bypass                |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2020-12401   |
++                        +------------------+----------+                    +-----------------------+-----------------------------------------+
+|                        | CVE-2020-12413   | LOW      |                    |                       | nss: Information exposure when          |
+|                        |                  |          |                    |                       | DH secret are reused across             |
+|                        |                  |          |                    |                       | multiple TLS connections...             |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2020-12413   |
++------------------------+------------------+----------+                    +-----------------------+-----------------------------------------+
+| nss-softokn-freebl     | CVE-2020-12401   | MEDIUM   |                    |                       | nss: ECDSA timing                       |
+|                        |                  |          |                    |                       | attack mitigation bypass                |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2020-12401   |
++                        +------------------+----------+                    +-----------------------+-----------------------------------------+
+|                        | CVE-2020-12413   | LOW      |                    |                       | nss: Information exposure when          |
+|                        |                  |          |                    |                       | DH secret are reused across             |
+|                        |                  |          |                    |                       | multiple TLS connections...             |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2020-12413   |
++------------------------+------------------+----------+                    +-----------------------+-----------------------------------------+
+| nss-sysinit            | CVE-2020-12401   | MEDIUM   |                    |                       | nss: ECDSA timing                       |
+|                        |                  |          |                    |                       | attack mitigation bypass                |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2020-12401   |
++                        +------------------+----------+                    +-----------------------+-----------------------------------------+
+|                        | CVE-2020-12413   | LOW      |                    |                       | nss: Information exposure when          |
+|                        |                  |          |                    |                       | DH secret are reused across             |
+|                        |                  |          |                    |                       | multiple TLS connections...             |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2020-12413   |
++------------------------+------------------+----------+                    +-----------------------+-----------------------------------------+
+| nss-util               | CVE-2020-12401   | MEDIUM   |                    |                       | nss: ECDSA timing                       |
+|                        |                  |          |                    |                       | attack mitigation bypass                |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2020-12401   |
++                        +------------------+----------+                    +-----------------------+-----------------------------------------+
+|                        | CVE-2020-12413   | LOW      |                    |                       | nss: Information exposure when          |
+|                        |                  |          |                    |                       | DH secret are reused across             |
+|                        |                  |          |                    |                       | multiple TLS connections...             |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2020-12413   |
++------------------------+------------------+----------+--------------------+-----------------------+-----------------------------------------+
+| platform-python        | CVE-2021-4189    | MEDIUM   | 3.6.8-41.el8       |                       | python: ftplib should not use           |
+|                        |                  |          |                    |                       | the host from the PASV response         |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-4189    |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2022-0391    |          |                    |                       | python: urllib.parse does               |
+|                        |                  |          |                    |                       | not sanitize URLs containing            |
+|                        |                  |          |                    |                       | ASCII newline and tabs                  |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2022-0391    |
++                        +------------------+----------+                    +-----------------------+-----------------------------------------+
+|                        | CVE-2019-9674    | LOW      |                    |                       | python: Nested zip file (Zip bomb)      |
+|                        |                  |          |                    |                       | vulnerability in Lib/zipfile.py         |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2019-9674    |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-3737    |          |                    |                       | python: urllib: HTTP client             |
+|                        |                  |          |                    |                       | possible infinite loop on               |
+|                        |                  |          |                    |                       | a 100 Continue response...              |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-3737    |
++------------------------+------------------+----------+                    +-----------------------+-----------------------------------------+
+| python3-libs           | CVE-2021-4189    | MEDIUM   |                    |                       | python: ftplib should not use           |
+|                        |                  |          |                    |                       | the host from the PASV response         |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-4189    |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2022-0391    |          |                    |                       | python: urllib.parse does               |
+|                        |                  |          |                    |                       | not sanitize URLs containing            |
+|                        |                  |          |                    |                       | ASCII newline and tabs                  |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2022-0391    |
++                        +------------------+----------+                    +-----------------------+-----------------------------------------+
+|                        | CVE-2019-9674    | LOW      |                    |                       | python: Nested zip file (Zip bomb)      |
+|                        |                  |          |                    |                       | vulnerability in Lib/zipfile.py         |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2019-9674    |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-3737    |          |                    |                       | python: urllib: HTTP client             |
+|                        |                  |          |                    |                       | possible infinite loop on               |
+|                        |                  |          |                    |                       | a 100 Continue response...              |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-3737    |
++------------------------+------------------+          +--------------------+-----------------------+-----------------------------------------+
+| python3-pip-wheel      | CVE-2018-20225   |          | 9.0.3-20.el8       |                       | python-pip: when --extra-index-url      |
+|                        |                  |          |                    |                       | option is used and package              |
+|                        |                  |          |                    |                       | does not already exist...               |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2018-20225   |
++------------------------+------------------+----------+--------------------+-----------------------+-----------------------------------------+
+| python3-rpm            | CVE-2021-3521    | MEDIUM   | 4.14.3-19.el8      | 4.14.3-19.el8_5.2     | rpm: RPM does not require subkeys       |
+|                        |                  |          |                    |                       | to have a valid binding signature...    |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-3521    |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-35937   |          |                    |                       | rpm: TOCTOU race in                     |
+|                        |                  |          |                    |                       | checks for unsafe symlinks              |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-35937   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-35938   |          |                    |                       | rpm: races with                         |
+|                        |                  |          |                    |                       | chown/chmod/capabilities                |
+|                        |                  |          |                    |                       | calls during installation               |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-35938   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-35939   |          |                    |                       | rpm: checks for unsafe                  |
+|                        |                  |          |                    |                       | symlinks are not performed              |
+|                        |                  |          |                    |                       | for intermediary directories            |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-35939   |
++------------------------+------------------+          +                    +-----------------------+-----------------------------------------+
+| rpm                    | CVE-2021-3521    |          |                    | 4.14.3-19.el8_5.2     | rpm: RPM does not require subkeys       |
+|                        |                  |          |                    |                       | to have a valid binding signature...    |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-3521    |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-35937   |          |                    |                       | rpm: TOCTOU race in                     |
+|                        |                  |          |                    |                       | checks for unsafe symlinks              |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-35937   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-35938   |          |                    |                       | rpm: races with                         |
+|                        |                  |          |                    |                       | chown/chmod/capabilities                |
+|                        |                  |          |                    |                       | calls during installation               |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-35938   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-35939   |          |                    |                       | rpm: checks for unsafe                  |
+|                        |                  |          |                    |                       | symlinks are not performed              |
+|                        |                  |          |                    |                       | for intermediary directories            |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-35939   |
++------------------------+------------------+          +                    +-----------------------+-----------------------------------------+
+| rpm-build-libs         | CVE-2021-3521    |          |                    | 4.14.3-19.el8_5.2     | rpm: RPM does not require subkeys       |
+|                        |                  |          |                    |                       | to have a valid binding signature...    |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-3521    |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-35937   |          |                    |                       | rpm: TOCTOU race in                     |
+|                        |                  |          |                    |                       | checks for unsafe symlinks              |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-35937   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-35938   |          |                    |                       | rpm: races with                         |
+|                        |                  |          |                    |                       | chown/chmod/capabilities                |
+|                        |                  |          |                    |                       | calls during installation               |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-35938   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-35939   |          |                    |                       | rpm: checks for unsafe                  |
+|                        |                  |          |                    |                       | symlinks are not performed              |
+|                        |                  |          |                    |                       | for intermediary directories            |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-35939   |
++------------------------+------------------+          +                    +-----------------------+-----------------------------------------+
+| rpm-libs               | CVE-2021-3521    |          |                    | 4.14.3-19.el8_5.2     | rpm: RPM does not require subkeys       |
+|                        |                  |          |                    |                       | to have a valid binding signature...    |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-3521    |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-35937   |          |                    |                       | rpm: TOCTOU race in                     |
+|                        |                  |          |                    |                       | checks for unsafe symlinks              |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-35937   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-35938   |          |                    |                       | rpm: races with                         |
+|                        |                  |          |                    |                       | chown/chmod/capabilities                |
+|                        |                  |          |                    |                       | calls during installation               |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-35938   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-35939   |          |                    |                       | rpm: checks for unsafe                  |
+|                        |                  |          |                    |                       | symlinks are not performed              |
+|                        |                  |          |                    |                       | for intermediary directories            |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-35939   |
++------------------------+------------------+----------+--------------------+-----------------------+-----------------------------------------+
+| sqlite-libs            | CVE-2019-19244   | LOW      | 3.26.0-15.el8      |                       | sqlite: allows a crash                  |
+|                        |                  |          |                    |                       | if a sub-select uses both               |
+|                        |                  |          |                    |                       | DISTINCT and window...                  |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2019-19244   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2019-9936    |          |                    |                       | sqlite: heap-based buffer               |
+|                        |                  |          |                    |                       | over-read in function                   |
+|                        |                  |          |                    |                       | fts5HashEntrySort in sqlite3.c          |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2019-9936    |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2019-9937    |          |                    |                       | sqlite: null-pointer                    |
+|                        |                  |          |                    |                       | dereference in function                 |
+|                        |                  |          |                    |                       | fts5ChunkIterate in sqlite3.c           |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2019-9937    |
++------------------------+------------------+----------+--------------------+-----------------------+-----------------------------------------+
+| systemd                | CVE-2018-20839   | MEDIUM   | 239-51.el8_5.3     |                       | systemd: mishandling of the             |
+|                        |                  |          |                    |                       | current keyboard mode check             |
+|                        |                  |          |                    |                       | leading to passwords being...           |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2018-20839   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-3997    |          |                    |                       | systemd: Uncontrolled recursion in      |
+|                        |                  |          |                    |                       | systemd-tmpfiles when removing files    |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-3997    |
++------------------------+------------------+          +                    +-----------------------+-----------------------------------------+
+| systemd-libs           | CVE-2018-20839   |          |                    |                       | systemd: mishandling of the             |
+|                        |                  |          |                    |                       | current keyboard mode check             |
+|                        |                  |          |                    |                       | leading to passwords being...           |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2018-20839   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-3997    |          |                    |                       | systemd: Uncontrolled recursion in      |
+|                        |                  |          |                    |                       | systemd-tmpfiles when removing files    |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-3997    |
++------------------------+------------------+          +                    +-----------------------+-----------------------------------------+
+| systemd-pam            | CVE-2018-20839   |          |                    |                       | systemd: mishandling of the             |
+|                        |                  |          |                    |                       | current keyboard mode check             |
+|                        |                  |          |                    |                       | leading to passwords being...           |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2018-20839   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-3997    |          |                    |                       | systemd: Uncontrolled recursion in      |
+|                        |                  |          |                    |                       | systemd-tmpfiles when removing files    |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-3997    |
++------------------------+------------------+          +--------------------+-----------------------+-----------------------------------------+
+| tar                    | CVE-2005-2541    |          | 2:1.30-5.el8       |                       | tar: does not properly warn the user    |
+|                        |                  |          |                    |                       | when extracting setuid or setgid...     |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2005-2541    |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-20193   |          |                    |                       | tar: Memory leak in                     |
+|                        |                  |          |                    |                       | read_header() in list.c                 |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-20193   |
++                        +------------------+----------+                    +-----------------------+-----------------------------------------+
+|                        | CVE-2019-9923    | LOW      |                    |                       | tar: null-pointer dereference           |
+|                        |                  |          |                    |                       | in pax_decode_header in sparse.c        |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2019-9923    |
++------------------------+------------------+----------+--------------------+-----------------------+-----------------------------------------+
+| vim-minimal            | CVE-2021-3872    | MEDIUM   | 2:8.0.1763-16.el8  | 2:8.0.1763-16.el8_5.4 | vim: heap-based buffer overflow in      |
+|                        |                  |          |                    |                       | win_redr_status() in drawscreen.c       |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-3872    |
++                        +------------------+          +                    +                       +-----------------------------------------+
+|                        | CVE-2021-3984    |          |                    |                       | vim: illegal memory access              |
+|                        |                  |          |                    |                       | in find_start_brace() in                |
+|                        |                  |          |                    |                       | cindent.c when C-indenting              |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-3984    |
++                        +------------------+          +                    +                       +-----------------------------------------+
+|                        | CVE-2021-4019    |          |                    |                       | vim: heap-based buffer overflow         |
+|                        |                  |          |                    |                       | in find_help_tags() in help.c           |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-4019    |
++                        +------------------+          +                    +                       +-----------------------------------------+
+|                        | CVE-2021-4192    |          |                    |                       | vim: use-after-free                     |
+|                        |                  |          |                    |                       | in win_linetabsize()                    |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-4192    |
++                        +------------------+          +                    +                       +-----------------------------------------+
+|                        | CVE-2021-4193    |          |                    |                       | vim: out-of-bound read in getvcol()     |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-4193    |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2022-0261    |          |                    |                       | vim: Heap-based Buffer Overflow         |
+|                        |                  |          |                    |                       | in block_insert() in src/ops.c          |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2022-0261    |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2022-0318    |          |                    |                       | vim: heap-based buffer overflow         |
+|                        |                  |          |                    |                       | in utf_head_off() in mbyte.c            |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2022-0318    |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2022-0359    |          |                    |                       | vim: heap-based buffer overflow         |
+|                        |                  |          |                    |                       | in init_ccline() in ex_getln.c          |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2022-0359    |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2022-0361    |          |                    |                       | vim: Heap-based Buffer                  |
+|                        |                  |          |                    |                       | Overflow in GitHub repository           |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2022-0361    |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2022-0392    |          |                    |                       | vim: heap-based buffer overflow         |
+|                        |                  |          |                    |                       | in getexmodeline() in ex_getln.c        |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2022-0392    |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2022-0413    |          |                    |                       | vim: use after free in src/ex_cmds.c    |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2022-0413    |
++                        +------------------+----------+                    +-----------------------+-----------------------------------------+
+|                        | CVE-2018-20786   | LOW      |                    |                       | libvterm: NULL pointer dereference      |
+|                        |                  |          |                    |                       | in vterm_screen_set_callbacks           |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2018-20786   |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-3927    |          |                    |                       | vim: heap-based buffer overflow         |
+|                        |                  |          |                    |                       | in gchar_cursor() in misc1.c            |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-3927    |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-3974    |          |                    |                       | vim: Use after free in regexp_nfa.c     |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-3974    |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2021-4166    |          |                    |                       | vim: out-of-bounds read in              |
+|                        |                  |          |                    |                       | do_arg_all() in src/arglist.c           |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2021-4166    |
++                        +------------------+          +                    +-----------------------+-----------------------------------------+
+|                        | CVE-2022-0351    |          |                    |                       | vim: access of memory location          |
+|                        |                  |          |                    |                       | before start of buffer                  |
+|                        |                  |          |                    |                       | -->avd.aquasec.com/nvd/cve-2022-0351    |
++------------------------+------------------+----------+--------------------+-----------------------+-----------------------------------------+

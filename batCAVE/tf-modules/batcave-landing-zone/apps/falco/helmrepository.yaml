@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: falco
+  namespace: batcave
+spec:
+  url: https://falcosecurity.github.io/charts
+  interval: 1m

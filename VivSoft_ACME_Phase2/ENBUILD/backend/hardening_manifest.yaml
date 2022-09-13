@@ -1,0 +1,54 @@
+---
+apiVersion: v1
+
+# The repository name in registry1, excluding /ironbank/
+name: "vivsoft/enbuild/backend"
+
+# List of tags to push for the repository in registry1
+# The most specific version should be the first tag and will be shown
+# on ironbank.dsop.io
+tags:
+- "0.0.1"
+- "latest"
+
+# Build args passed to Dockerfile ARGs
+args:
+  BASE_IMAGE: "opensource/nodejs/nodejs16"
+  BASE_TAG: "16.14.0"  
+
+
+# Docker image labels
+labels:
+  org.opencontainers.image.title: "backend"
+  ## Human-readable description of the software packaged in the image
+  org.opencontainers.image.description: "EnBuild backend"
+  ## License(s) under which contained software is distributed
+  org.opencontainers.image.licenses: "MIT"
+  ## URL to find more information on the image
+  org.opencontainers.image.url: "https://vivsoft.io"
+  ## Name of the distributing entity, organization or individual
+  org.opencontainers.image.vendor: "Vivsoft"
+  org.opencontainers.image.version: "0.0.1"
+  ## Keywords to help with search (ex. "cicd,gitops,golang")
+  mil.dso.ironbank.image.keywords: "cicd,platform one,iron bank"
+  ## This value can be "opensource" or "commercial"
+  mil.dso.ironbank.image.type: "commercial"
+  ## Product the image belongs to for grouping multiple images
+  mil.dso.ironbank.product.name: "Vivsoft EnBuild"
+
+# List of resources to make available to the offline build context
+resources:
+- url: docker://public.ecr.aws/b6r5a2q9/enbuild/backend:0.0.1
+  tag: public.ecr.aws/b6r5a2q9/enbuild/backend:0.0.1
+- filename: sops-v3.7.2.linux
+  url: https://github.com/mozilla/sops/releases/download/v3.7.2/sops-v3.7.2.linux
+  validation:
+    type: sha256
+    value: 86a6c48ec64255bd317d7cd52c601dc62e81be68ca07cdeb21a1e0809763647f
+
+# List of project maintainers
+maintainers:
+- name: "Elvis Chi"
+  username: "echi"
+  email: "echi@vivsoft.io"
+  cht_member: true

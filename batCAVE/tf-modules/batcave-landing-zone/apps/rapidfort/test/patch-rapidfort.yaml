@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: rapidfort
+  namespace: batcave
+spec:
+  valuesFrom:
+    # base values
+    - name: rapidfort-base-values
+      kind: ConfigMap
+
+    # overlay values
+    - name: rapidfort-values
+      kind: ConfigMap
+
+    # overlay secrets
+    - name: rapidfort-secret
+      kind: Secret

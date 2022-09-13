@@ -1,0 +1,12 @@
+{
+  "configRuleId": "config-rule-1v52mx",
+  "version": "1.0",
+  "configRuleName": "iam_roles_excess_permissions",
+  "configRuleArn": "arn:aws:config:us-east-1:411815166437:config-rule/config-rule-1v52mx",
+  "invokingEvent": "{\n \"messageType\": \"ScheduledNotification\",\n  \"recordVersion\": \"1.2\"\n}",
+  "resultToken": "",
+  "ruleParameters": "{\"performAction\": \"True\", \n  \"excludeRoles\": \"REANMSAdmin, svc-iam-permissions-monitor\", \n   \"policynames\": \"AdministratorAccess, IAMFullAccess, PowerUserAccess\", \n \"actionName\": \"IamRolesAccessPermissionsAction\", \"evaluateName\": \"IamRolesAccessPermissionsEvaluate\",   \"resourceFetcherName\" : \"IamRolesAccessPermissionsResourceFetcher\",  \"moduleName\": \"iam_roles_excess_permissions\", \n \"notifier\":\"email\",\n \"toEmail\": \"devendra.suthar@reancloud.com\",\n \"ccEmail\": \"devendra.suthar@reancloud.com\"}",
+  "eventLeftScope": "False",
+  "executionRoleArn": "arn:aws:iam::693265998683:role/awsconfig-role",
+  "accountId": "411815166437"
+}

@@ -1,0 +1,4 @@
+# Notebook Controller
+- kubeflow-manifests/apps/jupyter/jupyter-web-app/upstream/overlays/istio
+# Jupyter Web App
+- kubeflow-manifests/apps/jupyter/notebook-controller/upstream/overlays/kubeflow

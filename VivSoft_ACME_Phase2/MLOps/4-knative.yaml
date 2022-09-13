@@ -1,0 +1,4 @@
+# KNative
+- kubeflow-manifests/common/knative/knative-serving/overlays/gateways
+- kubeflow-manifests/common/knative/knative-eventing/base
+- kubeflow-manifests/common/istio-1-9/cluster-local-gateway/base

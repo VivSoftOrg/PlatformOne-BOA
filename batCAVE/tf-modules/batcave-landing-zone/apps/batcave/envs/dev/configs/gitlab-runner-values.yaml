@@ -1,0 +1,13 @@
+addons:
+  gitlabRunner:
+    enabled: false
+    values:
+      logLevel: debug
+      locked: false
+      runUntagged: true
+      protected: true
+      secret: gitlab-gitlab-runner-secret
+      cache: { }
+      builds: { }
+      services: { }
+      helpers: { }

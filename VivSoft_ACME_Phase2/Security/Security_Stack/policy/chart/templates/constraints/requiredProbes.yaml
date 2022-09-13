@@ -1,0 +1,26 @@
+{{- if .Values.violations.requiredProbes.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.requiredProbes.kind }}
+metadata:
+  name: {{ .Values.violations.requiredProbes.name }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "Probes"
+    constraints.gatekeeper/description: "Container must have specified probes and probe types."
+    constraints.gatekeeper/source: "https://github.com/open-policy-agent/gatekeeper-library/tree/master/library/general/requiredprobes"
+    constraints.gatekeeper/docs: "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/"
+    constraints.gatekeeper/related: "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.requiredProbes.enforcementAction }}
+  match:
+    {{- if .Values.violations.requiredProbes.match  }}
+    {{- toYaml .Values.violations.requiredProbes.match | nindent 4}}
+    {{- end }}
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+  parameters:
+    {{- toYaml .Values.violations.requiredProbes.parameters | nindent 4}}
+{{- end }}

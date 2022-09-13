@@ -1,0 +1,25 @@
+{{- if .Values.violations.blockNodePort.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.blockNodePort.kind  }}
+metadata:
+  name: {{ .Values.violations.blockNodePort.name  }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "Node Ports"
+    constraints.gatekeeper/description: "Services must not use node ports."
+    constraints.gatekeeper/source: "https://github.com/open-policy-agent/gatekeeper-library/tree/master/library/general/block-nodeport-services"
+    constraints.gatekeeper/docs: "https://kubernetes.io/docs/concepts/services-networking/service/#nodeport"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.blockNodePort.enforcementAction  }}
+  match:
+    {{- if .Values.violations.blockNodePort.match  }}
+    {{- toYaml .Values.violations.blockNodePort.match | nindent 4}}
+    {{- end }}
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+  parameters:
+    {{- toYaml .Values.violations.blockNodePort.parameters | nindent 4}}
+{{- end }}

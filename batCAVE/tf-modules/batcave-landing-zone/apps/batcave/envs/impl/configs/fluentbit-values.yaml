@@ -1,0 +1,39 @@
+fluentbit:
+  enabled: true
+  values:
+    config:
+      inputs: |
+        [INPUT]
+            Name           tail
+            Tag            kube.*
+            Path           /var/log/containers/*.log
+            Parser         containerd
+            DB             /var/log/flb-storage/flb_kube.db
+            Mem_Buf_Limit  5MB
+        [INPUT]
+            Name           tail
+            Tag            easi
+            Path           /var/log/containers/*easi*.log
+            Parser         containerd
+            DB             /var/log/flb-storage/fb.db
+            Mem_Buf_Limit  5MB
+    tolerations:
+      - key: "runners"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
+      - key: "CriticalAddonsOnly"
+        operator: "Exists"
+        effect: "NoSchedule"
+      - key: "signal"
+        operator: "Exists"
+        effect: "NoSchedule"
+      - key: "knightlight"
+        operator: "Exists"
+        effect: "NoSchedule"
+      - key: "easi"
+        operator: "Exists"
+        effect: "NoSchedule"
+      - key: "oedaeppe"
+        operator: "Exists"
+        effect: "NoSchedule"

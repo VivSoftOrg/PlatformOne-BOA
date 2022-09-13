@@ -1,0 +1,26 @@
+{{- if .Values.violations.httpsOnly.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.httpsOnly.kind }}
+metadata:
+  name: {{ .Values.violations.httpsOnly.name }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "Ingress on HTTPS Only"
+    constraints.gatekeeper/description: "Ingress must only allow HTTPS connections."
+    constraints.gatekeeper/source: "https://github.com/open-policy-agent/gatekeeper-library/tree/master/library/general/httpsonly"
+    constraints.gatekeeper/docs: "https://kubernetes.io/docs/reference/kubernetes-api/service-resources/ingress-v1/#IngressSpec"
+    constraints.gatekeeper/related: "https://cloud.google.com/kubernetes-engine/docs/concepts/ingress-xlb#disabling_http"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.httpsOnly.enforcementAction }}
+  match:
+    {{- if .Values.violations.httpsOnly.match  }}
+    {{- toYaml .Values.violations.httpsOnly.match | nindent 4}}
+    {{- end }}
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+  parameters:
+    {{- toYaml .Values.violations.httpsOnly.parameters | nindent 4}}
+{{- end }}

@@ -1,0 +1,11 @@
+apiVersion: kpt.dev/v1alpha1
+kind: Kptfile
+metadata:
+  name: chart
+upstream:
+  type: git
+  git:
+    commit: 965d580a56be11bfd9ac8623ee8d7e0a6ba58508
+    repo: https://github.com/mongodb/mongodb-enterprise-kubernetes
+    directory: /helm_chart
+    ref: 1.5.3

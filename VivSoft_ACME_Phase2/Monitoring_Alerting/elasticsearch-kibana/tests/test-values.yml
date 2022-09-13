@@ -1,0 +1,59 @@
+kibana:
+  imagePullSecrets:
+  - name: private-registry
+
+  count: 1
+  resources:
+    requests:
+      memory: 1Gi
+      cpu: 1
+    limits:
+      memory: 1Gi
+      cpu: 1
+
+elasticsearch:
+  imagePullSecrets:
+  - name: private-registry
+
+  master:
+    count: 1
+    resources:
+      requests:
+        memory: 2Gi
+        cpu: 1
+      limits:
+        cpu: 1
+        memory: 2Gi
+    heap:
+      # Xms
+      min: 1g
+      # Xmx
+      max: 1g
+
+  data:
+    count: 2
+    persistence:
+      storageClassName: ""
+    resources:
+      requests:
+        memory: 2Gi
+        cpu: 1
+      limits:
+        cpu: 1
+        memory: 2Gi
+    heap:
+      # Xms
+      min: 1g
+      # Xmx
+      max: 1g
+
+istio:
+  enabled: true
+
+networkPolicies:
+  enabled: true
+  controlPlaneCidr: 172.16.0.0/12
+
+bbtests:
+  enabled: true
+

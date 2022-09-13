@@ -1,0 +1,35 @@
+{
+    "data": {
+        "Credentials": {
+            "AccessKeyId": "",
+            "SessionToken": "",
+            "Expiration": {
+                "microsecond": 0,
+                "month": 1,
+                "year": 2018,
+                "hour": 9,
+                "day": 18,
+                "__class__": "datetime",
+                "second": 37,
+                "minute": 43
+            },
+            "SecretAccessKey": ""
+        },
+        "ResponseMetadata": {
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "content-length": "1152",
+                "x-amzn-requestid": "ad273347-fc2b-11e7-8b87-61aafa3fbeb6",
+                "content-type": "text/xml",
+                "date": "Thu, 18 Jan 2018 08:43:36 GMT"
+            },
+            "RequestId": "ad273347-fc2b-11e7-8b87-61aafa3fbeb6",
+            "RetryAttempts": 0
+        },
+        "AssumedRoleUser": {
+            "AssumedRoleId": "AROAJGCOQLEJ54XYDEVGA:AWSConfigAssumeRoleSession",
+            "Arn": "arn:aws:sts::107339370656:assumed-role/route53_hosted_zones_expiration_read_role/AWSConfigAssumeRoleSession"
+        }
+    },
+    "status_code": 200
+}

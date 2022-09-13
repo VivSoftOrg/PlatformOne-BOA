@@ -1,0 +1,11 @@
+apiVersion: kpt.dev/v1alpha1
+kind: Kptfile
+metadata:
+  name: chart
+upstream:
+  type: git
+  git:
+    commit: 3962e71ddd897e9aaa28c9b00e5e17e0d8602ead
+    repo: https://github.com/zalando/postgres-operator
+    directory: /charts/postgres-operator
+    ref: v1.6.1

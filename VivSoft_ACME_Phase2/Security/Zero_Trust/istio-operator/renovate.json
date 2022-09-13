@@ -1,0 +1,34 @@
+{
+  "baseBranches": ["main"],
+  "configWarningReuseIssue": false,
+  "dependencyDashboard": "true",
+  "dependencyDashboardHeader": "- [ ] Sync upstream helm chart version with updated dependencies.",
+  "dependencyDashboardTitle": "Renovate: Upgrade Istio Operator Package Dependencies",
+  "draftPR": true,
+  "labels": ["istio","Big Bang Core","Package Sustainment","kind::maintenance"],
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "groupName": "Ironbank",
+      "registryUrls": ["https://registry1.dso.mil"]
+    }
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": ["^chart/values\\.yaml$"],
+      "matchStrings": [
+         "tag:\\s+(?<currentValue>.+)"
+      ],
+      "depNameTemplate": "ironbank/opensource/istio/operator",
+      "datasourceTemplate": "docker"
+    },
+    {
+      "fileMatch": ["^chart/Chart\\.yaml$"],
+      "matchStrings": [
+         "- Istio Operator:\\s+(?<currentValue>.+)"
+      ],
+      "depNameTemplate": "ironbank/opensource/istio/operator",
+      "datasourceTemplate": "docker"
+    }
+  ]
+}

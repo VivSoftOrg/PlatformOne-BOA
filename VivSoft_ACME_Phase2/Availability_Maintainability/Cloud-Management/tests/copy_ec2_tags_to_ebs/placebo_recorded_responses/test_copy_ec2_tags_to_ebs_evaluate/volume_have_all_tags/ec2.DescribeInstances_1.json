@@ -1,0 +1,117 @@
+{
+    "status_code": 200,
+    "data": {
+        "Reservations": [
+            {
+                "Groups": [],
+                "Instances": [
+                    {
+                        "AmiLaunchIndex": 0,
+                        "ImageId": "ami-a4dc46db",
+                        "InstanceId": "DummyInstance1",
+                        "InstanceType": "t2.micro",
+                        "KeyName": "Dummy",
+                        "LaunchTime": {
+                            "__class__": "datetime",
+                            "year": 2018,
+                            "month": 7,
+                            "day": 16,
+                            "hour": 11,
+                            "minute": 0,
+                            "second": 29,
+                            "microsecond": 0
+                        },
+                        "Monitoring": {
+                            "State": "disabled"
+                        },
+                        "Placement": {
+                            "AvailabilityZone": "us-east-1a",
+                            "GroupName": "",
+                            "Tenancy": "default"
+                        },
+                        "PrivateDnsName": "ip-172-31-86-225.ec2.internal",
+                        "PrivateIpAddress": "172.31.86.225",
+                        "ProductCodes": [],
+                        "PublicDnsName": "ec2-54-236-134-11.compute-1.amazonaws.com",
+                        "PublicIpAddress": "54.236.134.11",
+                        "State": {
+                            "Code": 16,
+                            "Name": "running"
+                        },
+                        "StateTransitionReason": "",
+                        "SubnetId": "subnet-c4bc08eb",
+                        "VpcId": "vpc-a25216da",
+                        "Architecture": "x86_64",
+                        "BlockDeviceMappings": [
+                            {
+                                "DeviceName": "/dev/sda1",
+                                "Ebs": {
+                                    "AttachTime": {
+                                        "__class__": "datetime",
+                                        "year": 2018,
+                                        "month": 6,
+                                        "day": 8,
+                                        "hour": 5,
+                                        "minute": 31,
+                                        "second": 50,
+                                        "microsecond": 0
+                                    },
+                                    "DeleteOnTermination": true,
+                                    "Status": "attached",
+                                    "VolumeId": "vol-0cbf80ff35ffe3537"
+                                }
+                            }
+                        ],
+                        "ClientToken": "",
+                        "EbsOptimized": false,
+                        "EnaSupport": true,
+                        "Hypervisor": "xen",
+                        "IamInstanceProfile": {
+                        },
+                        "Tags": [
+                            {
+                                "Key": "Project",
+                                "Value": "mnc"
+                            },
+                            {
+                                "Key": "Name",
+                                "Value": "MNC_Instance"
+                            },
+                            {
+                                "Key": "Owner",
+                                "Value": "devendra.suthar"
+                            },
+                            {
+                                "Key": "Environment",
+                                "Value": "Testing"
+                            },
+                            {
+                                "Key": "ExpirationDate",
+                                "Value": "2018-07-19"
+                            }
+                        ],
+                        "VirtualizationType": "hvm",
+                        "CpuOptions": {
+                            "CoreCount": 1,
+                            "ThreadsPerCore": 1
+                        }
+                    }
+                ],
+                "OwnerId": "693265998683",
+                "ReservationId": "r-007862426d2f55a81"
+            }
+        ],
+        "ResponseMetadata": {
+            "RequestId": "7ec33ef5-a5af-4577-9551-322cac7313ec",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "content-type": "text/xml;charset=UTF-8",
+                "transfer-encoding": "chunked",
+                "vary": "Accept-Encoding",
+                "date": "Tue, 17 Jul 2018 08:43:47 GMT",
+                "server": "AmazonEC2"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

@@ -1,0 +1,33 @@
+apiVersion: v2
+name: fluent-bit
+description: Fast and lightweight log processor and forwarder or Linux, OSX and BSD family operating systems.
+keywords:
+  - logging
+  - fluent-bit
+  - fluentd
+version: 0.19.19-bb.3
+appVersion: 1.8.12
+icon: https://fluentbit.io/assets/img/logo1-default.png
+home: https://fluentbit.io/
+sources:
+  - https://github.com/fluent/fluent-bit/
+maintainers:
+  - name: edsiper
+    email: eduardo@treasure-data.com
+  - name: naseemkullah
+    email: naseem@transit.app
+  - name: Towmeykaw
+    email: towmeykaw@gmail.com
+  - name: stevehipwell
+    email: steve.hipwell@gmail.com
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: "Update Fluent Bit image to v1.8.12."
+  bigbang.dev/applicationVersions: |
+    - Fluent Bit: 1.8.12
+dependencies:
+  - name: gluon
+    version: 0.2.4
+    repository: "oci://registry.dso.mil/platform-one/big-bang/apps/library-charts/gluon"
+

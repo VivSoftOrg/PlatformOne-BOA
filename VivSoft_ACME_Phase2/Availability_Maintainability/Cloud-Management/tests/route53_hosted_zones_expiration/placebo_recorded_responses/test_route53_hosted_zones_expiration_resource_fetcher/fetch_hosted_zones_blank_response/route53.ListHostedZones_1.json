@@ -1,0 +1,20 @@
+{
+    "data": {
+        "IsTruncated": false,
+        "HostedZones": [
+        ],
+        "ResponseMetadata": {
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "content-length": "467",
+                "x-amzn-requestid": "aeb59ba9-fc2b-11e7-9192-39556f08b059",
+                "content-type": "text/xml",
+                "date": "Thu, 18 Jan 2018 08:43:39 GMT"
+            },
+            "RequestId": "aeb59ba9-fc2b-11e7-9192-39556f08b059",
+            "RetryAttempts": 0
+        },
+        "MaxItems": "100"
+    },
+    "status_code": 200
+}

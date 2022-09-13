@@ -1,0 +1,6 @@
+pyyaml==3.12
+iso8601==0.1.12
+requests==2.18.4
+pyjq==2.2.0
+botocore==1.12.122
+boto3==1.9

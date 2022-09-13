@@ -1,0 +1,144 @@
+# REFER - https://gist.github.com/etheleon/80414516c7fbc7147a5718b9897b1518
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+ name: bind-ml-pipeline-nb-kubeflow-user-example-com
+ namespace: kubeflow
+spec:
+ selector:
+   matchLabels:
+     app: ml-pipeline
+ rules:
+ - from:
+   - source:
+       principals: ["cluster.local/ns/kubeflow-user-example-com/sa/default-editor"]
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: add-header
+  namespace: kubeflow-user-example-com
+spec:
+  configPatches:
+  - applyTo: VIRTUAL_HOST
+    match:
+      context: SIDECAR_OUTBOUND
+      routeConfiguration:
+        vhost:
+          name: ml-pipeline.kubeflow.svc.cluster.local:8888
+          route:
+            name: default
+    patch:
+      operation: MERGE
+      value:
+        request_headers_to_add:
+        - append: true
+          header:
+            key: kubeflow-userid
+            value: kubeflow@vivsoft.io
+  workloadSelector:
+    labels:
+      notebook-name: kale-example
+---
+apiVersion: kubeflow.org/v1alpha1
+kind: PodDefault
+metadata:
+  name: access-ml-pipeline
+  namespace: "kubeflow-user-example-com"
+spec:
+  desc: Allow access to Kubeflow Pipelines
+  selector:
+    matchLabels:
+      access-ml-pipeline: "true"
+  volumes:
+    - name: volume-kf-pipeline-token
+      projected:
+        sources:
+          - serviceAccountToken:
+              path: token
+              expirationSeconds: 7200
+              audience: pipelines.kubeflow.org      
+  volumeMounts:
+    - mountPath: /var/run/secrets/kubeflow/pipelines
+      name: volume-kf-pipeline-token
+      readOnly: true
+  env:
+    - name: KF_PIPELINES_SA_TOKEN_PATH
+      value: /var/run/secrets/kubeflow/pipelines/token
+    - name: KF_PIPELINES_ENDPOINT
+      value: http://ml-pipeline.kubeflow.svc.cluster.local:8888
+---
+# Adding the notebook 
+apiVersion: kubeflow.org/v1
+kind: Notebook
+metadata:
+  annotations:
+    notebooks.kubeflow.org/server-type: jupyter
+  labels:
+    access-ml-pipeline: "true"
+    app: kale-example
+  name: kale-example
+  namespace: kubeflow-user-example-com
+spec:
+  template:
+    spec:
+      containers:
+      - image: gcr.io/arrikto/jupyter-kale:6f87224e-9f74f267
+        imagePullPolicy: IfNotPresent
+        name: kale-example
+        resources:
+          limits:
+            cpu: "1.2"
+            memory: 1.2Gi
+          requests:
+            cpu: "1"
+            memory: 1Gi
+        volumeMounts:
+        - mountPath: /home/jovyan
+          name: workspace-kale-example
+        - mountPath: /dev/shm
+          name: dshm
+      serviceAccountName: default-editor
+      volumes:
+      - name: workspace-kale-example
+        persistentVolumeClaim:
+          claimName: workspace-kale-example
+      - emptyDir:
+          medium: Memory
+        name: dshm
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  annotations:
+    # pv.kubernetes.io/bind-completed: "yes"
+  name: workspace-kale-example
+  namespace: kubeflow-user-example-com
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+
+---
+# Adding permission to default-editor SA - https://github.com/kubeflow-kale/kale/issues/352 via the clusterrole aggrigation
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: kale-workflow-role
+  labels:
+    app.kubernetes.io/component: kale-pipeline
+    app.kubernetes.io/name: kale-pipelines
+    application-crd-id: kale-pipelines
+    rbac.authorization.kubeflow.org/aggregate-to-kubeflow-edit: "true"
+rules:
+- apiGroups:
+  - argoproj.io
+  resources:
+  - workflows
+  verbs:
+  - get
+  - list
+  - watch
+  - patch

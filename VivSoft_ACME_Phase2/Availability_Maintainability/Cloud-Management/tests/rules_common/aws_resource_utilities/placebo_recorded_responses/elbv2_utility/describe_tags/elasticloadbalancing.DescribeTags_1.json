@@ -1,0 +1,43 @@
+{
+    "status_code": 200,
+    "data": {
+        "TagDescriptions": [
+            {
+                "ResourceArn": "arn:aws:elasticloadbalancing:us-east-1:107339370656:loadbalancer/app/vaibhavALBMNCTESTCOPYRULE/c01bcf796c5611d6",
+                "Tags": [
+                    {
+                        "Key": "Project",
+                        "Value": "MNC"
+                    },
+                    {
+                        "Key": "Environment",
+                        "Value": "testing"
+                    },
+                    {
+                        "Key": "Owner",
+                        "Value": "vaibhav.menkudale"
+                    },
+                    {
+                        "Key": "ExpirationDate",
+                        "Value": "2018-10-30"
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "vaibhavCopyTestNAMETag"
+                    }
+                ]
+            }
+        ],
+        "ResponseMetadata": {
+            "RequestId": "a9247f2b-d912-11e8-87ec-6d16634278a2",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "a9247f2b-d912-11e8-87ec-6d16634278a2",
+                "content-type": "text/xml",
+                "content-length": "1076",
+                "date": "Fri, 26 Oct 2018 11:31:20 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

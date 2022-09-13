@@ -1,0 +1,8 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: App-1
+  labels:
+    # enable mTLS at namespace level which will be inherited by all downstream components
+    istio-injection=enabled

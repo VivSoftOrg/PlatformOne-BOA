@@ -1,0 +1,26 @@
+{{- if .Values.violations.imageDigest.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: {{ .Values.violations.imageDigest.kind }}
+metadata:
+  name: {{ .Values.violations.imageDigest.name }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  annotations:
+    constraints.gatekeeper/name: "Image Digests"
+    constraints.gatekeeper/description: "Containers must use images with a digest instead of a tag."
+    constraints.gatekeeper/source: "https://github.com/open-policy-agent/gatekeeper-library/tree/master/library/general/imagedigests"
+    constraints.gatekeeper/docs: "https://kubernetes.io/docs/concepts/configuration/overview/#container-images"
+    constraints.gatekeeper/related: "https://cloud.google.com/architecture/using-container-images"
+    helm.sh/hook: post-install,post-upgrade
+spec:
+  enforcementAction: {{ .Values.violations.imageDigest.enforcementAction }}
+  match:
+    {{- if .Values.violations.imageDigest.match  }}
+    {{- toYaml .Values.violations.imageDigest.match | nindent 4}}
+    {{- end }}
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+  parameters:
+    {{- toYaml .Values.violations.imageDigest.parameters | nindent 4}}
+{{- end }}

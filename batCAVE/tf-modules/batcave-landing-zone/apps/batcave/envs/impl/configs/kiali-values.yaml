@@ -1,0 +1,13 @@
+kiali:
+  values:
+    tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Exists"
+      effect: "NoSchedule"
+    cr:
+      spec:
+        deployment: 
+          tolerations:
+          - key: "CriticalAddonsOnly"
+            operator: "Exists"
+            effect: "NoSchedule"

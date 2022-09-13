@@ -1,0 +1,35 @@
+{
+    "status_code": 200,
+    "data": {
+        "Progress": "",
+        "OwnerId": "107339370656",
+        "State": "pending",
+        "SnapshotId": "snap-0a14eaa54864a7542",
+        "VolumeSize": 10,
+        "Encrypted": false,
+        "ResponseMetadata": {
+            "HTTPHeaders": {
+                "date": "Fri, 12 Jan 2018 16:09:42 GMT",
+                "transfer-encoding": "chunked",
+                "content-type": "text/xml;charset=UTF-8",
+                "vary": "Accept-Encoding",
+                "server": "AmazonEC2"
+            },
+            "RetryAttempts": 0,
+            "HTTPStatusCode": 200,
+            "RequestId": "54e1dc73-ccc4-4f14-a88b-d61b4983f55a"
+        },
+        "Description": "testEBSvol-039b830d10c0ed581",
+        "VolumeId": "vol-039b830d10c0ed581",
+        "StartTime": {
+            "year": 2018,
+            "hour": 16,
+            "month": 1,
+            "day": 12,
+            "microsecond": 0,
+            "minute": 9,
+            "__class__": "datetime",
+            "second": 42
+        }
+    }
+}

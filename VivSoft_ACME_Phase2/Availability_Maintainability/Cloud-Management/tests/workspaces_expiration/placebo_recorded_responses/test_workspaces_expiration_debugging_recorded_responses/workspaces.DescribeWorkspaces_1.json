@@ -1,0 +1,85 @@
+{
+    "status_code": 200,
+    "data": {
+        "Workspaces": [
+            {
+                "WorkspaceId": "ws-fw7j8cs3j",
+                "DirectoryId": "d-90672b876a",
+                "UserName": "dev",
+                "State": "STOPPING",
+                "BundleId": "wsb-8vbljg4r6",
+                "WorkspaceProperties": {
+                    "RunningMode": "AUTO_STOP",
+                    "RunningModeAutoStopTimeoutInMinutes": 60
+                }
+            },
+            {
+                "WorkspaceId": "ws-334y99jkp",
+                "DirectoryId": "d-90672b876a",
+                "UserName": "test1",
+                "State": "PENDING",
+                "BundleId": "wsb-8vbljg4r6",
+                "WorkspaceProperties": {
+                    "RunningMode": "AUTO_STOP",
+                    "RunningModeAutoStopTimeoutInMinutes": 60
+                }
+            },
+            {
+                "WorkspaceId": "ws-h1hqprwjb",
+                "DirectoryId": "d-90672b876a",
+                "UserName": "test3",
+                "State": "SUSPENDED",
+                "BundleId": "wsb-8vbljg4r6",
+                "WorkspaceProperties": {
+                    "RunningMode": "AUTO_STOP",
+                    "RunningModeAutoStopTimeoutInMinutes": 60
+                }
+            },
+            {
+                "WorkspaceId": "ws-hqh54s52d",
+                "DirectoryId": "d-90672b876a",
+                "UserName": "test2",
+                "State": "PENDING",
+                "BundleId": "wsb-8vbljg4r6",
+                "WorkspaceProperties": {
+                    "RunningMode": "AUTO_STOP",
+                    "RunningModeAutoStopTimeoutInMinutes": 60
+                }
+            },
+            {
+                "WorkspaceId": "ws-hqh54ssdf4",
+                "DirectoryId": "d-90672b876a",
+                "UserName": "test2",
+                "State": "PENDING",
+                "BundleId": "wsb-8vbljg4r6",
+                "WorkspaceProperties": {
+                    "RunningMode": "AUTO_STOP",
+                    "RunningModeAutoStopTimeoutInMinutes": 60
+                }
+            }
+            ,
+            {
+                "WorkspaceId": "ws-hqhasdfasd3",
+                "DirectoryId": "d-90672b876a",
+                "UserName": "test2",
+                "State": "PENDING",
+                "BundleId": "wsb-8vbljg4r6",
+                "WorkspaceProperties": {
+                    "RunningMode": "AUTO_STOP",
+                    "RunningModeAutoStopTimeoutInMinutes": 60
+                }
+            }
+        ],
+        "ResponseMetadata": {
+            "RequestId": "a862f4aa-bcb1-11e7-ae77-61587bb92c18",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "x-amzn-requestid": "a862f4aa-bcb1-11e7-ae77-61587bb92c18",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "1035",
+                "date": "Sun, 29 Oct 2017 14:01:27 GMT"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

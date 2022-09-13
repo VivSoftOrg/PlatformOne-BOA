@@ -1,0 +1,11 @@
+apiVersion: kpt.dev/v1alpha1
+kind: Kptfile
+metadata:
+  name: chart
+upstream:
+  type: git
+  git:
+    commit: 50653cd25c7399b26cdd67a20d3193ead5aec941
+    repo: https://github.com/SonarSource/helm-chart-sonarqube
+    directory: /charts/sonarqube
+    ref: sonarqube-9.6.3
