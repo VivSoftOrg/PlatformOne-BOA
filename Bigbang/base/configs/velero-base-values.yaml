@@ -1,0 +1,143 @@
+addons:
+  velero:
+    enabled: true
+    plugins:
+      - aws
+    values:
+      kubectl:
+        image:
+          repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/kubernetes/kubectl
+      backupsEnabled: true
+      configMaps: { }
+      configuration:
+        backupStorageLocation:
+          bucket: ${batcave_cluster_name}-batcave-velero-storage
+          caCert: null
+          config: { }
+          name: null
+          prefix: null
+          provider: aws
+        backupSyncPeriod: null
+        defaultVolumesToRestic: null
+        extraEnvVars: { }
+        features: null
+        logFormat: null
+        logLevel: null
+        provider: aws
+        resticTimeout: null
+        restoreOnlyMode: null
+        restoreResourcePriorities: null
+        volumeSnapshotLocation:
+          config:
+            region: us-east-1
+          name: default
+          provider: aws
+      credentials:
+        existingSecret: null
+        extraEnvVars: { }
+        extraSecretRef: ""
+        name: null
+        secretContents: { }
+        useSecret: true
+      deployRestic: false
+      dnsPolicy: ClusterFirst
+      enableHelmHooks: true
+      extraVolumeMounts: [ ]
+      extraVolumes: [ ]
+      image:
+        pullPolicy: IfNotPresent
+        repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/velero/velero
+      imagePullSecrets:
+        - name: private-registry
+      installCRDs: true
+      metrics:
+        enabled: true
+        podAnnotations:
+          prometheus.io/path: /metrics
+          prometheus.io/port: "8085"
+          prometheus.io/scrape: "true"
+        scrapeInterval: 30s
+        scrapeTimeout: 10s
+        serviceMonitor:
+          additionalLabels: { }
+          enabled: false
+      # nodeSelector:
+      #   category: selinux
+      initContainers:
+        - name: velero-plugin-for-csi
+          image: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/velero/velero-plugin-for-csi:v0.1.2
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /target
+              name: plugins
+          resources:
+            requests:
+              memory: 512Mi
+              cpu: 100m
+            limits:
+              memory: 512Mi
+              cpu: 100m
+        - name: velero-plugin-for-aws
+          image: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/velero/velero-plugin-for-aws:v1.4.1
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /target
+              name: plugins
+          resources:
+            requests:
+              memory: 512Mi
+              cpu: 100m
+            limits:
+              memory: 512Mi
+              cpu: 100m
+        - name: velero-plugin-for-microsoft-azure
+          image: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/velero/velero-plugin-for-microsoft-azure:v1.4.1
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /target
+              name: plugins
+          resources:
+            requests:
+              memory: 512Mi
+              cpu: 100m
+            limits:
+              memory: 512Mi
+              cpu: 100m
+      podAnnotations: { }
+      podLabels: { }
+      priorityClassName: ""
+      rbac:
+        clusterAdministrator: true
+        create: true
+      resources:
+        requests:
+          cpu: 500m
+          memory: 128Mi
+        limits:
+          cpu: 1000m
+          memory: 512Mi
+      restic:
+        dnsPolicy: ClusterFirst
+        extraVolumeMounts: [ ]
+        extraVolumes: [ ]
+        podVolumePath: /var/lib/kubelet/pods
+        priorityClassName: ""
+        privileged: false
+        resources: { }
+        securityContext: { }
+        tolerations: [ ]
+      securityContext: { }
+      serviceAccount:
+        server:
+          annotations: null
+          create: true
+          name: null
+      snapshotsEnabled: true
+      kubectl:
+        image: 
+          repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/kubernetes/kubectl
+      # tolerations:
+      # - key: "SelinuxOnly"
+      #   operator: "Equal"
+      #   value: "true"
+      #   effect: "NoSchedule"

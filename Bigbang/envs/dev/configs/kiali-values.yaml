@@ -1,0 +1,6 @@
+kiali:
+  values:
+    istio:
+      kiali:
+        hosts:
+          - kiali-${batcave_cluster_name}.{{ .Values.hostname }}

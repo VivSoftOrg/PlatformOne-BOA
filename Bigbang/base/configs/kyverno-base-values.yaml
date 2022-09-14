@@ -1,0 +1,7 @@
+kyverno:
+  enabled: true
+  values:
+    image:
+      repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/nirmata/kyverno
+    initImage:
+      repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/nirmata/kyvernopre

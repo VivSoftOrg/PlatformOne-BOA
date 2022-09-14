@@ -1,0 +1,10 @@
+addons:
+  metricsServer:
+    enabled: true
+    values:
+      tolerations:
+        - key: "CriticalAddonsOnly"
+          operator: "Exists"
+          effect: "NoSchedule"
+      image:
+        repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/kubernetes-sigs/metrics-server

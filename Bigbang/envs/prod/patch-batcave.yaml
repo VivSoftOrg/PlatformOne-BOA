@@ -1,0 +1,75 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: batcave
+  namespace: batcave
+spec:
+  valuesFrom:
+    # base values
+    - name: authmanager-base-values
+      kind: ConfigMap
+    - name: cluster-auditor-base-values
+      kind: ConfigMap
+    - name: eck-operator-base-values
+      kind: ConfigMap
+    - name: fluentbit-base-values
+      kind: ConfigMap
+    - name: gatekeeper-base-values
+      kind: ConfigMap
+    - name: gitlab-base-values
+      kind: ConfigMap
+    - name: gitlab-runner-base-values
+      kind: ConfigMap
+    - name: istio-base-values
+      kind: ConfigMap
+    - name: istio-operator-base-values
+      kind: ConfigMap
+    - name: jaeger-base-values
+      kind: ConfigMap
+    - name: kiali-base-values
+      kind: ConfigMap
+    - name: kyverno-base-values
+      kind: ConfigMap
+    - name: logging-base-values
+      kind: ConfigMap
+    - name: loki-base-values
+      kind: ConfigMap
+    - name: metrics-server-base-values
+      kind: ConfigMap
+    - name: monitoring-base-values
+      kind: ConfigMap
+    - name: sso-base-values
+      kind: ConfigMap
+    - name: twistlock-base-values
+      kind: ConfigMap
+    - name: velero-base-values
+      kind: ConfigMap
+
+    # overlay values
+    - name: gitlab-runner-values
+      kind: ConfigMap
+    - name: gitlab-values
+      kind: ConfigMap
+    - name: monitoring-values
+      kind: ConfigMap
+    - name: sso-values
+      kind: ConfigMap
+    - name: velero-values
+      kind: ConfigMap
+
+    # overlay secrets
+    - name: gitlab-secret
+      kind: Secret
+    - name: istio-secret
+      kind: Secret
+    - name: grafana-secret
+      kind: Secret  
+    - name: registry-credentials
+      kind: Secret
+    - name: sso-secret
+      kind: Secret
+
+  values:
+    domain: batcave.internal.cms.gov
+    networkPolicies:
+      enabled: false

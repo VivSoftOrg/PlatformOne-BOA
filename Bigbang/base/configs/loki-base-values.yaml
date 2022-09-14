@@ -1,0 +1,40 @@
+loki:
+  enabled: true
+  # need this block to ensure minio is not a dependency
+  objectStorage:
+    endpoint: whatever
+    accessKey: whatever
+    accessSecret: whatever
+    bucketNames: ${batcave_bucket_loki}
+  values:
+    monolith:
+      image:
+        repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/grafana/loki
+      config:
+        auth_enabled: false
+        schema_config:
+          configs:
+            - from: "2022-01-01"
+              index:
+                period: 24h
+                prefix: index_
+              object_store: s3
+              schema: v11
+              store: boltdb-shipper
+        storage_config:
+          boltdb_shipper:
+            active_index_directory: /data/loki/boltdb-shipper-active
+            cache_location: /data/loki/boltdb-shipper-cache
+            cache_ttl: 24h
+            shared_store: s3
+          aws:
+            endpoint: s3.us-east-1.amazonaws.com
+            region: us-east-1
+            http_config:
+              idle_conn_timeout: 90s
+              response_header_timeout: 0s
+              insecure_skip_verify: false
+            s3forcepathstyle: true
+            bucketnames: ${batcave_bucket_loki}
+        compactor:
+          shared_store: s3

@@ -1,0 +1,66 @@
+addons:
+  gitlabRunner:
+    enabled: false
+    values:
+      registry: artifactory.cloud.cms.gov/batcave-docker
+      gitlabUrl: http://gitlab-webservice-default.gitlab.svc.cluster.local:8181
+      unregisterRunners: true
+      terminationGracePeriodSeconds: 3600
+      concurrent: 50
+      checkInterval: 30
+      rbac:
+        create: true
+        rules: [ ]
+        clusterWideAccess: false
+        imagePullSecrets:
+          - private-registry
+        podSecurityPolicy:
+          enabled: false
+          resourceNames:
+            - gitlab-runner
+        metrics:
+          enabled: false
+          portName: metrics
+          port: 9252
+          serviceMonitor:
+            enabled: false
+        service:
+          enabled: true
+          type: ClusterIP
+      runners:
+        tags: "global-shared"
+        privileged: false
+        secret: gitlab-gitlab-runner-secret
+        pollTimeout: 360
+        outputLimit: 102400
+        cloneUrl: http://gitlab-webservice-default.gitlab.svc.cluster.local:8181
+        config: |
+          [[runners]]
+            clone_url = "http://gitlab-webservice-default.gitlab.svc.cluster.local:8181"
+            cache_dir = "/tmp/gitlab-runner/cache"
+            request_concurrency = 10
+            [runners.kubernetes]
+              image = "artifactory.cloud.cms.gov/batcave-docker/ironbank/redhat/ubi/ubi8:8.6"
+              helper_image = "artifactory.cloud.cms.gov/batcave-docker/ironbank/gitlab/gitlab-runner/gitlab-runner-helper:v15.0.0"
+              image_pull_secrets = ["private-registry"]
+            [runners.kubernetes.pod_labels]
+              "job_id" = "$${CI_JOB_ID}"
+              "job_name" = "$${CI_JOB_NAME}"
+              "pipeline_id" = "$${CI_PIPELINE_ID}"
+            [runners.cache]
+              Type = "s3"
+              Shared = true
+              [runners.cache.s3]
+                ServerAddress = "s3.amazonaws.com"
+                BucketName = "${batcave_bucket_gitlab_runner_cache}"
+                BucketLocation = "us-east-1"
+                Insecure = false
+                AuthenticationType = "iam"
+      locked: false
+      runUntagged: true
+      protected: true
+      secret: gitlab-gitlab-runner-secret
+      cache: { }
+      builds: { }
+      services: { }
+      helpers: { }

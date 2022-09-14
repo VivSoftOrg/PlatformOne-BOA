@@ -1,0 +1,16 @@
+monitoring:
+  values:
+    istio:
+      alertmanager:
+        hosts:
+          - alertmanager-${batcave_cluster_name}.{{ .Values.hostname }}
+      grafana:
+        hosts:
+          - grafana-${batcave_cluster_name}.{{ .Values.hostname }}
+      persistence:
+        type: pvc
+        enabled: true
+        accessmodes:
+          - ReadWriteOnce
+        finalizers: 
+          - kubernetes.io/pvc-protection

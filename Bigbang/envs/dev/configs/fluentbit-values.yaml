@@ -1,0 +1,4 @@
+fluentbit:
+  enabled: true
+  values:
+    customAwsBucket: "batcave-${batcave_cluster_name}-logs"

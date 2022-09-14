@@ -1,0 +1,200 @@
+addons:
+  argocd:
+    enabled: true
+    values:
+      repoServer:
+        tolerations:
+        - key: "CriticalAddonsOnly"
+          operator: "Exists"
+          effect: "NoSchedule"
+      controller:
+        tolerations:
+        - key: "CriticalAddonsOnly"
+          operator: "Exists"
+          effect: "NoSchedule"
+      global:
+        tolerations:
+        - key: "CriticalAddonsOnly"
+          operator: "Exists"
+          effect: "NoSchedule"
+      dex:
+        tolerations:
+        - key: "CriticalAddonsOnly"
+          operator: "Exists"
+          effect: "NoSchedule"
+      redis-bb:
+        master:
+          tolerations:
+          - key: "CriticalAddonsOnly"
+            operator: "Exists"
+            effect: "NoSchedule"
+        replica:
+          replicaCount: 3
+          tolerations:
+          - key: "CriticalAddonsOnly"
+            operator: "Exists"
+            effect: "NoSchedule"
+        metrics:
+          tolerations:
+          - key: "CriticalAddonsOnly"
+            operator: "Exists"
+            effect: "NoSchedule"
+      sso:
+        rbac:
+          policy.csv: |
+            p, role:batcavedemo, applications, get, batcave-demo/*, allow
+            p, role:batcavedemo, applications, sync, batcave-demo/*, allow
+            p, role:batcavedemo, applications, delete, batcave-demo/*, deny
+            p, role:easi, applications, get, easi/*, allow
+            p, role:easi, applications, sync, easi/*, allow
+            p, role:easi, applications, delete, easi/*, deny
+            g, BAT_IMP_DEV_EASI, role:easi
+            p, role:cygk, applications, get, cygk/*, allow
+            p, role:cygk, applications, sync, cygk/*, allow
+            p, role:cygk, applications, delete, cygk/*, deny
+            g, BAT_IMP_DEV_CYGK, role:cygk
+            p, role:oedaeppe, applications, get, oeda-eppe/*, allow
+            p, role:oedaeppe, applications, sync, oeda-eppe/*, allow
+            p, role:oedaeppe, applications, delete, oeda-eppe/*, deny
+            g, BAT_IMP_DEV_EPPE, role:oedaeppe
+            g, BAT_IMPL_CD_VIEWER, role:readonly
+            g, BAT_IMPL_CD_ADMIN, role:admin
+            g, BAT_TEST_CLUSTER_ADM, role:admin
+      server:
+        rbacConfig:
+          policy.default: role:batcavedemo
+          scopes: '[groups, batcave-groups]'
+        config:
+          url: https://argocd.batcave-impl.internal.cms.gov
+        tolerations:
+        - key: "CriticalAddonsOnly"
+          operator: "Exists"
+          effect: "NoSchedule"
+        configs:
+          repositories:
+            - url: https://code.batcave.internal.cms.gov/batcave-iac/test-pipelines/argocd-test-app.git
+            - url: https://code.batcave.internal.cms.gov/ado-repositories/caped-crusader/batcave-website/manifests.git
+            - url: https://code.batcave.internal.cms.gov/ado-repositories/nightwing/knight-light/manifests.git
+        additionalApplications:
+          - name: argocd-test-app
+            namespace: argocd
+            project: batcave-demo
+            source:
+              repoURL: https://code.batcave.internal.cms.gov/batcave-iac/test-pipelines/argocd-test-app.git
+              targetRevision: HEAD
+              path: .
+            destination:
+              name: in-cluster
+              namespace: test-app
+              server: ''
+            syncPolicy:
+              syncOptions:
+                - CreateNamespace=true
+              automated:
+                prune: true
+                selfHeal: true
+          - name: batcave-website
+            namespace: argocd
+            project: batcave-demo
+            source:
+              repoURL: https://code.batcave.internal.cms.gov/ado-repositories/caped-crusader/batcave-website/manifests.git
+              targetRevision: HEAD
+              path: impl
+            destination:
+              name: in-cluster
+              namespace: batcave-website
+              server: ''
+            syncPolicy:
+              syncOptions:
+                - CreateNamespace=true
+              automated:
+                prune: true
+                selfHeal: true
+          - name: knight-light
+            namespace: argocd
+            project: batcave-demo
+            source:
+              repoURL: https://code.batcave.internal.cms.gov/ado-repositories/nightwing/knight-light/manifests.git
+              targetRevision: HEAD
+              path: dev
+            destination:
+              name: in-cluster
+              namespace: knight-light
+              server: ''
+            syncPolicy:
+              syncOptions:
+                - CreateNamespace=true
+              automated:
+                prune: true
+                selfHeal: true
+          - name: easi
+            namespace: argocd
+            project: easi
+            source:
+              repoURL: https://code.batcave.internal.cms.gov/ado-repositories/easi/manifests.git
+              targetRevision: HEAD
+              path: impl
+            destination:
+              name: in-cluster
+              namespace: easi
+              server: ''
+            syncPolicy:
+              syncOptions:
+                - CreateNamespace=true
+              automated:
+                prune: true
+                selfHeal: true
+          - name: eppe
+            namespace: argocd
+            project: oeda-eppe
+            source:
+              repoURL: https://code.batcave.internal.cms.gov/ado-repositories/oeda/eppe/manifests.git
+              targetRevision: HEAD
+              path: impl
+            destination:
+              name: in-cluster
+              namespace: oeda-eppe
+              server: ''
+            syncPolicy:
+              syncOptions:
+                - CreateNamespace=true
+              automated:
+                prune: true
+                selfHeal: true
+        additionalProjects:
+          - name: batcave-demo
+            namespace: argocd
+            destinations:
+            - namespace: test-app
+              server: https://kubernetes.default.svc
+            - namespace: batcave-website
+              server: https://kubernetes.default.svc
+            - namespace: batcave-demo
+              server: https://kubernetes.default.svc
+            sourceRepos:
+            - https://code.batcave.internal.cms.gov/ado-repositories/nightwing/knight-light/manifests.git
+            - https://code.batcave.internal.cms.gov/ado-repositories/caped-crusader/batcave-website/manifests.git
+            - https://code.batcave.internal.cms.gov/batcave-iac/test-pipelines/argocd-test-app.git
+            clusterResourceWhitelist:
+            - kind : '*'
+              group: '*'
+          - name: easi
+            namespace: argocd
+            destinations:
+            - namespace: easi
+              server: https://kubernetes.default.svc
+            sourceRepos:
+            - https://code.batcave.internal.cms.gov/ado-repositories/easi/*
+            clusterResourceWhitelist:
+            - kind : '*'
+              group: '*'
+          - name: oeda-eppe
+            namespace: argocd
+            destinations:
+            - namespace: oeda-eppe
+              server: https://kubernetes.default.svc
+            sourceRepos:
+            - https://code.batcave.internal.cms.gov/ado-repositories/oeda/eppe/*
+            clusterResourceWhitelist:
+            - kind : '*'
+              group: '*'

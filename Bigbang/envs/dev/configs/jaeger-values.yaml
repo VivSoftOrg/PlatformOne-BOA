@@ -1,0 +1,6 @@
+jaeger:
+  values:
+    istio:
+      jaeger:
+        hosts:
+          - tracing-${batcave_cluster_name}.{{ .Values.hostname }}

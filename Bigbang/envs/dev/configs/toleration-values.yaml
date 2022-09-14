@@ -1,0 +1,123 @@
+toleration_anchors:
+  toleration: &critical_toleration
+    - key: "CriticalAddonsOnly"
+      operator: "Exists"
+      effect: "NoSchedule"
+addons:
+  argocd:
+    values:
+      repoServer:
+        tolerations: *critical_toleration
+      controller:
+        tolerations: *critical_toleration
+      global:
+        tolerations: *critical_toleration
+      dex:
+        tolerations: *critical_toleration
+      redis-bb:
+        master:
+          tolerations: *critical_toleration
+        replica:
+          tolerations: *critical_toleration
+        metrics:
+          tolerations: *critical_toleration
+      server:
+        tolerations: *critical_toleration
+  authservice:
+    values:
+      tolerations: *critical_toleration
+  haproxy:
+    values:
+      tolerations: *critical_toleration
+  velero:
+    values:
+      tolerations: *critical_toleration
+kiali:
+  values:
+    tolerations: *critical_toleration
+    cr:
+      spec:
+        deployment:
+          tolerations: *critical_toleration
+istiooperator:
+  values:
+    tolerations: *critical_toleration
+istio:
+  ingressGateways:
+    istio-ingressgateway:
+      kubernetesResourceSpec:
+        tolerations: *critical_toleration
+  values:
+    cni:
+      tolerations: *critical_toleration
+    istiod:
+      tolerations: *critical_toleration
+
+kyverno:
+  values:
+    tolerations: *critical_toleration
+loki:
+  values:
+    monolith:
+      tolerations: *critical_toleration
+jaeger:
+  values:
+    tolerations: *critical_toleration
+    istio:
+      tolerations: *critical_toleration
+    jaeger:
+      spec:
+        allInOne:
+          tolerations: *critical_toleration
+        collector:
+          tolerations: *critical_toleration
+        ingester:
+          tolerations: *critical_toleration
+        query:
+          tolerations: *critical_toleration
+    webhookCertGen:
+      tolerations: *critical_toleration
+monitoring:
+  values:
+    alertmanager:
+      alertmanagerSpec:
+        tolerations: *critical_toleration
+    grafana:
+      tolerations: *critical_toleration
+    kube-state-metrics:
+      tolerations: *critical_toleration
+    prometheus:
+      prometheusSpec:
+        tolerations: *critical_toleration
+    prometheusOperator:
+      tolerations: *critical_toleration
+      admissionWebhooks:
+        patch:
+          tolerations: *critical_toleration
+    prometheus-node-exporter:
+      tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Exists"
+        effect: "NoSchedule"
+      - key: "batcave-website"
+        operator: "Exists"
+        effect: "NoSchedule"
+      - key: "batcave-nightlight"
+        operator: "Exists"
+        effect: "NoSchedule"
+fluentbit:
+  values:
+    tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Exists"
+        effect: "NoSchedule"
+      - key: "runners"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
+      - key: "batcave-website"
+        operator: "Exists"
+        effect: "NoSchedule"
+      - key: "batcave-nightlight"
+        operator: "Exists"
+        effect: "NoSchedule"

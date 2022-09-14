@@ -1,0 +1,21 @@
+addons:
+  gitlabRunner:
+    enabled: true
+    values:
+      nodeSelector:
+        runners: "true"
+      tolerations:
+        - key: "runners"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
+      logLevel: debug
+      runners:
+        serviceAccountName: ${batcave_cluster_name}-cosign
+        nodeSelector:
+          runners: "true"
+        nodeTolerations:
+          - key: "runners"
+            operator: "Equal"
+            value: "true"
+            effect: "NoSchedule"

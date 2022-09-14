@@ -1,0 +1,67 @@
+istio:
+  enabled: true
+  git:
+    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
+    path: "./chart"
+  ingressGateways:
+    istio-ingressgateway:
+      type : "NodePort"
+      kubernetesResourceSpec:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: istio
+                  operator: In
+                  values:
+                  - ingressgateway
+              topologyKey: "kubernetes.io/hostname"
+        hpaSpec:
+          minReplicas: 3
+          maxReplicas: 5
+        service:
+          ports:
+            - name: status-port
+              port: 15020
+              targetPort: 15020
+              nodePort: 30020
+            - name: http2
+              port: 8080
+              targetPort: 8080
+              nodePort: 30080
+            - name: https
+              port: 8443
+              targetPort: 8443
+              nodePort: 30443
+            - name: tls
+              port: 15443
+              targetPort: 15443
+              nodePort: 31443
+    # Disable unnecessary public IGW
+    public-ingressgateway: null
+  gateways:
+    main:
+      ingressGateway: "istio-ingressgateway"
+      hosts:
+        - "*"
+   # Disable unnecessary gateways
+    public: null
+  values:
+    hub: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/istio
+    cni:
+      image:
+        hub: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/istio
+    postInstallHook:
+      image: artifactory.cloud.cms.gov/batcave-docker/ironbank/big-bang/base:1.0.0      
+    istiod:
+      resources:
+        requests:
+          cpu: 500m
+          memory: 500Mi
+        limits:
+          cpu: "1"
+          memory: "1Gi"
+      hpaSpec:
+        minReplicas: 1
+        maxReplicas: 5

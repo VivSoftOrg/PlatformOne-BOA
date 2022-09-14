@@ -1,0 +1,4 @@
+istiooperator:
+  enabled: true
+  values:
+    hub: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/istio

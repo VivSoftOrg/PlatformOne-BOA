@@ -1,0 +1,83 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: batcave-landing-zone
+  namespace: batcave
+spec:
+  interval: 1m0s
+  url: ssh://git@github.com/CMSgov/batcave-landing-zone.git
+  ref:
+    tag: 0.22.1
+  secretRef:
+    name: gh-credentials
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: values
+  namespace: batcave
+spec:
+  interval: 1m0s
+  path: "./apps/batcave/envs/impl/"
+  sourceRef:
+    kind: GitRepository
+    name: batcave-landing-zone
+    namespace: batcave
+  prune: true
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: terragrunt-vars
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: batcave-ns-secrets
+  namespace: batcave
+spec:
+  interval: 5m0s
+  sourceRef:
+    kind: GitRepository
+    name: batcave-landing-zone
+    namespace: batcave
+  path: "./apps/batcave/envs/impl/secrets/batcave-ns"
+  prune: true
+  decryption:
+    provider: sops
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: apps-ns-secrets
+  namespace: batcave
+spec:
+  interval: 5m0s
+  sourceRef:
+    kind: GitRepository
+    name: batcave-landing-zone
+    namespace: batcave
+  path: "./apps/batcave/envs/impl/secrets/app-ns"
+  prune: true
+  dependsOn:
+    - name: batcave-ns-secrets
+  decryption:
+    provider: sops
+---
+# Cannot be moved to base because we want remote overlays to be
+# able to create their own Batcave HR + overlay
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: batcave
+  namespace: batcave
+spec:
+  chart:
+    spec:
+      chart: chart
+      sourceRef:
+        kind: GitRepository
+        name: bigbang
+        namespace: batcave
+  interval: 2m0s
+  rollback:
+    disableWait: true

@@ -1,0 +1,12 @@
+addons:
+  velero:
+    values:
+      schedules:
+        impl-cluster-backup:
+          schedule: "0 */12 * * *"
+          template:
+            ttl: "48h"
+      tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Exists"
+        effect: "NoSchedule"

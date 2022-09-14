@@ -1,0 +1,10 @@
+addons:
+  authservice:
+    enabled: true
+    values:
+      image:
+        repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/istio-ecosystem/authservice
+  haproxy:
+    values:
+      image:
+        repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/haproxy/haproxy22

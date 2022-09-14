@@ -1,0 +1,113 @@
+fluentbit:
+  enabled: true
+  git:
+    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/fluentbit.git
+    path: "./chart"
+  flux: { }
+  values:
+    tolerations:
+      - key: "runners"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
+    logLevel: warn
+    env: { }
+    extraVolumes:
+      - hostPath:
+          path: /var/log/flb-storage/
+          type: DirectoryOrCreate
+        name: flb-storage
+    extraVolumeMounts:
+      - mountPath: /var/log/flb-storage/
+        name: flb-storage
+    awsAccountId: "${aws_account_id}"
+    awsRegion: "us-east-1"
+    image:
+      repository: artifactory.cloud.cms.gov/batcave-docker/grafana/fluent-bit-plugin-loki
+      tag: 2.5.0-amd64
+    config:
+      service: |
+        [SERVICE]
+            Daemon Off
+            Flush 1
+            Log_Level {{ .Values.logLevel }}
+            Parsers_File parsers.conf
+            Parsers_File custom_parsers.conf
+            HTTP_Server On
+            HTTP_Listen 0.0.0.0
+            HTTP_Port {{ .Values.service.port }}
+      inputs: |
+        [INPUT]
+            Name           tail
+            Tag            kube.*
+            Path           /var/log/containers/*.log
+            Parser         containerd
+            DB             /var/log/flb-storage/flb_kube.db
+            Mem_Buf_Limit  5MB
+      filters: |
+        [FILTER]
+            Name           kubernetes
+            Match          kube.*
+            Kube_URL       https://kubernetes.default.svc:443
+            Merge_Log On
+            K8S-Logging.Exclude Off
+            K8S-Logging.Parser Off
+
+        [FILTER]
+            Name rewrite_tag
+            Match kube.*
+            # re-tag: external.{namespace}.{pod_name}.{pod_hash_or_number}.{container_name}
+            # note: pod_name will include replica set id where applicable
+            # note: pod_hash_or_number will be a number for stateful sets and a hash otherwise
+            Rule $kubernetes['pod_name'] ^(.*)-([0-9a-z]+)$ external.$kubernetes['namespace_name'].$1.$2.$kubernetes['container_name'] true
+            Emitter_Name re_emitted
+
+      ## https://docs.fluentbit.io/manual/pipeline/outputs
+      outputs: |
+        [OUTPUT]
+            Name grafana-loki
+            Match kube.*
+            Url http://loki.logging.svc.cluster.local:3100/api/prom/push
+            TenantID ""
+            BatchWait 1
+            BatchSize 1048576
+            Labels {job="fluent-bit"}
+            RemoveKeys kubernetes,stream
+            AutoKubernetesLabels false
+            LabelMapPath /fluent-bit/etc/labelmap.json
+            LineFormat json
+            LogLevel warn
+        
+        [OUTPUT]
+            Name s3
+            Match external.*
+        {{ if .Values.customAwsBucket }}
+            bucket {{ .Values.customAwsBucket }}
+        {{ else }}
+            bucket cms-cloud-{{ .Values.awsAccountId }}-{{ .Values.awsRegion }}
+        {{ end }}
+            # format: /custom/{namespace}_{pod_name}/{account_id}/{date}_{time}_{pod_hash_or_number}_{container_name}_{unique}.json
+            s3_key_format /custom/$TAG[1]_$TAG[2]/{{ .Values.awsAccountId }}/%Y-%m-%d_%H-%M-%S_$TAG[3]_$TAG[4]_$UUID.json
+            store_dir /var/log/flb-storage/s3_store
+            total_file_size 10M
+            upload_timeout 2m
+
+      ## https://docs.fluentbit.io/manual/pipeline/parsers
+      ## Using the default config from the bb chart: https://repo1.dso.mil/platform-one/big-bang/apps/core/fluentbit/-/blob/main/chart/values.yaml#L492-552
+      ## This was necessary because postBuild was having parsing failures on this config
+      #customParsers: |
+      extraFiles:
+        labelmap.json: |
+          {
+            "kubernetes": {
+              "container_name": "container",
+              "host": "node",
+              "labels": {
+                "app": "app",
+                "release": "release"
+              },
+              "namespace_name": "namespace",
+              "pod_name": "instance"
+            },
+            "stream": "stream"
+          }

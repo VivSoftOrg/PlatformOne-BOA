@@ -1,0 +1,3 @@
+fluentbit:
+  values:
+    customAwsBucket: "${batcave_bucket_fluentbit}"

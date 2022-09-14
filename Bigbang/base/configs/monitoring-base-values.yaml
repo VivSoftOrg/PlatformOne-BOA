@@ -1,0 +1,75 @@
+monitoring:
+  enabled: true
+  istio:
+    injection: enabled
+  ingress:
+    gateway: "main"
+  values:
+    istio:
+      enabled: true
+      prometheus:
+        enabled: false
+    alertmanager:
+      alertmanagerSpec:
+        image:
+          repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/prometheus/alertmanager
+    cleanUpgrade:
+      image: artifactory.cloud.cms.gov/batcave-docker/ironbank/big-bang/base:1.0.0
+    grafana:
+      downloadDashboardsImage:
+        repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/big-bang/base
+      image:
+        repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/grafana/grafana
+      sidecar:
+        image:
+          repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/kiwigrid/k8s-sidecar
+      testFramework:
+        image: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/bats/bats
+      useStatefulSet: true
+      persistence:
+        # Note: This automatically creates an EBS backed PVC based on a template
+        type: statefulset
+        enabled: true
+        accessmodes:
+          - ReadWriteOnce
+        finalizers:
+          - kubernetes.io/pvc-protection
+    kube-state-metrics:
+      image:
+        repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/kubernetes/kube-state-metrics
+    prometheus:
+      prometheusSpec:
+        scrapeInterval: 1m
+        evaluationInterval: 1m
+        retention: "60d"
+        retentionSize: "2GB"
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: ebs
+              accessModes: [ "ReadWriteOnce" ]
+              resources:
+                requests:
+                  storage: 50Gi
+        image:
+          repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/prometheus/prometheus
+    prometheus-node-exporter:
+      image:
+        repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/prometheus/node-exporter
+    prometheusOperator:
+      admissionWebhooks:
+        cleanupProxy:
+          image:
+            repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/big-bang/base
+        patch:
+          image:
+            repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/ingress-nginx/kube-webhook-certgen
+      image:
+        repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/prometheus-operator/prometheus-operator
+      kubectlImage:
+        repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/kubernetes-1.20/kubectl-1.20
+      prometheusConfigReloader:
+        image:
+          repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/prometheus-operator/prometheus-config-reloader
+      thanosImage:
+        repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/thanos/thanos

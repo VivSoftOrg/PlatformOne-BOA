@@ -1,0 +1,353 @@
+addons:
+  gitlab:
+    enabled: false
+    hostnames:
+      gitlab: code
+    istio:
+      injection: disabled
+    ingress:
+      gateway: main
+    values:
+      istio:
+        enabled: true
+        gitlab:
+          enabled: true
+        registry:
+          enabled: false
+      global:
+        hosts:
+          domain: code.${batcave_base_domain}
+        kubectl:
+          image:
+            repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/gitlab/gitlab/kubectl
+        common:
+          labels: { }
+        operator:
+          enabled: false
+          rollout:
+            autoPause: true
+        pod:
+          labels: { }
+        application:
+          create: false
+          links: [ ]
+          allowClusterRoles: true
+        ingress:
+          configureCertmanager: false
+        redis:
+          password:
+            enabled: true
+        gitaly:
+          enabled: true
+        praefect:
+          enabled: false
+        minio:
+          enabled: true
+        grafana:
+          enabled: false
+        appConfig:
+          enableUsagePing: true
+          enableSeatLink: true
+          enableImpersonation:
+          applicationSettingsCacheSeconds: 60
+          defaultCanCreateGroup: true
+          usernameChangingEnabled: true
+          issueClosingPattern:
+          defaultTheme:
+          defaultProjectsFeatures:
+            issues: true
+            mergeRequests: true
+            wiki: true
+            snippets: true
+            builds: true
+            containerRegistry: false
+          webhookTimeout:
+          maxRequestDurationSeconds:
+          cron_jobs: { }
+          contentSecurityPolicy:
+            enabled: false
+            report_only: true
+          object_store:
+            enabled: false
+            proxy_download: true
+          lfs:
+            enabled: true
+            proxy_download: true
+            bucket: git-lfs
+          artifacts:
+            enabled: true
+            proxy_download: true
+            bucket: gitlab-artifacts
+          uploads:
+            enabled: true
+            proxy_download: true
+            bucket: gitlab-uploads
+          packages:
+            enabled: true
+            proxy_download: true
+            bucket: gitlab-packages
+          externalDiffs:
+            enabled: false
+            when:
+            proxy_download: true
+            bucket: gitlab-mr-diffs
+          terraformState:
+            enabled: false
+            bucket: gitlab-terraform-state
+          dependencyProxy:
+            enabled: false
+            proxy_download: true
+            bucket: gitlab-dependency-proxy
+          pseudonymizer:
+            configMap:
+            bucket: gitlab-pseudo
+          backups:
+            bucket: "${batcave_bucket_gitlab}"
+            tmpBucket: tmp
+          incomingEmail:
+            enabled: false
+          ldap:
+            preventSignin: false
+          sentry:
+            enabled: false
+          smartcard:
+            enabled: false
+          sidekiq:
+            routingRules: [ ]
+          initialDefaults: {
+            signupEnabled: false
+          }
+        oauth:
+          gitlab-pages: { }
+        geo:
+          enabled: false
+        kas:
+          enabled: false
+        shell:
+          authToken: { }
+          hostKeys: { }
+          tcp:
+            proxyProtocol: false
+        railsSecrets: { }
+        rails:
+          bootsnap: # Enable / disable Shopify/Bootsnap cache
+            enabled: true
+        pages:
+          enabled: false
+          accessControl: false
+          path:
+          host:
+          port:
+          https: # default true
+          externalHttp: [ ]
+          externalHttps: [ ]
+          artifactsServer: true
+          localStore:
+            enabled: false
+          objectStore:
+            enabled: true
+            bucket: gitlab-pages
+            connection: { }
+          apiSecret: { }
+          authSecret: { }
+        runner:
+          registrationToken: { }
+        smtp:
+          enabled: true
+          authentication: ""
+          address: internal-Enterpris-SMTPProd-I20YLD1GTM6L-357506541.us-east-1.elb.amazonaws.com
+          port: 25
+          openssl_verify_mode: none
+
+        ## Timezone for containers.
+        time_zone: UTC
+
+        ## Global Service Annotations and Labels
+        service:
+          labels: { }
+          annotations: { }
+
+        ## Global Deployment Annotations
+        deployment:
+          annotations: { }
+
+        antiAffinity: soft
+
+        workhorse:
+          serviceName: webservice-default
+
+        ## https://docs.gitlab.com/charts/charts/globals#configure-webservice
+        webservice:
+          workerTimeout: 60
+
+        ## https://docs.gitlab.com/charts/charts/globals#service-accounts
+        serviceAccount:
+          enabled: false
+          create: true
+          annotations: { }
+          ## Name to be used for serviceAccount, otherwise defaults to chart fullname
+          # name:
+
+        # https://docs.gitlab.com/charts/charts/globals#busybox-image (used for various init containers)
+        busybox:
+          image:
+            repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/redhat/ubi/ubi8
+
+        certificates:
+          image:
+            repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/gitlab/gitlab/alpine-certificates
+
+        ## https://docs.gitlab.com/charts/charts/globals/#tracing
+        tracing:
+          connection:
+            string: ""
+          urlTemplate: ""
+
+        ## https://docs.gitlab.com/charts/charts/globals
+        extraEnv: { }
+          # SOME_KEY: some_value
+        # SOME_OTHER_KEY: some_other_value
+      upgradeCheck:
+        enabled: false
+        securityContext:
+          # in alpine/debian/busybox based images, this is `nobody:nogroup`
+          runAsUser: 65534
+          fsGroup: 65534
+        tolerations: [ ]
+        resources:
+          requests:
+            cpu: 50m
+      certmanager:
+        installCRDs: false
+        nameOverride: certmanager
+        # Install cert-manager chart. Set to false if you already have cert-manager
+        # installed or if you are not using cert-manager.
+        install: false
+        # Other cert-manager configurations from upstream
+        # See https://github.com/jetstack/cert-manager/blob/master/deploy/charts/cert-manager/README#configuration
+        rbac:
+          create: false
+      ## https://docs.gitlab.com/charts/charts/nginx/
+      ## https://docs.gitlab.com/charts/architecture/decisions#nginx-ingress
+      ## Installation & configuration of charts/ingress-nginx:
+      nginx-ingress:
+        enabled: false
+
+      ## Installation & configuration of stable/prometheus
+      ## See requirements.yaml for current version
+      prometheus:
+        install: false
+      redis:
+        install: true
+        image:
+          registry: artifactory.cloud.cms.gov/batcave-docker/ironbank/bitnami
+          repository: redis
+        master:
+          persistence:
+            size: "100Gi"
+        replica:
+          persistence:
+            size: "100Gi"
+        existingSecret: gitlab-redis-secret
+        existingSecretKey: redis-password
+        usePasswordFile: true
+        cluster:
+          enabled: false
+        metrics:
+          enabled: true
+          image:
+            registry: artifactory.cloud.cms.gov/batcave-docker/ironbank/bitnami
+            repository: analytics/redis-exporter
+      shared-secrets:
+        enabled: true
+        selfsign:
+          image:
+            repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/gitlab/gitlab/cfssl-self-sign
+        rbac:
+          create: true
+        env: production
+        serviceAccount:
+          enabled: true
+          create: true
+          name: # Specify a pre-existing ServiceAccount name
+        resources:
+          requests:
+            cpu: 50m
+        securityContext:
+          # in debian/alpine based images, this is `nobody:nogroup`
+          runAsUser: 65534
+          fsGroup: 65534
+        tolerations: [ ]
+        podLabels: { }
+        annotations: { }
+
+      ## Installation & configuration of gitlab/gitlab-runner
+      ## See requirements.yaml for current version
+      gitlab-runner:
+        install: false
+      registry:
+        enabled: false
+      minio:
+        image: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/minio/minio
+        persistence:
+          size: "50Gi"
+        minioMc:
+          image: artifactory.cloud.cms.gov/batcave-docker/ironbank/opensource/minio/mc
+      postgresql:
+        image:
+          registry: artifactory.cloud.cms.gov/batcave-docker
+          repository: ironbank/opensource/postgres/postgresql12
+      gitlab:
+        gitaly:
+          image:
+            repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/gitlab/gitlab/gitaly
+          persistence:
+            size: 50Gi
+        gitlab-exporter:
+          image:
+            repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/gitlab/gitlab/gitlab-exporter
+        gitlab-shell:
+          image:
+            repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/gitlab/gitlab/gitlab-shell
+        migrations:
+          image:
+            repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/gitlab/gitlab/gitlab-toolbox
+        sidekiq:
+          registry:
+            enabled: false
+          image:
+            repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/gitlab/gitlab/gitlab-sidekiq
+        toolbox:
+          replicas: 1
+          image:
+            repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/gitlab/gitlab/gitlab-toolbox
+          antiAffinityLabels:
+            matchLabels:
+              app: 'gitaly'
+          backups:
+            cron:
+              enabled: true
+              resources:
+                requests:
+                  cpu: "1"
+                  memory: "2Gi"
+                limits:
+                  cpu: "2"
+                  memory: "4Gi"
+              schedule: "0 2 * * *"
+              #https://gitlab.com/gitlab-org/build/CNG/-/blob/14-8-stable/gitlab-toolbox/scripts/lib/object_storage_backup.rb#L27-29
+              extraArgs: "--skip registry,artifacts,lfs,uploads,packages,external_diffs,terraform_state,pages --s3tool awscli"
+              persistence:
+                enabled: true
+                accessMode: ReadWriteOnce
+                size: 500Gi
+                storageClass: ebs
+            objectStorage:
+              backend: s3
+        webservice:
+          registry:
+            enabled: false
+          image:
+            repository: artifactory.cloud.cms.gov/batcave-docker/ironbank/gitlab/gitlab/gitlab-webservice
+          workhorse:
+            image: artifactory.cloud.cms.gov/batcave-docker/ironbank/gitlab/gitlab/gitlab-workhorse

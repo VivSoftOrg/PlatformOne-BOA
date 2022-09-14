@@ -1,0 +1,220 @@
+### Logging FluentBit ###
+fluentbit:
+  values:
+    resources:
+      limits:
+        cpu: 50m
+        memory: 100Mi
+      requests:
+        cpu: 10m
+        memory: 55.5Mi
+### Istio ###
+istio:
+  values:
+    istiod:
+      resources:
+          limits:
+            cpu: 50m 
+            memory: 250Mi
+          requests:
+            cpu: 10m
+            memory: 209.6Mi
+    values:
+      global:
+        proxy:
+          resources:
+            limits:
+              cpu: 50m 
+              memory: 150Mi
+            requests:
+              cpu: 10m
+              memory: 100Mi
+        proxy_init:
+          resources:
+            limits:
+              cpu: 50m 
+              memory: 150Mi
+            requests:
+              cpu: 10m
+              memory: 100Mi
+### Istio Operator ###
+istiooperator:
+  values:
+    operator:
+      resources:
+          limits:
+            cpu: 50m 
+            memory: 150Mi
+          requests:
+            cpu: 10m
+            memory: 91.8Mi
+### Jaegar ###
+jaeger:
+  values:
+    resources: # Operator pod resources
+        limits:
+          cpu: 50m 
+          memory: 100Mi
+        requests:
+          cpu: 10m
+          memory: 51.7Mi
+    jaeger:
+      spec:
+        allInOne: # Using all-in-one for jaegar
+          resources:
+            limits:
+                cpu: 50m
+                memory: 250Mi
+            requests:
+                cpu: 10m
+                memory: 196.9Mi
+        collector:
+          resources:
+              limits:
+                  cpu: 50m
+                  memory: 250Mi
+              requests:
+                  cpu: 10m
+                  memory: 196.9Mi
+### Kiali ###
+# disabling because these limits cause the operator to crash when spawning the Kiali pod
+#kiali:
+#  values:
+#    resources: # Operator pod resources
+#        limits:
+#          cpu: 50m
+#          memory: 250Mi
+#        requests:
+#          cpu: 10m
+#          memory: 181.7Mi
+#    cr:
+#      spec:
+#        deployment:
+#          resources:
+#            limits:
+#              cpu: 50m
+#              memory: 150Mi
+#            requests:
+#              cpu: 10m
+#              memory: 114.8Mi
+### Kyverno ###
+kyverno:
+  values:
+    resources:
+      limits:
+        cpu: 150m 
+        memory: 350Mi
+      requests:
+        cpu: 84m
+        memory: 283.6Mi
+    initResources:
+      limits:
+        cpu: 150m 
+        memory: 350Mi
+      requests:
+        cpu: 84m
+        memory: 283.6Mi
+### Logging Loki ###
+loki:
+  values:
+    write:
+      resources:
+        limits:
+          cpu: 50m
+          memory: 450Mi
+        requests:
+          cpu: 10m
+          memory: 393.7Mi
+    read:
+      resources:
+        limits:
+          cpu: 50m
+          memory: 450Mi
+        requests:
+          cpu: 10m
+          memory: 393.7Mi
+    gateway:
+      resources:
+        limits:
+          cpu: 50m
+          memory: 450Mi
+        requests:
+          cpu: 10m
+          memory: 393.7Mi
+### Monitoring ###
+monitoring:
+  values:
+    alertmanager:
+      alertmanagerSpec:
+        resources:
+          limits:
+            cpu: 50m
+            memory: 100Mi
+          requests:
+            cpu: 10m
+            memory: 36.8Mi
+    cleanUpgrade:
+      resources:
+          limits:
+            cpu: 100m
+            memory: 256Mi
+          requests:
+            cpu: 100m
+            memory: 256Mi
+    grafana:
+      downloadDashboards:
+        resources: 
+          limits:
+            cpu: 50m
+            memory: 150Mi
+          requests:
+            cpu: 10m
+            memory: 111.9Mi
+      resources: 
+        limits:
+          cpu: 50m
+          memory: 200Mi
+        requests:
+          cpu: 10m
+          memory: 164.1Mi
+      sidecar:
+        resources: 
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+    kube-state-metrics:
+      resources:
+        limits:
+          cpu: 50m
+          memory: 150Mi
+        requests:
+          cpu: 10m
+          memory: 69Mi
+    prometheus:
+      prometheusSpec:
+        resources:
+          limits:
+            cpu: 350m
+            memory: 3.3Gi
+          requests: 
+            cpu: 320m
+            memory: 3.1Gi
+    prometheus-node-exporter:
+      resources: 
+        limits:
+          cpu: 50m
+          memory: 100Mi
+        requests:
+          cpu: 10m
+          memory: 32.8Mi
+      prometheusConfigReloader:
+        resources: 
+          limits:
+            cpu: 50m
+            memory: 50Mi
+          requests:
+            cpu: 10m
+            memory: 20Mi
