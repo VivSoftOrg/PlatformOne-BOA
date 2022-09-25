@@ -1,0 +1,25 @@
+{{ if .Vars.rhel7cis_level1 }}
+  {{ if .Vars.rhel7cis_rule_5_3_19 }}
+command:
+  ssh_usepam:
+    title: 5.3.19 | Ensure SSH PAM is enabled
+    exec: grep -Ei "^usepam" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - 'UsePAM yes'
+    - '!/^UsePAM no/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 5.3.19
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

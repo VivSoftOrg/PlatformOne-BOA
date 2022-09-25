@@ -1,0 +1,41 @@
+{{ if .Vars.RHEL_07_010330 }}
+command:
+  system_auth_faillock_so:
+    title: RHEL-07-010330 | Must lock the associated account after three unsuccessful root logon attempts are made within a 15-minute period.
+    exec: grep -Ei "faillock.so|deny_root" /etc/pam.d/system-auth
+    exit-status: 0
+    stdout:
+    - '/^account\s+required\s+pam_faillock.so/'
+    - '/^auth\s+required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900/'
+    - '/^auth\s+\[default=die\] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-002238
+      Group_Title: SRG-OS-000329-GPOS-00128
+      Rule_ID:
+      - SV-204428r792821_rule
+      STIG_ID:
+      - RHEL-07-010330
+      Vul_ID:
+      - V-204428
+  password_auth_faillock_so:
+    title: RHEL-07-010330 | Must lock the associated account after three unsuccessful root logon attempts are made within a 15-minute period.
+    exec: grep -Ei "faillock.so|deny_root" /etc/pam.d/password-auth
+    exit-status: 0
+    stdout:
+    - '/^account\s+required\s+pam_faillock.so/'
+    - '/^auth\s+required pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=900/'
+    - '/^auth\s+\[default=die\] pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=900/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-002238
+      Group_Title: SRG-OS-000329-GPOS-00128
+      Rule_ID:
+      - SV-204428r792821_rule
+      STIG_ID:
+      - RHEL-07-010330
+      Vul_ID:
+      - V-204428
+{{ end }}

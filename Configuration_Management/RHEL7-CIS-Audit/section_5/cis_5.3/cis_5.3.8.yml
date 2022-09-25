@@ -1,0 +1,25 @@
+{{ if .Vars.rhel7cis_level1 }}
+  {{ if .Vars.rhel7cis_rule_5_3_8 }}
+command:
+  ssh_rhosts:
+    title: 5.3.8 | Ensure SSH IgnoreRhosts is enabled
+    exec: grep -Ei "Ignorerhosts" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^(?i)Ignorerhosts yes/'
+    - '!/^(?i)Ignorerhosts no/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 5.3.8
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

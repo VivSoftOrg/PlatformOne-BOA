@@ -1,0 +1,19 @@
+{{ if .Vars.run_heavy_tests }}
+  {{ if .Vars.RHEL_07_010020 }}
+command:
+  rpm_check:
+    title: RHEL_07_010020 | Must be configured so that the cryptographic hash of system files and commands matches vendor values.
+    exec: "rpm -Va --noconfig | grep '^..5' > /tmp/stig_rpmcheck; grep -cvw c /tmp/stig_rpmcheck"
+    exit-status: 1
+    stdout:
+    - '0'
+    timeout: {{ .Vars.timeout_ms }}
+    meta:
+      Cat: 1
+      CCI: CCI-001749
+      Group_Title: SRG-OS-000480-GPOS-00227
+      Rule_ID: SV-214799r603261_rule
+      STIG_ID: RHEL-07-010020
+      Vul_ID: V-214799
+    {{ end }}
+{{ end }}

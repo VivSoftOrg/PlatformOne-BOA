@@ -1,0 +1,37 @@
+{{ if .Vars.rhel8cis_rule_2_2_18 }}
+  {{ if not .Vars.rhel8cis_nfs_server }}
+package:
+  nfs-utils:
+    title: 2.2.18 | Ensure nfs-utils is not installed or the nfs-server service is masked
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 2.2.18
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.rhel8cis_nfs_server }}
+command:
+  nfs_masked:
+    title: 2.2.18 | Ensure nfs-utils is not installed or the nfs-server service is masked
+    exec: systemctl is-enabled nfs-server
+    exit-status: 0
+    stdout:
+      - '/^masked/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 2.2.18
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

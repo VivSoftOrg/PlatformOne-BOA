@@ -1,0 +1,16 @@
+{{ if .Vars.RHEL_07_040400 }}
+command:
+  macs_sshd_config:
+    title: RHEL-07-040400 | Must be configured so that the SSH daemon is configured to only use Message Authentication Codes (MACs) employing FIPS 140-2 approved cryptographic hash algorithms.
+    exec: grep -i Macs /etc/ssh/sshd_config
+    exit-status: 0
+    stdout:
+    - '/^MACs {{ .Vars.rhel7stig_ssh_MACs }}/'
+    meta:
+      Cat: 2
+      CCI: CCI-001453
+      Group_Title: SRG-OS-000250-GPOS-00093
+      Rule_ID: SV-204595r744117_rule
+      STIG_ID: RHEL-07-040400
+      Vul_ID: V-204595
+{{ end }}

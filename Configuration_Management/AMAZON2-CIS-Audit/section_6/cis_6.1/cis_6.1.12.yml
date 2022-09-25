@@ -1,0 +1,27 @@
+{{ if .Vars.amazon2cis_level1 }}
+  {{ if .Vars.amazon2cis_run_heavy_tests }}
+    {{ if .Vars.amazon2cis_rule_6_1_12 }}
+command:
+  ungrouped:
+    title: 6.1.12 | Ensure no ungrouped files or directories exist
+    exec: "df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nogroup"
+    exit-status: 
+      or:
+      - 0
+      - 123
+    stdout:
+    - '!/./'
+    timeout: {{ .Vars.timeout_ms }}
+    meta:
+      server: 1
+      workstation: NA
+      CIS_ID:
+      - 6.1.12
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+    {{ end }}
+  {{ end }}
+{{ end }}

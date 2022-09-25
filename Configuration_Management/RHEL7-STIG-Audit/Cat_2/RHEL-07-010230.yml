@@ -1,0 +1,16 @@
+{{ if .Vars.RHEL_07_010230 }}
+command:
+  login_defs_pass_min_days:
+    title: RHEL-07-010230 | Must be configured so that passwords for new users are restricted to a 24 hours/1 day minimum lifetime.
+    exec: grep -i pass_min_days /etc/login.defs
+    exit-status: 0
+    stdout:
+    - '/^PASS_MIN_DAYS [1-9]$/'
+    meta:
+      Cat: 2
+      CCI: CCI-000198
+      Group_Title: SRG-OS-000075-GPOS-00043
+      Rule_ID: SV-204418r603261_rule
+      STIG_ID: RHEL-07-010230
+      Vul_ID: V-204418
+{{ end }}

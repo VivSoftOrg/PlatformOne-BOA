@@ -1,0 +1,25 @@
+{{ if .Vars.rhel7cis_level2 }}
+  {{ if .Vars.rhel7cis_rule_5_3_6 }}
+command:
+  ssh_x11:
+    title: 5.3.6 | Ensure SSH X11 forwarding is disabled
+    exec: grep -Ei "X11forwarding" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^(?i)X11forwarding no/'
+    - '!/^(\s+|)x11forwarding yes/'
+    meta:
+      server: 2
+      workstation: 1
+      CIS_ID: 
+      - 5.3.6
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

@@ -1,0 +1,36 @@
+gossfile:
+
+
+# If Domain member
+{{ if .Vars.domain_member }}
+# If domain based policy
+  {{ if .Vars.domain_based_policy }}
+    {{ if .Vars.WNFWA_domain }}
+    policy_based/domain.yml: {}
+    {{ end }}
+    {{ if .Vars.WNFWA_private }}
+    policy_based/private.yml: {}
+    {{ end }}
+    {{ if .Vars.WNFWA_public }}
+    policy_based/public.yml: {}
+    {{ end }}
+  {{ end }}
+# If on Domain
+#WNFWA/public_on_domain.yml: {}
+  {{ if eq .Vars.os_deployment_type "Workstation" }}
+  WNFWA/inbound_rules.yml: {}
+  {{ end }}
+
+# If not domain based policy
+  {{ if not .Vars.domain_based_policy }}
+    {{ if .Vars.WNFWA_domain }}
+    system_based/domain.yml: {}
+    {{ end }}
+    {{ if .Vars.WNFWA_private }}
+    system_based/private.yml: {}
+    {{ end }}
+    {{ if .Vars.WNFWA_public }}
+    system_based/public.yml: {}
+    {{ end }}
+  {{ end }}
+{{ end }}

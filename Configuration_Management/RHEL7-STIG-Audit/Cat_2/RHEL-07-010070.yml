@@ -1,0 +1,18 @@
+{{ if .Vars.rhel7stig_gui }}
+  {{ if .Vars.RHEL_07_010070 }}
+command:
+  screensaver_idle_delay:
+    title: RHEL-07-010070 | Must initiate a screensaver after a 15-minute period of inactivity for graphical user interfaces.
+    exec: grep -i idle-delay /etc/dconf/db/local.d/00-screensaver
+    exit-status: 0
+    stdout:
+    - '/^idle-delay=uint32 ([1-8][0-9][0-9]|900)$/'
+    meta:
+      Cat: 2
+      CCI: CCI-000057
+      Group_Title: SRG-OS-000029-GPOS-00010
+      Rule_ID: SV-204398r603261_rule
+      STIG_ID: RHEL-07-010070
+      Vul_ID: V-204398
+  {{ end }}
+{{ end }}

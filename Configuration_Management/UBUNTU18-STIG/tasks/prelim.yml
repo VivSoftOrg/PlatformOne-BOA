@@ -1,0 +1,167 @@
+---
+
+- name: "PRELIM | Include Parse /etc/passwd"
+  import_tasks: parse_etc_passwd.yml
+  when:
+      - ubtu_18_010447
+
+- name: "PRELIM | Run apt update"
+  apt:
+      update_cache: yes
+
+- name: "PRELIM | UBTU-18-010000 | Check whether machine is UEFI-based"
+  stat:
+      path: /sys/firmware/efi
+  register: ubtu_18_sys_firmware_efi
+  when:
+      - ubtu_18_010000
+  tags:
+      - cat1
+      - high
+
+- name: "PRELIM | UBTU-18-010150 | dconf setup"
+  block:
+      - name: "PRELIM | dconf setup | UBTU-18-010150 | check for dconf"
+        command: which dconf
+        changed_when: false
+        failed_when: false
+        register: ubtu18stig_dconf_status
+
+      - name: "PRELIM | dconf setup | UBTU-18-010150  | install if missing"
+        package:
+            name: dconf-cli
+            state: present
+        when:
+            - ubtu18stig_dconf_status.stdout == ""
+            - "'dconf-cli' not in ansible_facts.packages"
+  when:
+      - ubtu_18_010150
+  tags:
+      - cat1
+      - high
+
+- name: "PRELIM | Install AIDE"
+  package:
+      name: ['aide', 'aide-common']
+      state: present
+  when:
+      - "'aide' not in ansible_facts.packages"
+      - ubtu_18_010506 or
+        ubtu_18_010508 or
+        ubtu_18_010515 or
+        ubtu_18_010516
+
+- name: "PRELIM | Install auditd"
+  package:
+      name: auditd
+      state: present
+  when:
+      - "'auditd' not in ansible_facts.packages"
+      - ubtu_18_010006 or
+        ubtu_18_010250 or
+        ubtu_18_010201 or
+        ubtu_18_010202 or
+        ubtu_18_010203 or
+        ubtu_18_010237 or
+        ubtu_18_010238 or
+        ubtu_18_010239 or
+        ubtu_18_010240 or
+        ubtu_18_010244 or
+        ubtu_18_010245 or
+        ubtu_18_010246 or
+        ubtu_18_010247 or
+        ubtu_18_010248 or
+        ubtu_18_010250 or
+        ubtu_18_010300 or
+        ubtu_18_010301 or
+        ubtu_18_010305 or
+        ubtu_18_010306 or
+        ubtu_18_010307 or
+        ubtu_18_010308 or
+        ubtu_18_010309 or
+        ubtu_18_010310 or
+        ubtu_18_010311 or
+        ubtu_18_010312 or
+        ubtu_18_010313 or
+        ubtu_18_010315 or
+        ubtu_18_010316 or
+        ubtu_18_010317 or
+        ubtu_18_010318 or
+        ubtu_18_010319 or
+        ubtu_18_010320 or
+        ubtu_18_010321 or
+        ubtu_18_010327 or
+        ubtu_18_010331 or
+        ubtu_18_010334 or
+        ubtu_18_010340 or
+        ubtu_18_010341 or
+        ubtu_18_010342 or
+        ubtu_18_010343 or
+        ubtu_18_010344 or
+        ubtu_18_010345 or
+        ubtu_18_010346 or
+        ubtu_18_010347 or
+        ubtu_18_010348 or
+        ubtu_18_010349 or
+        ubtu_18_010350 or
+        ubtu_18_010351 or
+        ubtu_18_010352 or
+        ubtu_18_010353 or
+        ubtu_18_010354 or
+        ubtu_18_010356 or
+        ubtu_18_010358 or
+        ubtu_18_010375 or
+        ubtu_18_010379 or
+        ubtu_18_010387 or
+        ubtu_18_010388 or
+        ubtu_18_010391 or
+        ubtu_18_010392 or
+        ubtu_18_010401
+
+- name: "PRELIM | Install audisp-remote plugin"
+  package:
+      name: audispd-plugins
+      state: present
+  when:
+      - ubtu_18_010007 or
+        ubtu_18_010025
+
+- name: "PRELIM | Install rsyslog"
+  package:
+      name: rsyslog
+      state: present
+  when:
+      - "'rsyslog' not in ansible_facts.packages"
+      - ubtu18stig_cat2_patch
+      - ubtu_18_010022
+
+- name: "PRELIM | Install sssd package"
+  package:
+      name: sssd
+      state: present
+  when:
+      - "'sssd' not in ansible_facts.packages"
+      - ubtu18stig_cat3_patch
+      - ubtu_18_010030
+
+- name: "PRELIM | Install Chrony"
+  package:
+      name: chrony
+      state: present
+  when:
+      - "'chrony' not in ansible_facts.packages"
+      - ubtu18stig_cat2_patch or
+        ubtu18stig_cat3_patch
+      - ubtu_18_010501 or
+        ubtu_18_010502
+
+- name: "PRELIM | Get audit log path"
+  shell: "grep -iw log_file /etc/audit/auditd.conf | cut -d' ' -f3 | sed 's:[^/]*$::'"
+  changed_when: false
+  failed_when: false
+  register: ubtu_18_audit_log_path
+  when:
+      - ubtu_18_010305 or
+        ubtu_18_010306 or
+        ubtu_18_010307 or
+        ubtu_18_010308

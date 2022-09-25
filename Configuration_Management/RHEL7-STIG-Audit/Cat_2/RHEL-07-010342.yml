@@ -1,0 +1,34 @@
+{{ if .Vars.RHEL_07_010342 }}
+command:
+  priv_escalation_pw:
+    title: RHEL-07-010342 | must use the invoking user's password for privilege escalation when using sudo. | Check files
+    exec: grep -EisR '(!rootpw|!targetpw|!runaspw)' /etc/sudoers /etc/sudoers.d/* | grep -v '#'
+    exit-status: 
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/Defaults !targetpw/'
+    - '/Defaults !rootpw/'
+    - '/Defaults !runaspw/'
+    meta:
+      Cat: 2
+      CCI: CCI-002227
+      Group_Title: SRG-OS-000480-GPOS-00227
+      Rule_ID: SV-237634r833177_rule
+      STIG_ID: RHEL-07-010342
+      Vul_ID: V-237634
+  priv_escelation_pw_count:
+    title: RHEL-07-010342 | must use the invoking user's password for privilege escalation when using sudo. | Check for multiple instances
+    exec: grep -ERis '(!rootpw|!targetpw|!runaspw)' /etc/sudoers /etc/sudoers.d/* | grep -v '#' | cut -d":" -f1 | uniq | wc -l
+    exit-status: 0
+    stdout:
+    - '/^[0-1]\b/'
+    meta:
+      Cat: 2
+      CCI: CCI-002227
+      Group_Title: SRG-OS-000480-GPOS-00227
+      Rule_ID: SV-237634r833177_rule
+      STIG_ID: RHEL-07-010342
+      Vul_ID: V-237634
+{{ end }}

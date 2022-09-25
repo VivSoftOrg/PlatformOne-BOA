@@ -1,0 +1,28 @@
+---
+
+- name: "4.2.3 | PATCH | Ensure permissions on all logfiles are configured"
+  block:
+      - name: "4.2.3 | PATCH | Ensure permissions on all logfiles are configured | Find log files"
+        find:
+            paths: /var/log
+            recurse: yes
+        register: ubtu22cis_4_2_3_logfiles
+
+      - name: "4.2.3 | PATCH | Ensure permissions on all logfiles are configured | Apply permissions"
+        file:
+            path: "{{ item.path }}"
+            mode: g-w,o-rwx
+        with_items:
+            - "{{ ubtu22cis_4_2_3_logfiles.files }}"
+        loop_control:
+            label: "{{ item.path }}"
+  when:
+      - ubtu22cis_rule_4_2_3
+  tags:
+      - level1-server
+      - level1-workstation
+      - automated
+      - patch
+      - rule_4.2.3
+      - logfiles
+      - permissions
