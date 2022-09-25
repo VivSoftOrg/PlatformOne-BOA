@@ -1,5 +1,0 @@
-{
-  "test_check_iam_mfa_action.py::TestCheckIamMfaAction": true,
-  "test_check_iam_mfa_action.py::TestMockIamClient": true,
-  "test_check_iam_mfa_evaluate.py::TestCheckIamMfaEvaluate::()::test_evaluate_without_mfa": true
-}
