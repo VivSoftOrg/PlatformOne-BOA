@@ -1,5 +1,0 @@
-{
-  "test_unencrypted_rds_action.py::TestUnencryptedRdsAction::()": true,
-  "test_unencrypted_rds_evaluate.py::TestUnencryptedRdsEvaluate::()": true,
-  "test_unencrypted_rds_resource_fetcher.py::TestUnencryptedRdsFetcher": true
-}
