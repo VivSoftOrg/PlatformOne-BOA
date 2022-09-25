@@ -1,0 +1,46 @@
+# Define directories
+MAINDIR = Pathname.new("../").realpath
+ARTIFACTSDIR = MAINDIR + 'artifacts'
+KEYSDIR = MAINDIR + 'keys'
+
+# For vagrant servers (currently not working with local paths)
+# ENV['VAGRANT_SERVER_URL'] = 'file://' + ARTIFACTSDIR
+
+# Default is latest RedHat 7.2 for virtualbox
+default = {
+  version: ARTIFACTSDIR.children.select{|p| p.directory? and p.basename.to_s.match(/^\d+\.\d+\.\d+$/)}.sort.last.basename.to_s,
+  name: 'RedHat-7.2',
+  builder: 'virtualbox'
+}
+
+Vagrant.configure(2) do |config|
+  # Use linked clones
+  config.vm.provider "virtualbox" do |v|
+    v.linked_clone = true
+  end
+
+  # Default ssh config
+  config.ssh.username = 'vagrant'
+  config.ssh.private_key_path = KEYSDIR + 'vagrant'
+
+  # Configure all available machines
+  Dir.glob(ARTIFACTSDIR + '**' + '*.box').each do |artifact|
+    version, name, builder, file = Pathname.new(artifact).relative_path_from(ARTIFACTSDIR).to_s.split(File::SEPARATOR)
+
+    # Skip boxes that don't follow directory structure convention
+    next if file.nil?
+
+    # Only startup the default box if none is specified in commandline
+    box_name = "#{name}-#{version}_#{builder}"
+    is_default = (box_name == "#{default[:name]}-#{default[:version]}_#{default[:builder]}")
+    config.vm.define box_name, primary: is_default, autostart: is_default do |box|
+      box.vm.box = 'file://' + (ARTIFACTSDIR + version + name + builder + file).to_s
+
+      # These artifacts don't have a vagrant user/key
+#      if builder != 'virtualbox'
+        box.ssh.username = 'root'
+        box.ssh.private_key_path = KEYSDIR + 'packer'
+#      end
+    end
+  end
+end

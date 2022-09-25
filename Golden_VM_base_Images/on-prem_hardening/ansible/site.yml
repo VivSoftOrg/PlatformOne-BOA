@@ -1,0 +1,15 @@
+---
+- name: '{{packer_build_name}}'
+  hosts: all
+  tasks:
+    # Load variables from OS packer templates (variables overriden in command line will not be picked up)
+    - include_vars: name=packer_os file=../templates/os/{{ansible_distribution}}-{{ansible_distribution_version}}.json depth=no
+
+    # Common tasks to all builds
+    - include: tasks/repos.yml
+    - include: tasks/config_sshd.yml
+    - include: tasks/random_password.yml user=root
+    - include: tasks/ssh_keys.yml user=root key=packer
+
+    # Build specific tasks
+    - include: '{{packer_build_name}}.yml'
